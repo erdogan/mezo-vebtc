@@ -301,9 +301,10 @@ def generate_dashboard(locks: List[Dict[str, Any]], votes: List[Dict[str, Any]],
     <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
     <style>
         body {{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 20px; background: #f4f4f4; }}
-        .container {{ max-width: 1400px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }}
-        h1, h2, h3 {{ color: #333; margin-top: 0; }}
-        .header {{ display: flex; justify-content: space-between; align-items: start; border-bottom: 2px solid #eee; padding-bottom: 20px; margin-bottom: 30px; }}
+        .container {{ max-width: 1400px; margin: 0 auto; background: white; padding: 60px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }}
+        h1 {{ color: #333; margin-top: 0; margin-bottom: 10px; padding-top: 20px; }}
+        h2, h3 {{ color: #333; margin-top: 0; margin-bottom: 10px; }}
+        .header {{ display: flex; justify-content: space-between; align-items: start; border-bottom: 2px solid #eee; padding-bottom: 30px; margin-bottom: 50px; gap: 80px; }}
         .header-left {{ display: flex; flex-direction: column; gap: 10px; }}
         .controls {{ display: flex; gap: 15px; align-items: center; background: #f8f9fa; padding: 15px; border-radius: 6px; margin-bottom: 20px; border: 1px solid #ddd; flex-wrap: wrap; }}
         .control-group {{ display: flex; flex-direction: column; gap: 5px; }}
@@ -661,11 +662,16 @@ def generate_dashboard(locks: List[Dict[str, Any]], votes: List[Dict[str, Any]],
             let rLock = 0;
             let rVote = 0;
             
+            let totalLock = 0;
+            let totalVote = 0;
+            
             dates.forEach(d => {{
                 const l = dataMap[d].locked;
                 const v = dataMap[d].votes;
                 rLock += l;
                 rVote += v;
+                totalLock += l;
+                totalVote += v;
                 
                 lockVals.push(l);
                 voteVals.push(v);
@@ -675,12 +681,14 @@ def generate_dashboard(locks: List[Dict[str, Any]], votes: List[Dict[str, Any]],
 
             const trace1 = {{
                 x: dates, y: lockVals, name: 'Daily New Locks (BTC)', type: 'bar', 
-                marker: {{color: '#1565c0'}}, offsetgroup: 1
+                marker: {{color: '#1565c0'}}, offsetgroup: 1,
+                text: lockVals.map(v => v > 0 ? v.toFixed(2) : ""), textposition: 'auto'
             }};
             
             const trace2 = {{
                 x: dates, y: voteVals, name: 'Daily Votes Cast (veBTC)', type: 'bar', 
-                marker: {{color: '#28a745', opacity: 0.7}}, offsetgroup: 2
+                marker: {{color: '#28a745', opacity: 0.7}}, offsetgroup: 2,
+                text: voteVals.map(v => v > 0 ? v.toFixed(2) : ""), textposition: 'auto'
             }};
             
             const trace3 = {{
@@ -694,10 +702,14 @@ def generate_dashboard(locks: List[Dict[str, Any]], votes: List[Dict[str, Any]],
             }};
             
             const layout = {{
-                title: 'BTC Locked & Voting Power',
+                title: {{
+                    text: 'BTC Locked & Voting Power',
+                    y: 0.98,
+                    yanchor: 'top'
+                }},
                 barmode: 'group',
-                margin: {{t: 50, l: 50, r: 50, b: 50}},
-                legend: {{orientation: 'h', y: 1.1}},
+                margin: {{t: 120, l: 50, r: 50, b: 50}},
+                legend: {{orientation: 'h', y: 1.3}},
                 hovermode: 'x unified',
                 autosize: true,
                 xaxis: {{
@@ -745,18 +757,27 @@ def generate_dashboard(locks: List[Dict[str, Any]], votes: List[Dict[str, Any]],
             const lockCounts = dates.map(d => dataMap[d].locked);
             const voteCounts = dates.map(d => dataMap[d].votes);
             
+            const totalLocks = lockCounts.reduce((a, b) => a + b, 0);
+            const totalVotes = voteCounts.reduce((a, b) => a + b, 0);
+            
             const trace1 = {{
-                x: dates, y: lockCounts, name: 'Lock Txs', type: 'bar', marker: {{color: '#90caf9'}}
+                x: dates, y: lockCounts, name: 'Lock Txs', type: 'bar', marker: {{color: '#90caf9'}},
+                text: lockCounts.map(v => v > 0 ? v : ""), textposition: 'auto'
             }};
             const trace2 = {{
-                x: dates, y: voteCounts, name: 'Vote Txs', type: 'bar', marker: {{color: '#a5d6a7'}}
+                x: dates, y: voteCounts, name: 'Vote Txs', type: 'bar', marker: {{color: '#a5d6a7'}},
+                text: voteCounts.map(v => v > 0 ? v : ""), textposition: 'auto'
             }};
             
              const layout = {{
-                title: 'Daily Transaction Counts',
+                title: {{
+                    text: 'Daily Transaction Counts',
+                    y: 0.98,
+                    yanchor: 'top'
+                }},
                 barmode: 'group',
-                margin: {{t: 50, l: 50, r: 50, b: 50}},
-                legend: {{orientation: 'h', y: 1.1}},
+                margin: {{t: 120, l: 50, r: 50, b: 50}},
+                legend: {{orientation: 'h', y: 1.3}},
                 hovermode: 'x unified',
                 autosize: true,
                 xaxis: {{ 
