@@ -301,7 +301,7 @@ def generate_dashboard(locks: List[Dict[str, Any]], votes: List[Dict[str, Any]],
 <!DOCTYPE html>
 <html>
 <head>
-    <title>veBTC Dashboard</title>
+    <title>veBTC Locks & Votes</title>
     <meta http-equiv="refresh" content="60">
     <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
     <style>
@@ -361,7 +361,7 @@ def generate_dashboard(locks: List[Dict[str, Any]], votes: List[Dict[str, Any]],
     <div class="container">
         <div class="header">
             <div class="header-left">
-                <h1 style="margin-bottom: 0;">veBTC Dashboard</h1>
+                <h1 style="margin-bottom: 0;">veBTC Locks & Votes</h1>
                 <div style="font-size: 14px; color: #666;">Last Updated: {datetime.now().strftime('%Y-%m-%d %H:%M')}</div>
             </div>
             <div class="stat-box" style="min-width: 150px;">
