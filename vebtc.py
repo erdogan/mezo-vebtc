@@ -369,10 +369,6 @@ def generate_dashboard(locks: List[Dict[str, Any]], votes: List[Dict[str, Any]],
                  <div class="stat-label">Total Locked (On-Chain)</div>
             </div>
             <div class="stat-box" style="min-width: 180px;">
-                 <div class="stat-value">{total_supply} veBTC</div>
-                 <div class="stat-label">Total veBTC Supply</div>
-            </div>
-            <div class="stat-box" style="min-width: 180px;">
                  <div class="stat-value">{total_voted} veBTC</div>
                  <div class="stat-label">Total Voted (Gauges)</div>
             </div>
@@ -904,7 +900,7 @@ def generate_dashboard(locks: List[Dict[str, Any]], votes: List[Dict[str, Any]],
             
             sortedLocks.forEach(l => {{
                 const tr = document.createElement("tr");
-                tr.innerHTML = `<td>${{l.date}}</td><td class="mono">${{l.sender}}</td><td class="mono">${{l.amount.toFixed(4)}}</td><td>${{l.cat}}</td>`;
+                tr.innerHTML = `<td>${{l.ts.replace('T', ' ')}}</td><td class="mono">${{l.sender}}</td><td class="mono">${{l.amount.toFixed(4)}}</td><td>${{l.cat}}</td>`;
                 lockBody.appendChild(tr);
             }});
             
@@ -915,7 +911,7 @@ def generate_dashboard(locks: List[Dict[str, Any]], votes: List[Dict[str, Any]],
             
              sortedVotes.forEach(v => {{
                 const tr = document.createElement("tr");
-                tr.innerHTML = `<td>${{v.date}}</td><td class="mono">${{v.voter}}</td><td class="mono">${{v.voting_power.toFixed(4)}}</td><td class="mono">${{v.total_weight.toFixed(2)}}</td>`;
+                tr.innerHTML = `<td>${{v.ts.replace('T', ' ')}}</td><td class="mono">${{v.voter}}</td><td class="mono">${{v.voting_power.toFixed(4)}}</td><td class="mono">${{v.total_weight.toFixed(2)}}</td>`;
                 voteBody.appendChild(tr);
             }});
         }}
