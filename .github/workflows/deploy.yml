@@ -2,8 +2,11 @@ name: Deploy Dashboard
 
 on:
   schedule:
-    - cron: '*/5 * * * *' # Run every 5 minutes
+    - cron: '0 * * * *' # Run every hour
   workflow_dispatch: # Allow manual trigger
+
+env:
+  TZ: America/New_York
 
 jobs:
   build:
