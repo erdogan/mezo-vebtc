@@ -1,63 +1,253 @@
-
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>veBTC Dashboard</title>
     <meta http-equiv="refresh" content="60">
     <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 20px; background: #f4f4f4; }
-        .container { max-width: 1400px; margin: 0 auto; background: white; padding: 60px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
-        h1 { color: #333; margin-top: 0; margin-bottom: 10px; padding-top: 20px; }
-        h2, h3 { color: #333; margin-top: 0; margin-bottom: 10px; }
-        .header { display: flex; justify-content: space-between; align-items: start; border-bottom: 2px solid #eee; padding-bottom: 30px; margin-bottom: 50px; gap: 80px; }
-        .header-left { display: flex; flex-direction: column; gap: 10px; }
-        .controls { display: flex; gap: 15px; align-items: center; background: #f8f9fa; padding: 15px; border-radius: 6px; margin-bottom: 20px; border: 1px solid #ddd; flex-wrap: wrap; }
-        .control-group { display: flex; flex-direction: column; gap: 5px; }
-        .control-group label { font-size: 12px; font-weight: 600; color: #666; text-transform: uppercase; }
-        input[type="date"] { padding: 8px; border: 1px solid #ccc; border-radius: 4px; font-size: 14px; }
-        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background: #f4f4f4;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            padding: 60px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 10px;
+            padding-top: 20px;
+        }
+
+        h2,
+        h3 {
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 30px;
+            margin-bottom: 50px;
+            gap: 80px;
+        }
+
+        .header-left {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .controls {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            flex-wrap: wrap;
+        }
+
+        .control-group {
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .control-group label {
+            font-size: 12px;
+            font-weight: 600;
+            color: #666;
+            text-transform: uppercase;
+        }
+
+        input[type="date"] {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+
         /* Grid */
-        .grid-row { display: flex; gap: 20px; margin-bottom: 30px; }
-        .col { flex: 1; min-width: 300px; }
-        
-        .card { background: white; border: 1px solid #eee; border-radius: 6px; padding: 15px; height: 100%; box-sizing: border-box; }
-        .card h3 { font-size: 16px; border-bottom: 1px solid #eee; padding-bottom: 10px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center; }
-        
+        .grid-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .col {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #eee;
+            border-radius: 6px;
+            padding: 15px;
+            height: 100%;
+            box-sizing: border-box;
+        }
+
+        .card h3 {
+            font-size: 16px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
         /* Mobile Resp */
         @media (max-width: 1024px) {
-            .grid-row { flex-direction: column; }
-            .header { flex-direction: column; gap: 20px; text-align: center; align-items: center; }
-            .header-left { align-items: center; }
+            .grid-row {
+                flex-direction: column;
+            }
+
+            .header {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+                align-items: center;
+            }
+
+            .header-left {
+                align-items: center;
+            }
         }
 
         /* Table Styles */
-        table { width: 100%; border-collapse: collapse; font-size: 13px; }
-        th, td { padding: 8px 12px; text-align: left; border-bottom: 1px solid #eee; }
-        th { background: #f8f9fa; font-weight: 600; color: #444; white-space: nowrap; }
-        tr:hover { background: #f5f5f5; cursor: pointer; }
-        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+        }
+
+        th,
+        td {
+            padding: 8px 12px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #444;
+            white-space: nowrap;
+        }
+
+        tr:hover {
+            background: #f5f5f5;
+            cursor: pointer;
+        }
+
         /* Buttons */
-        .btn { padding: 6px 12px; border: 1px solid #ccc; background: white; border-radius: 4px; cursor: pointer; font-size: 12px; text-decoration: none; color: #333; display: inline-block; }
-        .btn:hover { background: #f0f0f0; }
-        
-        .legend-color { display: inline-block; width: 12px; height: 12px; border-radius: 2px; margin-right: 8px; vertical-align: middle; }
-        .mono { font-family: "SF Mono", "Monaco", "Consolas", monospace; }
-        
-        .summary-stats { display: flex; gap: 20px; margin-bottom: 20px; }
-        .stat-box { background: #f8f9fa; padding: 15px; border-radius: 6px; flex: 1; text-align: center; border: 1px solid #ddd; }
-        .stat-value { font-size: 24px; font-weight: 700; color: #2c3e50; }
-        .stat-label { font-size: 12px; color: #7f8c8d; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 5px; }
+        .btn {
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 12px;
+            text-decoration: none;
+            color: #333;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background: #f0f0f0;
+        }
+
+        .legend-color {
+            display: inline-block;
+            width: 12px;
+            height: 12px;
+            border-radius: 2px;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+
+        .mono {
+            font-family: "SF Mono", "Monaco", "Consolas", monospace;
+        }
+
+        .summary-stats {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .stat-box {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 6px;
+            flex: 1;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        .stat-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: #2c3e50;
+        }
+
+        .stat-label {
+            font-size: 12px;
+            color: #7f8c8d;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-top: 5px;
+        }
 
         /* Tabs */
-        .tabs { display: flex; border-bottom: 1px solid #ddd; margin-bottom: 20px; }
-        .tab { padding: 10px 20px; cursor: pointer; border-bottom: 2px solid transparent; font-weight: 500; color: #666; }
-        .tab.active { border-bottom: 2px solid #007bff; color: #007bff; }
-        .tab-content { display: none; }
-        .tab-content.active { display: block; }
-        
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            font-weight: 500;
+            color: #666;
+        }
+
+        .tab.active {
+            border-bottom: 2px solid #007bff;
+            color: #007bff;
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
     </style>
 </head>
+
 <body>
     <div class="container">
         <div class="header">
@@ -66,8 +256,8 @@
                 <div style="font-size: 14px; color: #666;">Last Updated: 2026-01-02 01:56</div>
             </div>
             <div class="stat-box" style="min-width: 200px;">
-                 <div class="stat-value">96.20 BTC</div>
-                 <div class="stat-label">Current Total Locked (On-Chain)</div>
+                <div class="stat-value">96.20 BTC</div>
+                <div class="stat-label">Current Total Locked (On-Chain)</div>
             </div>
         </div>
 
@@ -81,8 +271,10 @@
                 <label>End Date</label>
                 <input type="date" id="endDate" onchange="updateDashboard()">
             </div>
-             <div class="control-group" style="margin-left: auto;">
-                <button onclick="resetDates()" style="padding: 8px 16px; background: #fff; border: 1px solid #ccc; cursor: pointer; border-radius: 4px;">Reset Range</button>
+            <div class="control-group" style="margin-left: auto;">
+                <button onclick="resetDates()"
+                    style="padding: 8px 16px; background: #fff; border: 1px solid #ccc; cursor: pointer; border-radius: 4px;">Reset
+                    Range</button>
             </div>
         </div>
 
@@ -100,7 +292,7 @@
                 <div class="stat-value" id="disp-votes">0.00</div>
                 <div class="stat-label">Voting Power (veBTC)</div>
             </div>
-             <div class="stat-box">
+            <div class="stat-box">
                 <div class="stat-value" id="disp-voters">0</div>
                 <div class="stat-label">Vote Events</div>
             </div>
@@ -110,9 +302,9 @@
         <div class="card" style="margin-bottom: 20px;">
             <div id="mainChart" style="height: 500px;"></div>
         </div>
-        
+
         <!-- Count Chart -->
-         <div class="card" style="margin-bottom: 30px;">
+        <div class="card" style="margin-bottom: 30px;">
             <div id="countChart" style="height: 300px;"></div>
         </div>
 
@@ -124,11 +316,11 @@
                 <div id="pieChart" style="height: 300px;"></div>
             </div>
             <!-- Pie Chart Count -->
-             <div class="col card">
+            <div class="col card">
                 <h3>Count Distribution</h3>
                 <div id="pieChartCount" style="height: 300px;"></div>
             </div>
-            
+
             <!-- Interact Table -->
             <div class="col card">
                 <h3>Summary</h3>
@@ -144,35 +336,49 @@
                 </table>
             </div>
         </div>
-        
+
         <!-- Tabbed Data View -->
-         <div class="card">
+        <div class="card">
             <div class="tabs">
                 <div class="tab active" onclick="switchTab('locks')">Lock Data (<span id="tcount-locks">0</span>)</div>
                 <div class="tab" onclick="switchTab('votes')">Vote Data (<span id="tcount-votes">0</span>)</div>
             </div>
-            
+
             <div id="tab-locks" class="tab-content active">
-                 <div style="margin-bottom: 10px;">
+                <div style="margin-bottom: 10px;">
                     <button class="btn" onclick="downloadCSV('locks')">Download CSV</button>
-                 </div>
-                 <div style="overflow-x: auto;">
+                </div>
+                <div style="overflow-x: auto;">
                     <table id="lockTable">
-                        <thead><tr><th>Time</th><th>Sender</th><th>Amount (BTC)</th><th>Type</th></tr></thead>
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Sender</th>
+                                <th>Amount (BTC)</th>
+                                <th>Type</th>
+                            </tr>
+                        </thead>
                         <tbody></tbody>
                     </table>
-                 </div>
+                </div>
             </div>
-             <div id="tab-votes" class="tab-content">
-                 <div style="margin-bottom: 10px;">
+            <div id="tab-votes" class="tab-content">
+                <div style="margin-bottom: 10px;">
                     <button class="btn" onclick="downloadCSV('votes')">Download CSV</button>
-                 </div>
-                 <div style="overflow-x: auto;">
+                </div>
+                <div style="overflow-x: auto;">
                     <table id="voteTable">
-                        <thead><tr><th>Time</th><th>Voter</th><th>Weight (veBTC)</th><th>Global Total</th></tr></thead>
+                        <thead>
+                            <tr>
+                                <th>Time</th>
+                                <th>Voter</th>
+                                <th>Weight (veBTC)</th>
+                                <th>Global Total</th>
+                            </tr>
+                        </thead>
                         <tbody></tbody>
                     </table>
-                 </div>
+                </div>
             </div>
         </div>
     </div>
@@ -184,42 +390,42 @@
 
         // --- Config ---
         const colors = {
-            "< 0.001": "#e3f2fd", 
-            "0.001 - 0.01": "#90caf9", 
-            "0.01 - 0.1": "#42a5f5", 
-            "0.1 - 1": "#1e88e5", 
+            "< 0.001": "#e3f2fd",
+            "0.001 - 0.01": "#90caf9",
+            "0.01 - 0.1": "#42a5f5",
+            "0.1 - 1": "#1e88e5",
             "1 and above": "#1565c0"
         };
-        
+
         const catOrder = ["< 0.001", "0.001 - 0.01", "0.01 - 0.1", "0.1 - 1", "1 and above"];
 
         // --- State ---
         let hiddenCategories = new Set(); // For Pie Toggle
 
         // --- Init ---
-        window.onload = function() {
+        window.onload = function () {
             try {
                 // Set default dates
                 const defaultStart = "2025-12-18";
-                
+
                 // Find max date in data
                 let maxDate = "2026-01-01";
-                
+
                 // Sort raw data using UTC helper
                 rawLocks.sort((a, b) => parseDateUTC(a.date) - parseDateUTC(b.date));
                 rawVotes.sort((a, b) => parseDateUTC(a.date) - parseDateUTC(b.date));
-                
-                if (rawLocks.length > 0) maxDate = rawLocks[rawLocks.length-1].date;
-                
+
+                if (rawLocks.length > 0) maxDate = rawLocks[rawLocks.length - 1].date;
+
                 document.getElementById("startDate").value = defaultStart;
                 document.getElementById("endDate").value = maxDate;
-                
+
                 console.log("Init complete. rawLocks:", rawLocks.length, "rawVotes:", rawVotes.length);
-                
+
                 updateDashboard();
-                
+
                 // Resize Handler
-                window.onresize = function() {
+                window.onresize = function () {
                     Plotly.Plots.resize('mainChart');
                     Plotly.Plots.resize('countChart');
                     Plotly.Plots.resize('pieChart');
@@ -232,53 +438,53 @@
         };
 
         function resetDates() {
-             document.getElementById("startDate").value = "2025-12-18";
-             if (rawLocks.length > 0) {
-                document.getElementById("endDate").value = rawLocks[rawLocks.length-1].date;
-             }
-             updateDashboard();
+            document.getElementById("startDate").value = "2025-12-18";
+            if (rawLocks.length > 0) {
+                document.getElementById("endDate").value = rawLocks[rawLocks.length - 1].date;
+            }
+            updateDashboard();
         }
-        
+
         // --- CSV Download ---
         function downloadCSV(type) {
-             const startStr = document.getElementById("startDate").value;
-             const endStr = document.getElementById("endDate").value;
-             const startTs = new Date(startStr).getTime();
-             const endTs = new Date(endStr).getTime() + 86400000;
-             
-             let data, filename, headers, rowMapper;
-             
-             if(type === 'locks') {
-                 data = rawLocks.filter(l => { const d = parseDateUTC(l.date); return d >= startTs && d < endTs; });
-                 filename = `vebtc_locks_${startStr}_${endStr}.csv`;
-                 headers = ["Date", "Timestamp", "Sender", "Amount", "Category"];
-                 rowMapper = l => [l.date, l.ts, l.sender, l.amount, l.cat];
-             } else {
-                 data = rawVotes.filter(l => { const d = parseDateUTC(l.date); return d >= startTs && d < endTs; });
-                 filename = `vebtc_votes_${startStr}_${endStr}.csv`;
-                 headers = ["Date", "Timestamp", "Voter", "VoteWeight", "TotalWeight"];
-                 rowMapper = v => [v.date, v.ts, v.voter, v.voting_power, v.total_weight];
-             }
-             
-             let csvContent = "data:text/csv;charset=utf-8," + headers.join(",") + "\n";
-             data.forEach(item => {
-                 const row = rowMapper(item).map(val => `"${val}"`).join(",");
-                 csvContent += row + "\n";
-             });
-             
-             const encodedUri = encodeURI(csvContent);
-             const link = document.createElement("a");
-             link.setAttribute("href", encodedUri);
-             link.setAttribute("download", filename);
-             document.body.appendChild(link);
-             link.click();
-             document.body.removeChild(link);
+            const startStr = document.getElementById("startDate").value;
+            const endStr = document.getElementById("endDate").value;
+            const startTs = new Date(startStr).getTime();
+            const endTs = new Date(endStr).getTime() + 86400000;
+
+            let data, filename, headers, rowMapper;
+
+            if (type === 'locks') {
+                data = rawLocks.filter(l => { const d = parseDateUTC(l.date); return d >= startTs && d < endTs; });
+                filename = `vebtc_locks_${startStr}_${endStr}.csv`;
+                headers = ["Date", "Timestamp", "Sender", "Amount", "Category"];
+                rowMapper = l => [l.date, l.ts, l.sender, l.amount, l.cat];
+            } else {
+                data = rawVotes.filter(l => { const d = parseDateUTC(l.date); return d >= startTs && d < endTs; });
+                filename = `vebtc_votes_${startStr}_${endStr}.csv`;
+                headers = ["Date", "Timestamp", "Voter", "VoteWeight", "TotalWeight"];
+                rowMapper = v => [v.date, v.ts, v.voter, v.voting_power, v.total_weight];
+            }
+
+            let csvContent = "data:text/csv;charset=utf-8," + headers.join(",") + "\n";
+            data.forEach(item => {
+                const row = rowMapper(item).map(val => `"${val}"`).join(",");
+                csvContent += row + "\n";
+            });
+
+            const encodedUri = encodeURI(csvContent);
+            const link = document.createElement("a");
+            link.setAttribute("href", encodedUri);
+            link.setAttribute("download", filename);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
         }
-        
+
         function switchTab(tab) {
             document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
             document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
-            
+
             if (tab === 'locks') {
                 document.querySelectorAll('.tab')[0].classList.add('active');
                 document.getElementById('tab-locks').classList.add('active');
@@ -300,9 +506,9 @@
         function updateDashboard() {
             const startStr = document.getElementById("startDate").value;
             const endStr = document.getElementById("endDate").value;
-            
+
             console.log("Updating dashboard for range:", startStr, "to", endStr);
-            
+
             const startTs = parseDateUTC(startStr);
             const endTs = parseDateUTC(endStr) + 86400000; // End of day
 
@@ -315,19 +521,19 @@
                 const d = parseDateUTC(l.date);
                 return d >= startTs && d < endTs;
             });
-            
+
             console.log("Filtered Locks:", filteredLocks.length, "Filtered Votes:", filteredVotes.length);
 
             // Calc Stats
             const totalLocked = filteredLocks.reduce((acc, curr) => acc + curr.amount, 0);
             const totalVoteWeight = filteredVotes.reduce((acc, curr) => acc + curr.voting_power, 0);
-            
+
             // DOM Updates
-            document.getElementById("disp-locked").innerText = totalLocked.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            document.getElementById("disp-locked").innerText = totalLocked.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
             document.getElementById("disp-txs").innerText = filteredLocks.length;
-            document.getElementById("disp-votes").innerText = totalVoteWeight.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
+            document.getElementById("disp-votes").innerText = totalVoteWeight.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
             document.getElementById("disp-voters").innerText = filteredVotes.length;
-            
+
             document.getElementById("tcount-locks").innerText = filteredLocks.length;
             document.getElementById("tcount-votes").innerText = filteredVotes.length;
 
@@ -340,16 +546,16 @@
         function renderMainChart(locks, votes) {
             // Group by date
             const dataMap = {};
-            
+
             // Build map of all dates in range
             locks.forEach(l => {
-                if (!dataMap[l.date]) dataMap[l.date] = {locked: 0, votes: 0, tx_lock: 0, tx_vote: 0};
+                if (!dataMap[l.date]) dataMap[l.date] = { locked: 0, votes: 0, tx_lock: 0, tx_vote: 0 };
                 dataMap[l.date].locked += l.amount;
                 dataMap[l.date].tx_lock += 1;
             });
-            
+
             votes.forEach(v => {
-                if (!dataMap[v.date]) dataMap[v.date] = {locked: 0, votes: 0, tx_lock: 0, tx_vote: 0};
+                if (!dataMap[v.date]) dataMap[v.date] = { locked: 0, votes: 0, tx_lock: 0, tx_vote: 0 };
                 dataMap[v.date].votes += v.voting_power;
                 dataMap[v.date].tx_vote += 1;
             });
@@ -357,7 +563,7 @@
             const dates = Object.keys(dataMap).sort();
             const lockVals = [];
             const voteVals = [];
-            
+
             // Calc cumulatives (Local to filter window? Or Global?)
             // User likely wants trend of CURRENT data.
             // If we filter, cumulative should start from 0 at start? Or true cumulative?
@@ -367,10 +573,10 @@
             const cumVoteVals = [];
             let rLock = 0;
             let rVote = 0;
-            
+
             let totalLock = 0;
             let totalVote = 0;
-            
+
             dates.forEach(d => {
                 const l = dataMap[d].locked;
                 const v = dataMap[d].votes;
@@ -378,7 +584,7 @@
                 rVote += v;
                 totalLock += l;
                 totalVote += v;
-                
+
                 lockVals.push(l);
                 voteVals.push(v);
                 cumLockVals.push(rLock);
@@ -386,27 +592,27 @@
             });
 
             const trace1 = {
-                x: dates, y: lockVals, name: 'Daily New Locks (BTC)', type: 'bar', 
-                marker: {color: '#1565c0'}, offsetgroup: 1,
+                x: dates, y: lockVals, name: 'Daily New Locks (BTC)', type: 'bar',
+                marker: { color: '#1565c0' }, offsetgroup: 1,
                 text: lockVals.map(v => v > 0 ? v.toFixed(2) : ""), textposition: 'auto'
             };
-            
+
             const trace2 = {
-                x: dates, y: voteVals, name: 'Daily Votes Cast (veBTC)', type: 'bar', 
-                marker: {color: '#28a745', opacity: 0.7}, offsetgroup: 2,
+                x: dates, y: voteVals, name: 'Daily Votes Cast (veBTC)', type: 'bar',
+                marker: { color: '#28a745', opacity: 0.7 }, offsetgroup: 2,
                 text: voteVals.map(v => v > 0 ? v.toFixed(2) : ""), textposition: 'auto'
             };
-            
+
             const trace3 = {
                 x: dates, y: cumLockVals, name: 'Cumulative Locked', type: 'scatter', mode: 'lines',
-                line: {color: '#ff9800', width: 3}, yaxis: 'y2'
+                line: { color: '#ff9800', width: 3 }, yaxis: 'y2'
             };
-            
-             const trace4 = {
+
+            const trace4 = {
                 x: dates, y: cumVoteVals, name: 'Cumulative Votes', type: 'scatter', mode: 'lines',
-                line: {color: '#9400D3', width: 3, dash: 'dot'}, yaxis: 'y2'
+                line: { color: '#9400D3', width: 3, dash: 'dot' }, yaxis: 'y2'
             };
-            
+
             const layout = {
                 title: {
                     text: 'BTC Locked & Voting Power',
@@ -414,8 +620,8 @@
                     yanchor: 'top'
                 },
                 barmode: 'group',
-                margin: {t: 120, l: 50, r: 50, b: 50},
-                legend: {orientation: 'h', y: 1.3},
+                margin: { t: 120, l: 50, r: 50, b: 50 },
+                legend: { orientation: 'h', y: 1.3 },
                 hovermode: 'x unified',
                 autosize: true,
                 xaxis: {
@@ -444,49 +650,49 @@
                     showgrid: false
                 }
             };
-            
-            Plotly.newPlot('mainChart', [trace1, trace2, trace3, trace4], layout, {responsive: true});
+
+            Plotly.newPlot('mainChart', [trace1, trace2, trace3, trace4], layout, { responsive: true });
         }
-        
+
         function renderCountChart(locks, votes) {
             const dataMap = {};
-             locks.forEach(l => {
-                if (!dataMap[l.date]) dataMap[l.date] = {locked: 0, votes: 0};
+            locks.forEach(l => {
+                if (!dataMap[l.date]) dataMap[l.date] = { locked: 0, votes: 0 };
                 dataMap[l.date].locked += 1;
             });
             votes.forEach(v => {
-                if (!dataMap[v.date]) dataMap[v.date] = {locked: 0, votes: 0};
+                if (!dataMap[v.date]) dataMap[v.date] = { locked: 0, votes: 0 };
                 dataMap[v.date].votes += 1;
             });
-            
+
             const dates = Object.keys(dataMap).sort();
             const lockCounts = dates.map(d => dataMap[d].locked);
             const voteCounts = dates.map(d => dataMap[d].votes);
-            
+
             const totalLocks = lockCounts.reduce((a, b) => a + b, 0);
             const totalVotes = voteCounts.reduce((a, b) => a + b, 0);
-            
+
             const trace1 = {
-                x: dates, y: lockCounts, name: 'Lock Txs', type: 'bar', marker: {color: '#90caf9'},
+                x: dates, y: lockCounts, name: 'Lock Txs', type: 'bar', marker: { color: '#90caf9' },
                 text: lockCounts.map(v => v > 0 ? v : ""), textposition: 'auto'
             };
             const trace2 = {
-                x: dates, y: voteCounts, name: 'Vote Txs', type: 'bar', marker: {color: '#a5d6a7'},
+                x: dates, y: voteCounts, name: 'Vote Txs', type: 'bar', marker: { color: '#a5d6a7' },
                 text: voteCounts.map(v => v > 0 ? v : ""), textposition: 'auto'
             };
-            
-             const layout = {
+
+            const layout = {
                 title: {
                     text: 'Daily Transaction Counts',
                     y: 0.98,
                     yanchor: 'top'
                 },
                 barmode: 'group',
-                margin: {t: 120, l: 50, r: 50, b: 50},
-                legend: {orientation: 'h', y: 1.3},
+                margin: { t: 120, l: 50, r: 50, b: 50 },
+                legend: { orientation: 'h', y: 1.3 },
                 hovermode: 'x unified',
                 autosize: true,
-                xaxis: { 
+                xaxis: {
                     type: 'date',
                     tickformat: '%b %d',
                     automargin: true,
@@ -504,82 +710,82 @@
                     linecolor: '#ddd'
                 }
             };
-            Plotly.newPlot('countChart', [trace1, trace2], layout, {responsive: true});
+            Plotly.newPlot('countChart', [trace1, trace2], layout, { responsive: true });
         }
 
         function renderDistribution(locks) {
             // bucket stats
             const buckets = {};
-            catOrder.forEach(c => buckets[c] = {count:0, vol:0});
-            
+            catOrder.forEach(c => buckets[c] = { count: 0, vol: 0 });
+
             locks.forEach(l => {
                 if (buckets[l.cat]) {
                     buckets[l.cat].count++;
                     buckets[l.cat].vol += l.amount;
                 }
             });
-            
+
             // Update Table
             const tbody = document.querySelector("#distTable tbody");
             tbody.innerHTML = "";
-            
+
             const pieLabels = [];
             const pieVolValues = [];
             const pieCountValues = [];
             const pieColors = [];
-            
+
             catOrder.forEach(cat => {
                 const b = buckets[cat];
                 const color = colors[cat];
                 const isHidden = hiddenCategories.has(cat);
-                
+
                 // Table Row
                 const tr = document.createElement("tr");
                 tr.style.opacity = isHidden ? 0.5 : 1;
                 tr.onclick = () => toggleCategory(cat);
-                
+
                 tr.innerHTML = `
                     <td><span class="legend-color" style="background:${color}"></span>${cat}</td>
                     <td class="mono">${b.count}</td>
                     <td class="mono">${b.vol.toFixed(2)}</td>
                 `;
                 tbody.appendChild(tr);
-                
+
                 // Pie Data
                 if (!isHidden) { // Include 0 counts? Usually no.
-                     if (b.count > 0 || b.vol > 0) {
+                    if (b.count > 0 || b.vol > 0) {
                         pieLabels.push(cat);
                         pieVolValues.push(b.vol);
                         pieCountValues.push(b.count);
                         pieColors.push(colors[cat]);
-                     }
+                    }
                 }
             });
-            
+
             // Common Pie Layout
             const layout = {
-                margin: {t: 10, l: 0, r: 0, b: 10},
+                margin: { t: 10, l: 0, r: 0, b: 10 },
                 showlegend: false,
                 autosize: true
             };
-            
+
             // Render Pie Vol
             const traceVol = {
                 labels: pieLabels, values: pieVolValues, type: 'pie',
-                marker: {colors: pieColors},
+                marker: { colors: pieColors },
                 textinfo: 'percent', hoverinfo: 'label+value+percent', name: 'Volume'
             };
-            Plotly.newPlot('pieChart', [traceVol], layout, {responsive: true});
-            
+            Plotly.newPlot('pieChart', [traceVol], layout, { responsive: true });
+
             // Render Pie Count
             const traceCount = {
                 labels: pieLabels, values: pieCountValues, type: 'pie',
-                marker: {colors: pieColors},
+                marker: { colors: pieColors },
                 textinfo: 'percent', hoverinfo: 'label+value+percent', name: 'Count'
             };
-            Plotly.newPlot('pieChartCount', [traceCount], layout, {responsive: true});
+            Plotly.newPlot('pieChartCount', [traceCount], layout, { responsive: true });
         }
-        
+
         function toggleCategory(cat) {
             if (hiddenCategories.has(cat)) hiddenCategories.delete(cat);
             else hiddenCategories.add(cat);
@@ -590,22 +796,22 @@
             // Lock Table (All)
             const lockBody = document.querySelector("#lockTable tbody");
             lockBody.innerHTML = "";
-            
+
             // sort desc
-            const sortedLocks = [...locks].sort((a,b) => new Date(b.date) - new Date(a.date));
-            
+            const sortedLocks = [...locks].sort((a, b) => new Date(b.date) - new Date(a.date));
+
             sortedLocks.forEach(l => {
                 const tr = document.createElement("tr");
                 tr.innerHTML = `<td>${l.date}</td><td class="mono">${l.sender}</td><td class="mono">${l.amount.toFixed(4)}</td><td>${l.cat}</td>`;
                 lockBody.appendChild(tr);
             });
-            
+
             // Vote Table
             const voteBody = document.querySelector("#voteTable tbody");
             voteBody.innerHTML = "";
-            const sortedVotes = [...votes].sort((a,b) => new Date(b.date) - new Date(a.date));
-            
-             sortedVotes.forEach(v => {
+            const sortedVotes = [...votes].sort((a, b) => new Date(b.date) - new Date(a.date));
+
+            sortedVotes.forEach(v => {
                 const tr = document.createElement("tr");
                 tr.innerHTML = `<td>${v.date}</td><td class="mono">${v.voter}</td><td class="mono">${v.voting_power.toFixed(4)}</td><td class="mono">${v.total_weight.toFixed(2)}</td>`;
                 voteBody.appendChild(tr);
@@ -614,5 +820,5 @@
 
     </script>
 </body>
+
 </html>
-    
