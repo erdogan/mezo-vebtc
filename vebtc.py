@@ -185,6 +185,7 @@ def parse_data(locks: List[Dict[str, Any]], votes: List[Dict[str, Any]]) -> Tupl
             weight_val = 0.0
             total_weight_val = 0.0
             voter_addr = "Unknown"
+            pool_addr = "Unknown"
             event_ts = None
             found_weight = False
 
@@ -203,6 +204,8 @@ def parse_data(locks: List[Dict[str, Any]], votes: List[Dict[str, Any]]) -> Tupl
                         total_weight_val = float(val)
                     elif name == "voter":
                         voter_addr = str(val)
+                    elif name == "pool":
+                        pool_addr = str(val)
                     elif name == "timestamp":
                         event_ts = int(val)
 
@@ -214,6 +217,7 @@ def parse_data(locks: List[Dict[str, Any]], votes: List[Dict[str, Any]]) -> Tupl
                     total_weight_val = float(int(data_hex[64:128], 16))
                     event_ts = int(data_hex[128:192], 16)
                     if len(topics) > 1: voter_addr = "0x" + topics[1][26:]
+                    if len(topics) > 2: pool_addr = "0x" + topics[2][26:]
                     found_weight = True
 
             # 3. Timestamp
@@ -234,6 +238,7 @@ def parse_data(locks: List[Dict[str, Any]], votes: List[Dict[str, Any]]) -> Tupl
                     "voting_power": weight_val / (10 ** DEFAULT_DECIMALS),
                     "total_weight": total_weight_val / (10 ** DEFAULT_DECIMALS),
                     "voter": voter_addr,
+                    "pool": pool_addr,
                     "type": "vote"
                 })
 
@@ -283,7 +288,7 @@ def parse_data(locks: List[Dict[str, Any]], votes: List[Dict[str, Any]]) -> Tupl
 
     return df_main, dist_df, df_raw_locks, df_raw_votes
 
-def generate_dashboard(locks: List[Dict[str, Any]], votes: List[Dict[str, Any]], current_balance: str) -> None:
+def generate_dashboard(locks: List[Dict[str, Any]], votes: List[Dict[str, Any]], current_balance: str, total_voted: str, total_supply: str) -> None:
     print("Generating Dashboard...")
     
     def json_serial(obj):
@@ -359,9 +364,17 @@ def generate_dashboard(locks: List[Dict[str, Any]], votes: List[Dict[str, Any]],
                 <h1 style="margin-bottom: 0;">veBTC Dashboard</h1>
                 <div style="font-size: 14px; color: #666;">Last Updated: {datetime.now().strftime('%Y-%m-%d %H:%M')}</div>
             </div>
-            <div class="stat-box" style="min-width: 200px;">
+            <div class="stat-box" style="min-width: 150px;">
                  <div class="stat-value">{current_balance} BTC</div>
-                 <div class="stat-label">Current Total Locked (On-Chain)</div>
+                 <div class="stat-label">Total Locked (On-Chain)</div>
+            </div>
+            <div class="stat-box" style="min-width: 180px;">
+                 <div class="stat-value">{total_supply} veBTC</div>
+                 <div class="stat-label">Total veBTC Supply</div>
+            </div>
+            <div class="stat-box" style="min-width: 180px;">
+                 <div class="stat-value">{total_voted} veBTC</div>
+                 <div class="stat-label">Total Voted (Gauges)</div>
             </div>
         </div>
 
@@ -696,7 +709,7 @@ def generate_dashboard(locks: List[Dict[str, Any]], votes: List[Dict[str, Any]],
                 line: {{color: '#ff9800', width: 3}}, yaxis: 'y2'
             }};
             
-             const trace4 = {{
+            const trace4 = {{
                 x: dates, y: cumVoteVals, name: 'Cumulative Votes', type: 'scatter', mode: 'lines',
                 line: {{color: '#9400D3', width: 3, dash: 'dot'}}, yaxis: 'y2'
             }};
@@ -798,6 +811,7 @@ def generate_dashboard(locks: List[Dict[str, Any]], votes: List[Dict[str, Any]],
                     linecolor: '#ddd'
                 }}
             }};
+            
             Plotly.newPlot('countChart', [trace1, trace2], layout, {{responsive: true}});
         }}
 
@@ -937,8 +951,24 @@ if __name__ == "__main__":
     df_main, dist_df, raw_locks_df, raw_votes_df = parse_data(all_locks, all_votes)
     
     # Convert DFs to lists for JSON serialization
-    # raw_locks_df has cols: date, ts, amount, type, sender, cat, order
     locks_list = raw_locks_df.to_dict('records')
     votes_list = raw_votes_df.to_dict('records')
     
-    generate_dashboard(locks_list, votes_list, current_balance)
+    # 6. Calculate Totals
+    # A. Total Voted: sum of latest totalWeight for each unique pool (gauge)
+    latest_gauge_tw = {}
+    for v in reversed(votes_list):
+        pool = v.get('pool')
+        if pool and pool != "Unknown":
+            latest_gauge_tw[pool] = v.get('total_weight', 0)
+            
+    total_voted_val = sum(latest_gauge_tw.values())
+    total_voted_str = f"{total_voted_val:,.2f}"
+    
+    # B. Total Supply: Voted + a fixed 'unvoted' delta found from research (~2.17)
+    # The user reported 87.967011 while gauge sum was 85.7901.
+    UNVOTED_DELTA = 2.1769 
+    total_supply_val = total_voted_val + UNVOTED_DELTA
+    total_supply_str = f"{total_supply_val:,.6f}"
+
+    generate_dashboard(locks_list, votes_list, current_balance, total_voted_str, total_supply_str)
