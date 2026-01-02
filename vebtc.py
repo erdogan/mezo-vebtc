@@ -301,7 +301,7 @@ def generate_dashboard(locks: List[Dict[str, Any]], votes: List[Dict[str, Any]],
     <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
     <style>
         body {{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 20px; background: #f4f4f4; }}
-        .container {{ max_width: 1400px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }}
+        .container {{ max-width: 1400px; margin: 0 auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }}
         h1, h2, h3 {{ color: #333; margin-top: 0; }}
         .header {{ display: flex; justify-content: space-between; align-items: start; border-bottom: 2px solid #eee; padding-bottom: 20px; margin-bottom: 30px; }}
         .header-left {{ display: flex; flex-direction: column; gap: 10px; }}
@@ -675,14 +675,12 @@ def generate_dashboard(locks: List[Dict[str, Any]], votes: List[Dict[str, Any]],
 
             const trace1 = {{
                 x: dates, y: lockVals, name: 'Daily New Locks (BTC)', type: 'bar', 
-                marker: {{color: '#1565c0'}}, offsetgroup: 1,
-                text: lockVals.map(v => v.toFixed(2)), textposition: 'auto'
+                marker: {{color: '#1565c0'}}, offsetgroup: 1
             }};
             
             const trace2 = {{
                 x: dates, y: voteVals, name: 'Daily Votes Cast (veBTC)', type: 'bar', 
-                marker: {{color: '#28a745', opacity: 0.7}}, offsetgroup: 2,
-                text: voteVals.map(v => v.toFixed(2)), textposition: 'auto'
+                marker: {{color: '#28a745', opacity: 0.7}}, offsetgroup: 2
             }};
             
             const trace3 = {{
@@ -705,10 +703,28 @@ def generate_dashboard(locks: List[Dict[str, Any]], votes: List[Dict[str, Any]],
                 xaxis: {{
                     type: 'date',
                     tickformat: '%b %d',
-                    automargin: true
+                    automargin: true,
+                    showline: true,
+                    linewidth: 1,
+                    linecolor: '#888',
+                    ticks: 'outside'
                 }},
-                yaxis: {{title: 'Daily Amount'}},
-                yaxis2: {{title: 'Cumulative Amount', overlaying: 'y', side: 'right'}}
+                yaxis: {{
+                    title: 'Daily Amount',
+                    rangemode: 'tozero',
+                    zeroline: false,
+                    showline: true,
+                    linewidth: 1,
+                    linecolor: '#ddd'
+                }},
+                yaxis2: {{
+                    title: 'Cumulative Amount',
+                    overlaying: 'y',
+                    side: 'right',
+                    rangemode: 'tozero',
+                    zeroline: false,
+                    showgrid: false
+                }}
             }};
             
             Plotly.newPlot('mainChart', [trace1, trace2, trace3, trace4], layout, {{responsive: true}});
@@ -730,12 +746,10 @@ def generate_dashboard(locks: List[Dict[str, Any]], votes: List[Dict[str, Any]],
             const voteCounts = dates.map(d => dataMap[d].votes);
             
             const trace1 = {{
-                x: dates, y: lockCounts, name: 'Lock Txs', type: 'bar', marker: {{color: '#90caf9'}},
-                text: lockCounts, textposition: 'auto'
+                x: dates, y: lockCounts, name: 'Lock Txs', type: 'bar', marker: {{color: '#90caf9'}}
             }};
             const trace2 = {{
-                x: dates, y: voteCounts, name: 'Vote Txs', type: 'bar', marker: {{color: '#a5d6a7'}},
-                text: voteCounts, textposition: 'auto'
+                x: dates, y: voteCounts, name: 'Vote Txs', type: 'bar', marker: {{color: '#a5d6a7'}}
             }};
             
              const layout = {{
@@ -748,7 +762,19 @@ def generate_dashboard(locks: List[Dict[str, Any]], votes: List[Dict[str, Any]],
                 xaxis: {{ 
                     type: 'date',
                     tickformat: '%b %d',
-                    automargin: true 
+                    automargin: true,
+                    showline: true,
+                    linewidth: 1,
+                    linecolor: '#888',
+                    ticks: 'outside'
+                }},
+                yaxis: {{
+                    title: 'Transaction Count',
+                    rangemode: 'tozero',
+                    zeroline: false,
+                    showline: true,
+                    linewidth: 1,
+                    linecolor: '#ddd'
                 }}
             }};
             Plotly.newPlot('countChart', [trace1, trace2], layout, {{responsive: true}});
