@@ -41,11 +41,11 @@ def generate_epoch_banner(epoch_info: Dict[str, Any], total_votes: float, unique
         </div>
         <div class="epoch-stats">
             <div class="stat">
-                <span class="label">Total Votes</span>
+                <span class="label">Total Voted</span>
                 <span class="value">{total_votes:.2f} veBTC</span>
             </div>
             <div class="stat">
-                <span class="label">Participants</span>
+                <span class="label">Total Voters</span>
                 <span class="value">{unique_voters}</span>
             </div>
         </div>

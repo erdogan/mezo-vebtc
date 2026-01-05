@@ -653,7 +653,18 @@ def generate_dashboard(locks: List[Dict[str, Any]], votes: List[Dict[str, Any]],
 
             // Calc Stats
             const totalLocked = filteredLocks.reduce((acc, curr) => acc + curr.amount, 0);
-            const totalVoteWeight = filteredVotes.reduce((acc, curr) => acc + curr.voting_power, 0);
+
+            // Calculate total voting power as sum of latest totalWeight per pool
+            // (not sum of individual votes, which would count duplicates)
+            const latestPoolWeights = {{}};
+            // Process votes in reverse to get latest totalWeight for each pool
+            for (let i = filteredVotes.length - 1; i >= 0; i--) {{
+                const v = filteredVotes[i];
+                if (v.pool && v.pool !== 'Unknown' && !latestPoolWeights[v.pool]) {{
+                    latestPoolWeights[v.pool] = v.total_weight || 0;
+                }}
+            }}
+            const totalVoteWeight = Object.values(latestPoolWeights).reduce((acc, val) => acc + val, 0);
             
             // DOM Updates
             document.getElementById("disp-locked").innerText = totalLocked.toLocaleString(undefined, {{minimumFractionDigits: 2, maximumFractionDigits: 2}});
