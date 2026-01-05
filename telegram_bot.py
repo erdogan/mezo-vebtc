@@ -109,7 +109,7 @@ class VeBTCBot:
         self.application.add_handler(CommandHandler("unsubscribe", self.bot_commands.unsubscribe_command))
         self.application.add_handler(CommandHandler("link", self.bot_commands.link_command))
         self.application.add_handler(CommandHandler("unlink", self.bot_commands.unlink_command))
-        self.application.add_handler(CommandHandler("status", self.bot_commands.status_command))
+        self.application.add_handler(CommandHandler("epoch", self.bot_commands.status_command))
         self.application.add_handler(CommandHandler("myvotes", self.bot_commands.myvotes_command))
         self.application.add_handler(CommandHandler("pools", self.bot_commands.pools_command))
         self.application.add_handler(CommandHandler("settings", self.bot_commands.settings_command))
@@ -117,7 +117,7 @@ class VeBTCBot:
 
         # Hidden test command (not shown in help)
         self.application.add_handler(CommandHandler("test", self.bot_commands.test_notification_command))
-        self.application.add_handler(CommandHandler("stats", self.bot_commands.stats_command))
+        self.application.add_handler(CommandHandler("botstats", self.bot_commands.stats_command))
 
         # Unknown command handler (must be after all command handlers)
         self.application.add_handler(MessageHandler(filters.COMMAND, self.bot_commands.unknown_command))

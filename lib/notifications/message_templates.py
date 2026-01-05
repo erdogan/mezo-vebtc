@@ -38,11 +38,10 @@ Commands: /help"""
 /unlink \\- Remove wallet linking
 
 *Information*
-/status \\- Current epoch \\& voting status
+/epoch \\- Current epoch \\& voting status
 /myvotes \\- Your voting history \\(requires link\\)
 /pools \\- Top pools by APR
-/settings \\- Configure notification preferences
-/stats \\- View bot usage statistics"""
+/settings \\- Configure notification preferences"""
 
     @staticmethod
     def already_subscribed_message() -> str:
@@ -222,7 +221,7 @@ Bribes: {bribes_str} \\| $/vote: ${usd_per_vote_str}
 
 {pools_text}
 
-Epoch status: /status"""
+Epoch status: /epoch"""
 
     @staticmethod
     def settings_message(subscriber: Any) -> str:
