@@ -20,19 +20,16 @@ class NotificationEngine:
     """Core notification logic and integration with analytics."""
 
     def __init__(self, data_file: str = "vebtc_data.json",
-                 db_path: str = "subscribers.db",
                  github_raw_url: str = None):
         """Initialize notification engine.
 
         Args:
             data_file: Path to veBTC data JSON file
-            db_path: Path to subscribers database
             github_raw_url: Optional GitHub raw URL for fetching data (for cloud deployments)
         """
         self.data_file = data_file
         self.github_raw_url = github_raw_url or os.getenv('GITHUB_DATA_URL')
         self.epoch_tracker = EpochTracker()
-        self.subscriber_manager = SubscriberManager(db_path)
 
     def load_current_data(self) -> Tuple[List[Dict[str, Any]], List[Dict[str, Any]]]:
         """Load latest vote/lock data.
