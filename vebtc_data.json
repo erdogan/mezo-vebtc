@@ -2,6 +2,66 @@
   "version": "2.0",
   "locks": [
     {
+      "block_hash": "0xf716577bedd7ef8251943a0900ab8afdb034f098a7692e11a46e85025e1b155d",
+      "block_number": 5862444,
+      "from": {
+        "ens_domain_name": null,
+        "hash": "0x64739640e38F55e6Bf1e72a3B10405395F71FB45",
+        "implementations": [],
+        "is_contract": false,
+        "is_scam": false,
+        "is_verified": false,
+        "metadata": null,
+        "name": null,
+        "private_tags": [],
+        "proxy_type": null,
+        "public_tags": [],
+        "watchlist_names": []
+      },
+      "log_index": 1,
+      "method": "createLock",
+      "timestamp": "2026-01-05T15:59:53.000000Z",
+      "to": {
+        "ens_domain_name": null,
+        "hash": "0x3D4b1b884A7a1E59fE8589a3296EC8f8cBB6f279",
+        "implementations": [
+          {
+            "address": "0xdF217EFD8f3ecb5E837aedF203C28c1f06854017",
+            "name": "VeBTC"
+          }
+        ],
+        "is_contract": true,
+        "is_scam": false,
+        "is_verified": true,
+        "metadata": null,
+        "name": "TransparentUpgradeableProxy",
+        "private_tags": [],
+        "proxy_type": "eip1967",
+        "public_tags": [],
+        "watchlist_names": []
+      },
+      "token": {
+        "address": "0x7b7C000000000000000000000000000000000000",
+        "circulating_market_cap": null,
+        "decimals": "18",
+        "exchange_rate": null,
+        "holders": "13226",
+        "icon_url": "https://storage.googleapis.com/mezo-production-explorer-logos-bucket/btc-token.png",
+        "name": "BTC",
+        "symbol": "BTC",
+        "total_supply": "568446520947945968665",
+        "type": "ERC-20",
+        "volume_24h": null
+      },
+      "total": {
+        "decimals": "18",
+        "value": "550000000000000"
+      },
+      "transaction_hash": "0x00a243f9f0833fe16df0bda06d76e77bfad7f267ea0f65617c5770a8d68a730d",
+      "tx_hash": "0x00a243f9f0833fe16df0bda06d76e77bfad7f267ea0f65617c5770a8d68a730d",
+      "type": "token_transfer"
+    },
+    {
       "block_hash": "0xd903ab548e991ae7c6640cff02fae5a052727c1fe777a190bac4f4663277a04b",
       "block_number": 5862298,
       "from": {
@@ -64563,6 +64623,94 @@
     }
   ],
   "votes": [
+    {
+      "address": {
+        "ens_domain_name": null,
+        "hash": "0x48233cCC97B87Ba93bCA212cbEe48e3210211f03",
+        "implementations": [],
+        "is_contract": false,
+        "is_verified": null,
+        "metadata": null,
+        "name": null,
+        "private_tags": [],
+        "proxy_type": null,
+        "public_tags": [],
+        "watchlist_names": []
+      },
+      "block_hash": "0xbc6bd16b4c3c9f46dbb9d744159df1a2d2e55175aba175bbf3aef91ccf7151af",
+      "block_number": 5862462,
+      "data": "0x0000000000000000000000000000000000000000000000000001a0d7070b35ed00000000000000000000000000000000000000000000000004634582331287ac00000000000000000000000000000000000000000000000000000000695be039",
+      "decoded": {
+        "method_call": "Voted(address indexed voter, address indexed pool, uint256 indexed tokenId, uint256 weight, uint256 totalWeight, uint256 timestamp)",
+        "method_id": "452d440e",
+        "parameters": [
+          {
+            "indexed": true,
+            "name": "voter",
+            "type": "address",
+            "value": "0x64739640e38F55e6Bf1e72a3B10405395F71FB45"
+          },
+          {
+            "indexed": true,
+            "name": "pool",
+            "type": "address",
+            "value": "0xb4D498029af77680cD1eF828b967f010d06C51CC"
+          },
+          {
+            "indexed": true,
+            "name": "tokenId",
+            "type": "uint256",
+            "value": "907"
+          },
+          {
+            "indexed": false,
+            "name": "weight",
+            "type": "uint256",
+            "value": "458320373298669"
+          },
+          {
+            "indexed": false,
+            "name": "totalWeight",
+            "type": "uint256",
+            "value": "316172824350984108"
+          },
+          {
+            "indexed": false,
+            "name": "timestamp",
+            "type": "uint256",
+            "value": "1767628857"
+          }
+        ]
+      },
+      "index": 2,
+      "smart_contract": {
+        "ens_domain_name": null,
+        "hash": "0x48233cCC97B87Ba93bCA212cbEe48e3210211f03",
+        "implementations": [
+          {
+            "address": "0x2da3F3a20Cb05a756e7d3fE7083FB195Dc95C73c",
+            "name": "Voter"
+          }
+        ],
+        "is_contract": true,
+        "is_scam": false,
+        "is_verified": false,
+        "metadata": null,
+        "name": null,
+        "private_tags": [],
+        "proxy_type": "eip1967",
+        "public_tags": [],
+        "watchlist_names": []
+      },
+      "topics": [
+        "0x452d440efc30dfa14a0ef803ccb55936af860ec6a6960ed27f129bef913f296a",
+        "0x00000000000000000000000064739640e38f55e6bf1e72a3b10405395f71fb45",
+        "0x000000000000000000000000b4d498029af77680cd1ef828b967f010d06c51cc",
+        "0x000000000000000000000000000000000000000000000000000000000000038b"
+      ],
+      "transaction_hash": "0x31302babc982523fa7a47549576f2da08dbb844d1032c12614d355898ce810a2",
+      "tx_hash": "0x31302babc982523fa7a47549576f2da08dbb844d1032c12614d355898ce810a2"
+    },
     {
       "address": {
         "ens_domain_name": null,
@@ -295947,6 +296095,15 @@
   "parsed_locks": [
     {
       "date": "2026-01-05T00:00:00.000",
+      "ts": "2026-01-05T15:59:53.000",
+      "amount": 0.00055,
+      "type": "lock",
+      "sender": "0x64739640e38F55e6Bf1e72a3B10405395F71FB45",
+      "cat": "< 0.001",
+      "order": 1
+    },
+    {
+      "date": "2026-01-05T00:00:00.000",
       "ts": "2026-01-05T10:59:42.000",
       "amount": 3.677e-07,
       "type": "lock",
@@ -305174,6 +305331,15 @@
   "parsed_votes": [
     {
       "date": "2026-01-05T00:00:00.000",
+      "ts": "2026-01-05T16:00:57.000",
+      "voting_power": 0.0004583204,
+      "total_weight": 0.3161728244,
+      "voter": "0x64739640e38F55e6Bf1e72a3B10405395F71FB45",
+      "pool": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
+      "type": "vote"
+    },
+    {
+      "date": "2026-01-05T00:00:00.000",
       "ts": "2026-01-05T15:29:36.000",
       "voting_power": 0.0083521825,
       "total_weight": 21.9812418895,
@@ -305185,18 +305351,18 @@
       "date": "2026-01-05T00:00:00.000",
       "ts": "2026-01-05T14:39:35.000",
       "voting_power": 3.0437e-06,
-      "total_weight": 21.9881987347,
+      "total_weight": 0.315714504,
       "voter": "0x4eaD15825339eC629d9D416c56BaAfAE7Cd2D75C",
-      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
+      "pool": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
       "type": "vote"
     },
     {
       "date": "2026-01-05T00:00:00.000",
       "ts": "2026-01-05T14:39:35.000",
       "voting_power": 3.0437e-06,
-      "total_weight": 0.315714504,
+      "total_weight": 21.9881987347,
       "voter": "0x4eaD15825339eC629d9D416c56BaAfAE7Cd2D75C",
-      "pool": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
+      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
       "type": "vote"
     },
     {
@@ -305248,42 +305414,6 @@
       "date": "2026-01-05T00:00:00.000",
       "ts": "2026-01-05T10:20:02.000",
       "voting_power": 3.4177e-06,
-      "total_weight": 0.4545140667,
-      "voter": "0x3b7f435652175D952A687c82cf18ccAF0f0ef67C",
-      "pool": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
-      "type": "vote"
-    },
-    {
-      "date": "2026-01-05T00:00:00.000",
-      "ts": "2026-01-05T10:20:02.000",
-      "voting_power": 3.4177e-06,
-      "total_weight": 0.0041628195,
-      "voter": "0x3b7f435652175D952A687c82cf18ccAF0f0ef67C",
-      "pool": "0xf6f950485b0A65828F07581Ca979ef1271778d6A",
-      "type": "vote"
-    },
-    {
-      "date": "2026-01-05T00:00:00.000",
-      "ts": "2026-01-05T10:20:02.000",
-      "voting_power": 3.4177e-06,
-      "total_weight": 9.2898055752,
-      "voter": "0x3b7f435652175D952A687c82cf18ccAF0f0ef67C",
-      "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
-      "type": "vote"
-    },
-    {
-      "date": "2026-01-05T00:00:00.000",
-      "ts": "2026-01-05T10:20:02.000",
-      "voting_power": 3.4177e-06,
-      "total_weight": 45.7714733988,
-      "voter": "0x3b7f435652175D952A687c82cf18ccAF0f0ef67C",
-      "pool": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
-      "type": "vote"
-    },
-    {
-      "date": "2026-01-05T00:00:00.000",
-      "ts": "2026-01-05T10:20:02.000",
-      "voting_power": 3.4177e-06,
       "total_weight": 0.8097971404,
       "voter": "0x3b7f435652175D952A687c82cf18ccAF0f0ef67C",
       "pool": "0x6688F868E9c81Ee671867E77fBC618BBEA2e9782",
@@ -305293,9 +305423,9 @@
       "date": "2026-01-05T00:00:00.000",
       "ts": "2026-01-05T10:20:02.000",
       "voting_power": 3.4177e-06,
-      "total_weight": 0.0512757469,
+      "total_weight": 7.2490929972,
       "voter": "0x3b7f435652175D952A687c82cf18ccAF0f0ef67C",
-      "pool": "0x5Cd2A025C001E07Ae354A4C22C3009908De1aC59",
+      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
       "type": "vote"
     },
     {
@@ -305311,9 +305441,9 @@
       "date": "2026-01-05T00:00:00.000",
       "ts": "2026-01-05T10:20:02.000",
       "voting_power": 3.4177e-06,
-      "total_weight": 0.0021431597,
+      "total_weight": 0.0512757469,
       "voter": "0x3b7f435652175D952A687c82cf18ccAF0f0ef67C",
-      "pool": "0x329D64572F8922c3Fe90D23A3C74a360d8eA6235",
+      "pool": "0x5Cd2A025C001E07Ae354A4C22C3009908De1aC59",
       "type": "vote"
     },
     {
@@ -305329,9 +305459,45 @@
       "date": "2026-01-05T00:00:00.000",
       "ts": "2026-01-05T10:20:02.000",
       "voting_power": 3.4177e-06,
-      "total_weight": 7.2490929972,
+      "total_weight": 45.7714733988,
       "voter": "0x3b7f435652175D952A687c82cf18ccAF0f0ef67C",
-      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
+      "pool": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
+      "type": "vote"
+    },
+    {
+      "date": "2026-01-05T00:00:00.000",
+      "ts": "2026-01-05T10:20:02.000",
+      "voting_power": 3.4177e-06,
+      "total_weight": 0.4545140667,
+      "voter": "0x3b7f435652175D952A687c82cf18ccAF0f0ef67C",
+      "pool": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
+      "type": "vote"
+    },
+    {
+      "date": "2026-01-05T00:00:00.000",
+      "ts": "2026-01-05T10:20:02.000",
+      "voting_power": 3.4177e-06,
+      "total_weight": 9.2898055752,
+      "voter": "0x3b7f435652175D952A687c82cf18ccAF0f0ef67C",
+      "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
+      "type": "vote"
+    },
+    {
+      "date": "2026-01-05T00:00:00.000",
+      "ts": "2026-01-05T10:20:02.000",
+      "voting_power": 3.4177e-06,
+      "total_weight": 0.0021431597,
+      "voter": "0x3b7f435652175D952A687c82cf18ccAF0f0ef67C",
+      "pool": "0x329D64572F8922c3Fe90D23A3C74a360d8eA6235",
+      "type": "vote"
+    },
+    {
+      "date": "2026-01-05T00:00:00.000",
+      "ts": "2026-01-05T10:20:02.000",
+      "voting_power": 3.4177e-06,
+      "total_weight": 0.0041628195,
+      "voter": "0x3b7f435652175D952A687c82cf18ccAF0f0ef67C",
+      "pool": "0xf6f950485b0A65828F07581Ca979ef1271778d6A",
       "type": "vote"
     },
     {
@@ -305364,19 +305530,19 @@
     {
       "date": "2026-01-05T00:00:00.000",
       "ts": "2026-01-05T09:36:42.000",
-      "voting_power": 6.403e-07,
-      "total_weight": 9.289811623,
+      "voting_power": 5.1221e-06,
+      "total_weight": 21.9852275062,
       "voter": "0x2dFE4CF5d1120d9ea221D0Fb30EA623e099Da79E",
-      "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
+      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
       "type": "vote"
     },
     {
       "date": "2026-01-05T00:00:00.000",
       "ts": "2026-01-05T09:36:42.000",
-      "voting_power": 5.1221e-06,
-      "total_weight": 21.9852275062,
+      "voting_power": 6.403e-07,
+      "total_weight": 9.289811623,
       "voter": "0x2dFE4CF5d1120d9ea221D0Fb30EA623e099Da79E",
-      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
+      "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
       "type": "vote"
     },
     {
@@ -305436,15 +305602,6 @@
     {
       "date": "2026-01-05T00:00:00.000",
       "ts": "2026-01-05T00:33:34.000",
-      "voting_power": 1.06476e-05,
-      "total_weight": 45.7714794466,
-      "voter": "0xd16F12b1C5B1CFbc14893b620578196021E97e68",
-      "pool": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
-      "type": "vote"
-    },
-    {
-      "date": "2026-01-05T00:00:00.000",
-      "ts": "2026-01-05T00:33:34.000",
       "voting_power": 8.51809e-05,
       "total_weight": 23.4591516468,
       "voter": "0xd16F12b1C5B1CFbc14893b620578196021E97e68",
@@ -305458,6 +305615,15 @@
       "total_weight": 7.2491073925,
       "voter": "0xd16F12b1C5B1CFbc14893b620578196021E97e68",
       "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
+      "type": "vote"
+    },
+    {
+      "date": "2026-01-05T00:00:00.000",
+      "ts": "2026-01-05T00:33:34.000",
+      "voting_power": 1.06476e-05,
+      "total_weight": 45.7714794466,
+      "voter": "0xd16F12b1C5B1CFbc14893b620578196021E97e68",
+      "pool": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
       "type": "vote"
     },
     {
@@ -305571,15 +305737,6 @@
     {
       "date": "2026-01-04T00:00:00.000",
       "ts": "2026-01-04T07:11:51.000",
-      "voting_power": 2.4654e-06,
-      "total_weight": 0.4545354035,
-      "voter": "0x750A7E53869a3b6a213dD33215B65181FC94EDC6",
-      "pool": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
-      "type": "vote"
-    },
-    {
-      "date": "2026-01-04T00:00:00.000",
-      "ts": "2026-01-04T07:11:51.000",
       "voting_power": 4.9307e-06,
       "total_weight": 24.584373364,
       "voter": "0x750A7E53869a3b6a213dD33215B65181FC94EDC6",
@@ -305597,11 +305754,11 @@
     },
     {
       "date": "2026-01-04T00:00:00.000",
-      "ts": "2026-01-04T06:59:14.000",
-      "voting_power": 7.6492e-06,
-      "total_weight": 8.4479653935,
-      "voter": "0xD8b06001C459E03C47880815231B46F928BC7E29",
-      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
+      "ts": "2026-01-04T07:11:51.000",
+      "voting_power": 2.4654e-06,
+      "total_weight": 0.4545354035,
+      "voter": "0x750A7E53869a3b6a213dD33215B65181FC94EDC6",
+      "pool": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
       "type": "vote"
     },
     {
@@ -305611,6 +305768,15 @@
       "total_weight": 24.5843752405,
       "voter": "0xD8b06001C459E03C47880815231B46F928BC7E29",
       "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
+      "type": "vote"
+    },
+    {
+      "date": "2026-01-04T00:00:00.000",
+      "ts": "2026-01-04T06:59:14.000",
+      "voting_power": 7.6492e-06,
+      "total_weight": 8.4479653935,
+      "voter": "0xD8b06001C459E03C47880815231B46F928BC7E29",
+      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
       "type": "vote"
     },
     {
@@ -305715,19 +305881,19 @@
     {
       "date": "2026-01-03T00:00:00.000",
       "ts": "2026-01-03T09:32:40.000",
-      "voting_power": 7.3081e-06,
-      "total_weight": 0.0540763751,
+      "voting_power": 1.09621e-05,
+      "total_weight": 8.4057711528,
       "voter": "0x078e69Af5AfcFC6726b4B60CED4eB0aA0ff17ACf",
-      "pool": "0x5Cd2A025C001E07Ae354A4C22C3009908De1aC59",
+      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
       "type": "vote"
     },
     {
       "date": "2026-01-03T00:00:00.000",
       "ts": "2026-01-03T09:32:40.000",
-      "voting_power": 1.09621e-05,
-      "total_weight": 8.4057711528,
+      "voting_power": 7.3081e-06,
+      "total_weight": 0.0540763751,
       "voter": "0x078e69Af5AfcFC6726b4B60CED4eB0aA0ff17ACf",
-      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
+      "pool": "0x5Cd2A025C001E07Ae354A4C22C3009908De1aC59",
       "type": "vote"
     },
     {
@@ -305806,9 +305972,9 @@
       "date": "2026-01-02T00:00:00.000",
       "ts": "2026-01-02T21:18:53.000",
       "voting_power": 4e-05,
-      "total_weight": 0.0541171516,
+      "total_weight": 1.0296012867,
       "voter": "0x6b49f23c18Ed8C1486e2b51Ca3105fb2441157B7",
-      "pool": "0x5Cd2A025C001E07Ae354A4C22C3009908De1aC59",
+      "pool": "0x6688F868E9c81Ee671867E77fBC618BBEA2e9782",
       "type": "vote"
     },
     {
@@ -305824,15 +305990,6 @@
       "date": "2026-01-02T00:00:00.000",
       "ts": "2026-01-02T21:18:53.000",
       "voting_power": 4e-05,
-      "total_weight": 0.0619304714,
-      "voter": "0x6b49f23c18Ed8C1486e2b51Ca3105fb2441157B7",
-      "pool": "0x2a1ab0224a7a608d3A992Cb15594a2934F74f4C0",
-      "type": "vote"
-    },
-    {
-      "date": "2026-01-02T00:00:00.000",
-      "ts": "2026-01-02T21:18:53.000",
-      "voting_power": 4e-05,
       "total_weight": 24.5846446967,
       "voter": "0x6b49f23c18Ed8C1486e2b51Ca3105fb2441157B7",
       "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
@@ -305842,18 +305999,18 @@
       "date": "2026-01-02T00:00:00.000",
       "ts": "2026-01-02T21:18:53.000",
       "voting_power": 4e-05,
-      "total_weight": 0.0022594025,
+      "total_weight": 0.0541171516,
       "voter": "0x6b49f23c18Ed8C1486e2b51Ca3105fb2441157B7",
-      "pool": "0x329D64572F8922c3Fe90D23A3C74a360d8eA6235",
+      "pool": "0x5Cd2A025C001E07Ae354A4C22C3009908De1aC59",
       "type": "vote"
     },
     {
       "date": "2026-01-02T00:00:00.000",
       "ts": "2026-01-02T21:18:53.000",
       "voting_power": 4e-05,
-      "total_weight": 1.0296012867,
+      "total_weight": 0.0619304714,
       "voter": "0x6b49f23c18Ed8C1486e2b51Ca3105fb2441157B7",
-      "pool": "0x6688F868E9c81Ee671867E77fBC618BBEA2e9782",
+      "pool": "0x2a1ab0224a7a608d3A992Cb15594a2934F74f4C0",
       "type": "vote"
     },
     {
@@ -305869,6 +306026,15 @@
       "date": "2026-01-02T00:00:00.000",
       "ts": "2026-01-02T21:18:53.000",
       "voting_power": 4e-05,
+      "total_weight": 0.4544712702,
+      "voter": "0x6b49f23c18Ed8C1486e2b51Ca3105fb2441157B7",
+      "pool": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
+      "type": "vote"
+    },
+    {
+      "date": "2026-01-02T00:00:00.000",
+      "ts": "2026-01-02T21:18:53.000",
+      "voting_power": 4e-05,
       "total_weight": 9.2956738625,
       "voter": "0x6b49f23c18Ed8C1486e2b51Ca3105fb2441157B7",
       "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
@@ -305878,18 +306044,18 @@
       "date": "2026-01-02T00:00:00.000",
       "ts": "2026-01-02T21:18:53.000",
       "voting_power": 4e-05,
-      "total_weight": 0.0041688673,
+      "total_weight": 0.0022594025,
       "voter": "0x6b49f23c18Ed8C1486e2b51Ca3105fb2441157B7",
-      "pool": "0xf6f950485b0A65828F07581Ca979ef1271778d6A",
+      "pool": "0x329D64572F8922c3Fe90D23A3C74a360d8eA6235",
       "type": "vote"
     },
     {
       "date": "2026-01-02T00:00:00.000",
       "ts": "2026-01-02T21:18:53.000",
       "voting_power": 4e-05,
-      "total_weight": 0.4544712702,
+      "total_weight": 0.0041688673,
       "voter": "0x6b49f23c18Ed8C1486e2b51Ca3105fb2441157B7",
-      "pool": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
+      "pool": "0xf6f950485b0A65828F07581Ca979ef1271778d6A",
       "type": "vote"
     },
     {
@@ -305923,18 +306089,18 @@
       "date": "2026-01-02T00:00:00.000",
       "ts": "2026-01-02T18:38:04.000",
       "voting_power": 0.0702416915,
-      "total_weight": 8.4056781206,
+      "total_weight": 24.5846846967,
       "voter": "0x39A9ebc72FA4DC271B308fCbF1C1B185D5d9586A",
-      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
+      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
       "type": "vote"
     },
     {
       "date": "2026-01-02T00:00:00.000",
       "ts": "2026-01-02T18:38:04.000",
       "voting_power": 0.0702416915,
-      "total_weight": 24.5846846967,
+      "total_weight": 8.4056781206,
       "voter": "0x39A9ebc72FA4DC271B308fCbF1C1B185D5d9586A",
-      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
+      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
       "type": "vote"
     },
     {
@@ -305994,15 +306160,6 @@
     {
       "date": "2026-01-02T00:00:00.000",
       "ts": "2026-01-02T16:30:15.000",
-      "voting_power": 1.11207555,
-      "total_weight": 8.3338041144,
-      "voter": "0xcBBbffbc5F25Bd78D453f95C994Fc00877b0A9Cd",
-      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
-      "type": "vote"
-    },
-    {
-      "date": "2026-01-02T00:00:00.000",
-      "ts": "2026-01-02T16:30:15.000",
       "voting_power": 1.85345925,
       "total_weight": 24.5144514381,
       "voter": "0xcBBbffbc5F25Bd78D453f95C994Fc00877b0A9Cd",
@@ -306012,10 +306169,10 @@
     {
       "date": "2026-01-02T00:00:00.000",
       "ts": "2026-01-02T16:30:15.000",
-      "voting_power": 0.185345925,
-      "total_weight": 1.0071545916,
+      "voting_power": 1.11207555,
+      "total_weight": 8.3338041144,
       "voter": "0xcBBbffbc5F25Bd78D453f95C994Fc00877b0A9Cd",
-      "pool": "0x6688F868E9c81Ee671867E77fBC618BBEA2e9782",
+      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
       "type": "vote"
     },
     {
@@ -306025,6 +306182,15 @@
       "total_weight": 45.7750433642,
       "voter": "0xcBBbffbc5F25Bd78D453f95C994Fc00877b0A9Cd",
       "pool": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
+      "type": "vote"
+    },
+    {
+      "date": "2026-01-02T00:00:00.000",
+      "ts": "2026-01-02T16:30:15.000",
+      "voting_power": 0.185345925,
+      "total_weight": 1.0071545916,
+      "voter": "0xcBBbffbc5F25Bd78D453f95C994Fc00877b0A9Cd",
+      "pool": "0x6688F868E9c81Ee671867E77fBC618BBEA2e9782",
       "type": "vote"
     },
     {
@@ -306093,19 +306259,19 @@
     {
       "date": "2026-01-02T00:00:00.000",
       "ts": "2026-01-02T15:33:18.000",
-      "voting_power": 1.65873e-05,
-      "total_weight": 7.0447285644,
+      "voting_power": 1.10582e-05,
+      "total_weight": 0.8064711698,
       "voter": "0xaeEaafB53d45cAE85Eef439856908DCeFaBC37b7",
-      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
+      "pool": "0x6688F868E9c81Ee671867E77fBC618BBEA2e9782",
       "type": "vote"
     },
     {
       "date": "2026-01-02T00:00:00.000",
       "ts": "2026-01-02T15:33:18.000",
-      "voting_power": 1.10582e-05,
-      "total_weight": 0.8064711698,
+      "voting_power": 1.65873e-05,
+      "total_weight": 7.0447285644,
       "voter": "0xaeEaafB53d45cAE85Eef439856908DCeFaBC37b7",
-      "pool": "0x6688F868E9c81Ee671867E77fBC618BBEA2e9782",
+      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
       "type": "vote"
     },
     {
@@ -306139,15 +306305,6 @@
       "date": "2026-01-02T00:00:00.000",
       "ts": "2026-01-02T12:19:03.000",
       "voting_power": 0.004459561,
-      "total_weight": 22.6609921881,
-      "voter": "0x18DD35cd459D4cf9924Aa329CDaCaFaB7F198D96",
-      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
-      "type": "vote"
-    },
-    {
-      "date": "2026-01-02T00:00:00.000",
-      "ts": "2026-01-02T12:19:03.000",
-      "voting_power": 0.004459561,
       "total_weight": 7.041600793,
       "voter": "0x18DD35cd459D4cf9924Aa329CDaCaFaB7F198D96",
       "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
@@ -306155,19 +306312,10 @@
     },
     {
       "date": "2026-01-02T00:00:00.000",
-      "ts": "2026-01-02T11:00:43.000",
-      "voting_power": 0.0003958235,
-      "total_weight": 0.8091984944,
-      "voter": "0x9E1B1F031378995b0d77B822954801Da7b3d9Bc9",
-      "pool": "0x6688F868E9c81Ee671867E77fBC618BBEA2e9782",
-      "type": "vote"
-    },
-    {
-      "date": "2026-01-02T00:00:00.000",
-      "ts": "2026-01-02T11:00:43.000",
-      "voting_power": 0.0003958235,
-      "total_weight": 22.6622644144,
-      "voter": "0x9E1B1F031378995b0d77B822954801Da7b3d9Bc9",
+      "ts": "2026-01-02T12:19:03.000",
+      "voting_power": 0.004459561,
+      "total_weight": 22.6609921881,
+      "voter": "0x18DD35cd459D4cf9924Aa329CDaCaFaB7F198D96",
       "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
       "type": "vote"
     },
@@ -306187,6 +306335,24 @@
       "total_weight": 45.5896974392,
       "voter": "0x9E1B1F031378995b0d77B822954801Da7b3d9Bc9",
       "pool": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
+      "type": "vote"
+    },
+    {
+      "date": "2026-01-02T00:00:00.000",
+      "ts": "2026-01-02T11:00:43.000",
+      "voting_power": 0.0003958235,
+      "total_weight": 0.8091984944,
+      "voter": "0x9E1B1F031378995b0d77B822954801Da7b3d9Bc9",
+      "pool": "0x6688F868E9c81Ee671867E77fBC618BBEA2e9782",
+      "type": "vote"
+    },
+    {
+      "date": "2026-01-02T00:00:00.000",
+      "ts": "2026-01-02T11:00:43.000",
+      "voting_power": 0.0003958235,
+      "total_weight": 22.6622644144,
+      "voter": "0x9E1B1F031378995b0d77B822954801Da7b3d9Bc9",
+      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
       "type": "vote"
     },
     {
@@ -306282,15 +306448,6 @@
     {
       "date": "2026-01-02T00:00:00.000",
       "ts": "2026-01-02T08:17:26.000",
-      "voting_power": 4.06754e-05,
-      "total_weight": 6.9964626551,
-      "voter": "0xf7A9b4E6cb9f62893a1D7DFD3E7e5Adc628da135",
-      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
-      "type": "vote"
-    },
-    {
-      "date": "2026-01-02T00:00:00.000",
-      "ts": "2026-01-02T08:17:26.000",
       "voting_power": 5.42338e-05,
       "total_weight": 9.1239482651,
       "voter": "0xf7A9b4E6cb9f62893a1D7DFD3E7e5Adc628da135",
@@ -306301,18 +306458,18 @@
       "date": "2026-01-02T00:00:00.000",
       "ts": "2026-01-02T08:17:26.000",
       "voting_power": 4.06754e-05,
-      "total_weight": 22.719650354,
+      "total_weight": 6.9964626551,
       "voter": "0xf7A9b4E6cb9f62893a1D7DFD3E7e5Adc628da135",
-      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
+      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
       "type": "vote"
     },
     {
       "date": "2026-01-02T00:00:00.000",
-      "ts": "2026-01-02T08:14:38.000",
-      "voting_power": 6.78027e-05,
-      "total_weight": 6.9964219798,
-      "voter": "0x00ea774D49E1728294cBcFF2268072D46959b941",
-      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
+      "ts": "2026-01-02T08:17:26.000",
+      "voting_power": 4.06754e-05,
+      "total_weight": 22.719650354,
+      "voter": "0xf7A9b4E6cb9f62893a1D7DFD3E7e5Adc628da135",
+      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
       "type": "vote"
     },
     {
@@ -306328,6 +306485,15 @@
       "date": "2026-01-02T00:00:00.000",
       "ts": "2026-01-02T08:14:38.000",
       "voting_power": 6.78027e-05,
+      "total_weight": 6.9964219798,
+      "voter": "0x00ea774D49E1728294cBcFF2268072D46959b941",
+      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
+      "type": "vote"
+    },
+    {
+      "date": "2026-01-02T00:00:00.000",
+      "ts": "2026-01-02T08:14:38.000",
+      "voting_power": 6.78027e-05,
       "total_weight": 22.7196096787,
       "voter": "0x00ea774D49E1728294cBcFF2268072D46959b941",
       "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
@@ -306337,18 +306503,18 @@
       "date": "2026-01-02T00:00:00.000",
       "ts": "2026-01-02T08:05:52.000",
       "voting_power": 0.0001808942,
-      "total_weight": 9.1238036277,
+      "total_weight": 0.4567887793,
       "voter": "0x933ca24567659E3659d2e3e301aE9eb6Fa257f9E",
-      "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
+      "pool": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
       "type": "vote"
     },
     {
       "date": "2026-01-02T00:00:00.000",
       "ts": "2026-01-02T08:05:52.000",
       "voting_power": 0.0001808942,
-      "total_weight": 0.4567887793,
+      "total_weight": 9.1238036277,
       "voter": "0x933ca24567659E3659d2e3e301aE9eb6Fa257f9E",
-      "pool": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
+      "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
       "type": "vote"
     },
     {
@@ -306400,9 +306566,9 @@
       "date": "2026-01-02T00:00:00.000",
       "ts": "2026-01-02T06:27:33.000",
       "voting_power": 0.0002728043,
-      "total_weight": 0.4563351197,
+      "total_weight": 22.7193835667,
       "voter": "0x0E8D7c70C93CcE4858346cE2D5afe5108C484834",
-      "pool": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
+      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
       "type": "vote"
     },
     {
@@ -306418,8 +306584,17 @@
       "date": "2026-01-02T00:00:00.000",
       "ts": "2026-01-02T06:27:33.000",
       "voting_power": 0.0002728043,
-      "total_weight": 22.7193835667,
+      "total_weight": 0.4563351197,
       "voter": "0x0E8D7c70C93CcE4858346cE2D5afe5108C484834",
+      "pool": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
+      "type": "vote"
+    },
+    {
+      "date": "2026-01-02T00:00:00.000",
+      "ts": "2026-01-02T06:23:44.000",
+      "voting_power": 0.0002728611,
+      "total_weight": 22.7191107623,
+      "voter": "0x0D385BA9Fae63aF82b68401ce688D200EF5aF599",
       "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
       "type": "vote"
     },
@@ -306435,18 +306610,18 @@
     {
       "date": "2026-01-02T00:00:00.000",
       "ts": "2026-01-02T06:23:44.000",
-      "voting_power": 0.0002728611,
-      "total_weight": 22.7191107623,
+      "voting_power": 0.0003638148,
+      "total_weight": 9.1228953072,
       "voter": "0x0D385BA9Fae63aF82b68401ce688D200EF5aF599",
-      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
+      "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
       "type": "vote"
     },
     {
       "date": "2026-01-02T00:00:00.000",
-      "ts": "2026-01-02T06:23:44.000",
-      "voting_power": 0.0003638148,
-      "total_weight": 9.1228953072,
-      "voter": "0x0D385BA9Fae63aF82b68401ce688D200EF5aF599",
+      "ts": "2026-01-02T06:14:43.000",
+      "voting_power": 0.0001091981,
+      "total_weight": 9.1225314924,
+      "voter": "0x14E92Bd176d20B1749a1C56dE21e2954b8a95d55",
       "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
       "type": "vote"
     },
@@ -306466,15 +306641,6 @@
       "total_weight": 6.9956502413,
       "voter": "0x14E92Bd176d20B1749a1C56dE21e2954b8a95d55",
       "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
-      "type": "vote"
-    },
-    {
-      "date": "2026-01-02T00:00:00.000",
-      "ts": "2026-01-02T06:14:43.000",
-      "voting_power": 0.0001091981,
-      "total_weight": 9.1225314924,
-      "voter": "0x14E92Bd176d20B1749a1C56dE21e2954b8a95d55",
-      "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
       "type": "vote"
     },
     {
@@ -306534,15 +306700,6 @@
     {
       "date": "2026-01-02T00:00:00.000",
       "ts": "2026-01-02T06:04:28.000",
-      "voting_power": 0.000127469,
-      "total_weight": 0.4559208809,
-      "voter": "0x48e2f4c7e473E36A6E8994fC7D5e0e8C259c5618",
-      "pool": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
-      "type": "vote"
-    },
-    {
-      "date": "2026-01-02T00:00:00.000",
-      "ts": "2026-01-02T06:04:28.000",
       "voting_power": 9.56017e-05,
       "total_weight": 9.1222821107,
       "voter": "0x48e2f4c7e473E36A6E8994fC7D5e0e8C259c5618",
@@ -306560,20 +306717,20 @@
     },
     {
       "date": "2026-01-02T00:00:00.000",
+      "ts": "2026-01-02T06:04:28.000",
+      "voting_power": 0.000127469,
+      "total_weight": 0.4559208809,
+      "voter": "0x48e2f4c7e473E36A6E8994fC7D5e0e8C259c5618",
+      "pool": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
+      "type": "vote"
+    },
+    {
+      "date": "2026-01-02T00:00:00.000",
       "ts": "2026-01-02T00:38:37.000",
       "voting_power": 0.00237485,
       "total_weight": 22.7184810902,
       "voter": "0xcdA40cb8773DAF66A862cdB086ef82B50F1C29eD",
       "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
-      "type": "vote"
-    },
-    {
-      "date": "2026-01-02T00:00:00.000",
-      "ts": "2026-01-02T00:08:11.000",
-      "voting_power": 0.0010267481,
-      "total_weight": 6.9957091978,
-      "voter": "0x1389756489d396068Cf1ada8Eb73964Cd8eB51c0",
-      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
       "type": "vote"
     },
     {
@@ -306592,6 +306749,15 @@
       "total_weight": 9.122186509,
       "voter": "0x1389756489d396068Cf1ada8Eb73964Cd8eB51c0",
       "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
+      "type": "vote"
+    },
+    {
+      "date": "2026-01-02T00:00:00.000",
+      "ts": "2026-01-02T00:08:11.000",
+      "voting_power": 0.0010267481,
+      "total_weight": 6.9957091978,
+      "voter": "0x1389756489d396068Cf1ada8Eb73964Cd8eB51c0",
+      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
       "type": "vote"
     },
     {
@@ -306688,18 +306854,18 @@
       "date": "2026-01-01T00:00:00.000",
       "ts": "2026-01-01T18:41:10.000",
       "voting_power": 0.01735,
-      "total_weight": 45.5321378872,
+      "total_weight": 22.717997847,
       "voter": "0x20e5D62870A9bF23fB23f1890137ffE915BDB509",
-      "pool": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
+      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
       "type": "vote"
     },
     {
       "date": "2026-01-01T00:00:00.000",
       "ts": "2026-01-01T18:41:10.000",
       "voting_power": 0.01735,
-      "total_weight": 22.717997847,
+      "total_weight": 45.5321378872,
       "voter": "0x20e5D62870A9bF23fB23f1890137ffE915BDB509",
-      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
+      "pool": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
       "type": "vote"
     },
     {
@@ -306813,10 +306979,10 @@
     {
       "date": "2026-01-01T00:00:00.000",
       "ts": "2026-01-01T17:46:29.000",
-      "voting_power": 1.00597e-05,
-      "total_weight": 22.6876036563,
+      "voting_power": 5.0299e-06,
+      "total_weight": 7.0042572895,
       "voter": "0xC707aD568D5F83033Dd2bb66a963f7440452e382",
-      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
+      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
       "type": "vote"
     },
     {
@@ -306831,19 +306997,19 @@
     {
       "date": "2026-01-01T00:00:00.000",
       "ts": "2026-01-01T17:46:29.000",
-      "voting_power": 5.0299e-06,
-      "total_weight": 7.0042572895,
+      "voting_power": 1.00597e-05,
+      "total_weight": 22.6876036563,
       "voter": "0xC707aD568D5F83033Dd2bb66a963f7440452e382",
-      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
+      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
       "type": "vote"
     },
     {
       "date": "2026-01-01T00:00:00.000",
       "ts": "2026-01-01T17:17:03.000",
       "voting_power": 4.628e-07,
-      "total_weight": 7.0042721263,
+      "total_weight": 0.461638736,
       "voter": "0xb3AEe9e08C333D59406e56959cd63727Cb5aaE5F",
-      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
+      "pool": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
       "type": "vote"
     },
     {
@@ -306859,26 +307025,8 @@
       "date": "2026-01-01T00:00:00.000",
       "ts": "2026-01-01T17:17:03.000",
       "voting_power": 4.628e-07,
-      "total_weight": 0.461638736,
+      "total_weight": 7.0042721263,
       "voter": "0xb3AEe9e08C333D59406e56959cd63727Cb5aaE5F",
-      "pool": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
-      "type": "vote"
-    },
-    {
-      "date": "2026-01-01T00:00:00.000",
-      "ts": "2026-01-01T16:37:13.000",
-      "voting_power": 5.7032e-06,
-      "total_weight": 0.0641101624,
-      "voter": "0xb63bFe4F56D0d1cfEd8196ab68Fb1BB295f1DE62",
-      "pool": "0x2a1ab0224a7a608d3A992Cb15594a2934F74f4C0",
-      "type": "vote"
-    },
-    {
-      "date": "2026-01-01T00:00:00.000",
-      "ts": "2026-01-01T16:37:13.000",
-      "voting_power": 5.7032e-06,
-      "total_weight": 7.0042716636,
-      "voter": "0xb63bFe4F56D0d1cfEd8196ab68Fb1BB295f1DE62",
       "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
       "type": "vote"
     },
@@ -306898,6 +307046,24 @@
       "total_weight": 22.6876324045,
       "voter": "0xb63bFe4F56D0d1cfEd8196ab68Fb1BB295f1DE62",
       "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
+      "type": "vote"
+    },
+    {
+      "date": "2026-01-01T00:00:00.000",
+      "ts": "2026-01-01T16:37:13.000",
+      "voting_power": 5.7032e-06,
+      "total_weight": 0.0641101624,
+      "voter": "0xb63bFe4F56D0d1cfEd8196ab68Fb1BB295f1DE62",
+      "pool": "0x2a1ab0224a7a608d3A992Cb15594a2934F74f4C0",
+      "type": "vote"
+    },
+    {
+      "date": "2026-01-01T00:00:00.000",
+      "ts": "2026-01-01T16:37:13.000",
+      "voting_power": 5.7032e-06,
+      "total_weight": 7.0042716636,
+      "voter": "0xb63bFe4F56D0d1cfEd8196ab68Fb1BB295f1DE62",
+      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
       "type": "vote"
     },
     {
@@ -307002,6 +307168,15 @@
     {
       "date": "2026-01-01T00:00:00.000",
       "ts": "2026-01-01T12:50:11.000",
+      "voting_power": 0.0177847088,
+      "total_weight": 0.4615895233,
+      "voter": "0x882e39D6711A149A5441b093D9323fEf6f9E94C6",
+      "pool": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
+      "type": "vote"
+    },
+    {
+      "date": "2026-01-01T00:00:00.000",
+      "ts": "2026-01-01T12:50:11.000",
       "voting_power": 0.0355694175,
       "total_weight": 22.6877161001,
       "voter": "0x882e39D6711A149A5441b093D9323fEf6f9E94C6",
@@ -307015,15 +307190,6 @@
       "total_weight": 7.0042979167,
       "voter": "0x882e39D6711A149A5441b093D9323fEf6f9E94C6",
       "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
-      "type": "vote"
-    },
-    {
-      "date": "2026-01-01T00:00:00.000",
-      "ts": "2026-01-01T12:50:11.000",
-      "voting_power": 0.0177847088,
-      "total_weight": 0.4615895233,
-      "voter": "0x882e39D6711A149A5441b093D9323fEf6f9E94C6",
-      "pool": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
       "type": "vote"
     },
     {
@@ -307075,15 +307241,6 @@
       "date": "2026-01-01T00:00:00.000",
       "ts": "2026-01-01T12:05:22.000",
       "voting_power": 2.008e-07,
-      "total_weight": 0.0541571516,
-      "voter": "0x89224310bf3ae73E965C8440Ec787b003De73386",
-      "pool": "0x5Cd2A025C001E07Ae354A4C22C3009908De1aC59",
-      "type": "vote"
-    },
-    {
-      "date": "2026-01-01T00:00:00.000",
-      "ts": "2026-01-01T12:05:22.000",
-      "voting_power": 2.008e-07,
       "total_weight": 7.0360060189,
       "voter": "0x89224310bf3ae73E965C8440Ec787b003De73386",
       "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
@@ -307096,6 +307253,15 @@
       "total_weight": 0.0641132361,
       "voter": "0x89224310bf3ae73E965C8440Ec787b003De73386",
       "pool": "0x2a1ab0224a7a608d3A992Cb15594a2934F74f4C0",
+      "type": "vote"
+    },
+    {
+      "date": "2026-01-01T00:00:00.000",
+      "ts": "2026-01-01T12:05:22.000",
+      "voting_power": 2.008e-07,
+      "total_weight": 0.0541571516,
+      "voter": "0x89224310bf3ae73E965C8440Ec787b003De73386",
+      "pool": "0x5Cd2A025C001E07Ae354A4C22C3009908De1aC59",
       "type": "vote"
     },
     {
@@ -307120,18 +307286,18 @@
       "date": "2026-01-01T00:00:00.000",
       "ts": "2026-01-01T12:05:22.000",
       "voting_power": 2.008e-07,
-      "total_weight": 0.81077547,
+      "total_weight": 9.1214081823,
       "voter": "0x89224310bf3ae73E965C8440Ec787b003De73386",
-      "pool": "0x6688F868E9c81Ee671867E77fBC618BBEA2e9782",
+      "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
       "type": "vote"
     },
     {
       "date": "2026-01-01T00:00:00.000",
       "ts": "2026-01-01T12:05:22.000",
       "voting_power": 2.008e-07,
-      "total_weight": 9.1214081823,
+      "total_weight": 0.81077547,
       "voter": "0x89224310bf3ae73E965C8440Ec787b003De73386",
-      "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
+      "pool": "0x6688F868E9c81Ee671867E77fBC618BBEA2e9782",
       "type": "vote"
     },
     {
@@ -307264,18 +307430,18 @@
       "date": "2026-01-01T00:00:00.000",
       "ts": "2026-01-01T09:02:51.000",
       "voting_power": 1e-06,
-      "total_weight": 0.8107756789,
+      "total_weight": 45.5022280961,
       "voter": "0x7Ca3149dA1298bf56c2f62E41BCAdE877dD87be6",
-      "pool": "0x6688F868E9c81Ee671867E77fBC618BBEA2e9782",
+      "pool": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
       "type": "vote"
     },
     {
       "date": "2026-01-01T00:00:00.000",
       "ts": "2026-01-01T09:02:51.000",
       "voting_power": 1e-06,
-      "total_weight": 45.5022280961,
+      "total_weight": 0.8107756789,
       "voter": "0x7Ca3149dA1298bf56c2f62E41BCAdE877dD87be6",
-      "pool": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
+      "pool": "0x6688F868E9c81Ee671867E77fBC618BBEA2e9782",
       "type": "vote"
     },
     {
@@ -307344,24 +307510,6 @@
     {
       "date": "2026-01-01T00:00:00.000",
       "ts": "2026-01-01T08:23:42.000",
-      "voting_power": 0.0046119322,
-      "total_weight": 3.2671374609,
-      "voter": "0x3c50d74d984b6C1F6545a5Af563c80D7dc683F1C",
-      "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
-      "type": "vote"
-    },
-    {
-      "date": "2026-01-01T00:00:00.000",
-      "ts": "2026-01-01T08:23:42.000",
-      "voting_power": 0.0023059661,
-      "total_weight": 45.5022270961,
-      "voter": "0x3c50d74d984b6C1F6545a5Af563c80D7dc683F1C",
-      "pool": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
-      "type": "vote"
-    },
-    {
-      "date": "2026-01-01T00:00:00.000",
-      "ts": "2026-01-01T08:23:42.000",
       "voting_power": 0.0023059661,
       "total_weight": 0.8107746789,
       "voter": "0x3c50d74d984b6C1F6545a5Af563c80D7dc683F1C",
@@ -307388,6 +307536,24 @@
     },
     {
       "date": "2026-01-01T00:00:00.000",
+      "ts": "2026-01-01T08:23:42.000",
+      "voting_power": 0.0023059661,
+      "total_weight": 45.5022270961,
+      "voter": "0x3c50d74d984b6C1F6545a5Af563c80D7dc683F1C",
+      "pool": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
+      "type": "vote"
+    },
+    {
+      "date": "2026-01-01T00:00:00.000",
+      "ts": "2026-01-01T08:23:42.000",
+      "voting_power": 0.0046119322,
+      "total_weight": 3.2671374609,
+      "voter": "0x3c50d74d984b6C1F6545a5Af563c80D7dc683F1C",
+      "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
+      "type": "vote"
+    },
+    {
+      "date": "2026-01-01T00:00:00.000",
       "ts": "2026-01-01T08:15:26.000",
       "voting_power": 2.6148e-06,
       "total_weight": 2.1058873094,
@@ -307407,19 +307573,19 @@
     {
       "date": "2026-01-01T00:00:00.000",
       "ts": "2026-01-01T07:43:23.000",
-      "voting_power": 0.0019553462,
-      "total_weight": 3.2625255287,
+      "voting_power": 0.0009776731,
+      "total_weight": 2.1058922649,
       "voter": "0xd8844B1661e8D7f22eb34FeAeE49b888be3f7f9b",
-      "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
+      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
       "type": "vote"
     },
     {
       "date": "2026-01-01T00:00:00.000",
       "ts": "2026-01-01T07:43:23.000",
-      "voting_power": 0.0009776731,
-      "total_weight": 2.1058922649,
+      "voting_power": 0.0019553462,
+      "total_weight": 3.2625255287,
       "voter": "0xd8844B1661e8D7f22eb34FeAeE49b888be3f7f9b",
-      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
+      "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
       "type": "vote"
     },
     {
@@ -307561,18 +307727,18 @@
       "date": "2026-01-01T00:00:00.000",
       "ts": "2026-01-01T04:42:55.000",
       "voting_power": 0.0011419307,
-      "total_weight": 3.2602738689,
+      "total_weight": 0.0041280762,
       "voter": "0xe2b6e600497EFf3cC7735ef801070DaA2B117532",
-      "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
+      "pool": "0xf6f950485b0A65828F07581Ca979ef1271778d6A",
       "type": "vote"
     },
     {
       "date": "2026-01-01T00:00:00.000",
       "ts": "2026-01-01T04:42:55.000",
       "voting_power": 0.0011419307,
-      "total_weight": 0.0041280762,
+      "total_weight": 3.2602738689,
       "voter": "0xe2b6e600497EFf3cC7735ef801070DaA2B117532",
-      "pool": "0xf6f950485b0A65828F07581Ca979ef1271778d6A",
+      "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
       "type": "vote"
     },
     {
@@ -307669,18 +307835,18 @@
       "date": "2026-01-01T00:00:00.000",
       "ts": "2026-01-01T01:32:11.000",
       "voting_power": 0.6221314329,
-      "total_weight": 11.9383819327,
+      "total_weight": 2.0845625034,
       "voter": "0xE2f1eC0d08dB251C9633E3Cbd172Fd0eE46C8724",
-      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
+      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
       "type": "vote"
     },
     {
       "date": "2026-01-01T00:00:00.000",
       "ts": "2026-01-01T01:32:11.000",
       "voting_power": 0.6221314329,
-      "total_weight": 2.0845625034,
+      "total_weight": 11.9383819327,
       "voter": "0xE2f1eC0d08dB251C9633E3Cbd172Fd0eE46C8724",
-      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
+      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
       "type": "vote"
     },
     {
@@ -307939,18 +308105,18 @@
       "date": "2025-12-31T00:00:00.000",
       "ts": "2025-12-31T14:51:35.000",
       "voting_power": 0.3474387297,
-      "total_weight": 3.4439736646,
+      "total_weight": 0.7631432135,
       "voter": "0x2ABD4F367b37daA097FE2d5558314B2A5F0D4a77",
-      "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
+      "pool": "0x6688F868E9c81Ee671867E77fBC618BBEA2e9782",
       "type": "vote"
     },
     {
       "date": "2025-12-31T00:00:00.000",
       "ts": "2025-12-31T14:51:35.000",
       "voting_power": 0.3474387297,
-      "total_weight": 0.7631432135,
+      "total_weight": 3.4439736646,
       "voter": "0x2ABD4F367b37daA097FE2d5558314B2A5F0D4a77",
-      "pool": "0x6688F868E9c81Ee671867E77fBC618BBEA2e9782",
+      "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
       "type": "vote"
     },
     {
@@ -308308,18 +308474,18 @@
       "date": "2025-12-31T00:00:00.000",
       "ts": "2025-12-31T03:29:40.000",
       "voting_power": 3.9667e-06,
-      "total_weight": 0.0626651855,
+      "total_weight": 0.2465107814,
       "voter": "0x4A72336603b54d1cBa89D7bd56777C47EA0E6253",
-      "pool": "0x5Cd2A025C001E07Ae354A4C22C3009908De1aC59",
+      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
       "type": "vote"
     },
     {
       "date": "2025-12-31T00:00:00.000",
       "ts": "2025-12-31T03:29:40.000",
       "voting_power": 3.9667e-06,
-      "total_weight": 0.2465107814,
+      "total_weight": 0.0502766484,
       "voter": "0x4A72336603b54d1cBa89D7bd56777C47EA0E6253",
-      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
+      "pool": "0x2a1ab0224a7a608d3A992Cb15594a2934F74f4C0",
       "type": "vote"
     },
     {
@@ -308344,9 +308510,9 @@
       "date": "2025-12-31T00:00:00.000",
       "ts": "2025-12-31T03:29:40.000",
       "voting_power": 3.9667e-06,
-      "total_weight": 0.0502766484,
+      "total_weight": 0.0626651855,
       "voter": "0x4A72336603b54d1cBa89D7bd56777C47EA0E6253",
-      "pool": "0x2a1ab0224a7a608d3A992Cb15594a2934F74f4C0",
+      "pool": "0x5Cd2A025C001E07Ae354A4C22C3009908De1aC59",
       "type": "vote"
     },
     {
@@ -308356,6 +308522,15 @@
       "total_weight": 0.1848258409,
       "voter": "0x4A72336603b54d1cBa89D7bd56777C47EA0E6253",
       "pool": "0x6688F868E9c81Ee671867E77fBC618BBEA2e9782",
+      "type": "vote"
+    },
+    {
+      "date": "2025-12-31T00:00:00.000",
+      "ts": "2025-12-31T03:29:40.000",
+      "voting_power": 1.9833e-06,
+      "total_weight": 45.8127603489,
+      "voter": "0x4A72336603b54d1cBa89D7bd56777C47EA0E6253",
+      "pool": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
       "type": "vote"
     },
     {
@@ -308383,15 +308558,6 @@
       "total_weight": 0.4434134361,
       "voter": "0x4A72336603b54d1cBa89D7bd56777C47EA0E6253",
       "pool": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
-      "type": "vote"
-    },
-    {
-      "date": "2025-12-31T00:00:00.000",
-      "ts": "2025-12-31T03:29:40.000",
-      "voting_power": 1.9833e-06,
-      "total_weight": 45.8127603489,
-      "voter": "0x4A72336603b54d1cBa89D7bd56777C47EA0E6253",
-      "pool": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
       "type": "vote"
     },
     {
@@ -308433,15 +308599,6 @@
     {
       "date": "2025-12-30T00:00:00.000",
       "ts": "2025-12-30T22:55:20.000",
-      "voting_power": 1.9683e-05,
-      "total_weight": 0.2341860913,
-      "voter": "0x458EaADa094a79290963d98536aFe9413a5720fE",
-      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
-      "type": "vote"
-    },
-    {
-      "date": "2025-12-30T00:00:00.000",
-      "ts": "2025-12-30T22:55:20.000",
       "voting_power": 3.93659e-05,
       "total_weight": 3.0900028883,
       "voter": "0x458EaADa094a79290963d98536aFe9413a5720fE",
@@ -308455,6 +308612,15 @@
       "total_weight": 0.0022946268,
       "voter": "0x458EaADa094a79290963d98536aFe9413a5720fE",
       "pool": "0x329D64572F8922c3Fe90D23A3C74a360d8eA6235",
+      "type": "vote"
+    },
+    {
+      "date": "2025-12-30T00:00:00.000",
+      "ts": "2025-12-30T22:55:20.000",
+      "voting_power": 1.9683e-05,
+      "total_weight": 0.2341860913,
+      "voter": "0x458EaADa094a79290963d98536aFe9413a5720fE",
+      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
       "type": "vote"
     },
     {
@@ -308487,15 +308653,6 @@
     {
       "date": "2025-12-30T00:00:00.000",
       "ts": "2025-12-30T19:44:15.000",
-      "voting_power": 0.0002484214,
-      "total_weight": 3.1149635224,
-      "voter": "0xC20C94022182505A0c73D1F235Acb86647Bda29E",
-      "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
-      "type": "vote"
-    },
-    {
-      "date": "2025-12-30T00:00:00.000",
-      "ts": "2025-12-30T19:44:15.000",
       "voting_power": 0.0009936855,
       "total_weight": 4.913114762,
       "voter": "0xC20C94022182505A0c73D1F235Acb86647Bda29E",
@@ -308504,11 +308661,20 @@
     },
     {
       "date": "2025-12-30T00:00:00.000",
+      "ts": "2025-12-30T19:44:15.000",
+      "voting_power": 0.0002484214,
+      "total_weight": 3.1149635224,
+      "voter": "0xC20C94022182505A0c73D1F235Acb86647Bda29E",
+      "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
+      "type": "vote"
+    },
+    {
+      "date": "2025-12-30T00:00:00.000",
       "ts": "2025-12-30T19:23:46.000",
-      "voting_power": 7.04e-08,
-      "total_weight": 0.2341664083,
+      "voting_power": 8.8e-09,
+      "total_weight": 4.9121210765,
       "voter": "0xC1075D26b0B71Ae571BE07692acd69E9461dbCD1",
-      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
+      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
       "type": "vote"
     },
     {
@@ -308523,10 +308689,10 @@
     {
       "date": "2025-12-30T00:00:00.000",
       "ts": "2025-12-30T19:23:46.000",
-      "voting_power": 8.8e-09,
-      "total_weight": 4.9121210765,
+      "voting_power": 7.04e-08,
+      "total_weight": 0.2341664083,
       "voter": "0xC1075D26b0B71Ae571BE07692acd69E9461dbCD1",
-      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
+      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
       "type": "vote"
     },
     {
@@ -308563,6 +308729,15 @@
       "total_weight": 1.834715101,
       "voter": "0xD821fd6b23d268D09d1C79ab4EB2E9EE61145633",
       "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
+      "type": "vote"
+    },
+    {
+      "date": "2025-12-30T00:00:00.000",
+      "ts": "2025-12-30T17:51:28.000",
+      "voting_power": 4e-09,
+      "total_weight": 0.1598238575,
+      "voter": "0xD882Ab1d6818AB874ad8CEd91EaFAD69BC3BAFE4",
+      "pool": "0x6688F868E9c81Ee671867E77fBC618BBEA2e9782",
       "type": "vote"
     },
     {
@@ -308612,15 +308787,6 @@
     },
     {
       "date": "2025-12-30T00:00:00.000",
-      "ts": "2025-12-30T17:51:28.000",
-      "voting_power": 4e-09,
-      "total_weight": 0.1598238575,
-      "voter": "0xD882Ab1d6818AB874ad8CEd91EaFAD69BC3BAFE4",
-      "pool": "0x6688F868E9c81Ee671867E77fBC618BBEA2e9782",
-      "type": "vote"
-    },
-    {
-      "date": "2025-12-30T00:00:00.000",
       "ts": "2025-12-30T17:10:11.000",
       "voting_power": 4.588e-07,
       "total_weight": 0.1598238536,
@@ -308641,24 +308807,6 @@
       "date": "2025-12-30T00:00:00.000",
       "ts": "2025-12-30T16:32:46.000",
       "voting_power": 0.009125,
-      "total_weight": 2.9888959197,
-      "voter": "0x20e5D62870A9bF23fB23f1890137ffE915BDB509",
-      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
-      "type": "vote"
-    },
-    {
-      "date": "2025-12-30T00:00:00.000",
-      "ts": "2025-12-30T16:32:46.000",
-      "voting_power": 0.009125,
-      "total_weight": 0.2341662903,
-      "voter": "0x20e5D62870A9bF23fB23f1890137ffE915BDB509",
-      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
-      "type": "vote"
-    },
-    {
-      "date": "2025-12-30T00:00:00.000",
-      "ts": "2025-12-30T16:32:46.000",
-      "voting_power": 0.009125,
       "total_weight": 0.4181594695,
       "voter": "0x20e5D62870A9bF23fB23f1890137ffE915BDB509",
       "pool": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
@@ -308668,9 +308816,27 @@
       "date": "2025-12-30T00:00:00.000",
       "ts": "2025-12-30T16:32:46.000",
       "voting_power": 0.009125,
+      "total_weight": 2.9888959197,
+      "voter": "0x20e5D62870A9bF23fB23f1890137ffE915BDB509",
+      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
+      "type": "vote"
+    },
+    {
+      "date": "2025-12-30T00:00:00.000",
+      "ts": "2025-12-30T16:32:46.000",
+      "voting_power": 0.009125,
       "total_weight": 0.0502726649,
       "voter": "0x20e5D62870A9bF23fB23f1890137ffE915BDB509",
       "pool": "0x2a1ab0224a7a608d3A992Cb15594a2934F74f4C0",
+      "type": "vote"
+    },
+    {
+      "date": "2025-12-30T00:00:00.000",
+      "ts": "2025-12-30T16:32:46.000",
+      "voting_power": 0.009125,
+      "total_weight": 0.2341662903,
+      "voter": "0x20e5D62870A9bF23fB23f1890137ffE915BDB509",
+      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
       "type": "vote"
     },
     {
@@ -308776,18 +308942,18 @@
       "date": "2025-12-30T00:00:00.000",
       "ts": "2025-12-30T12:38:38.000",
       "voting_power": 2.00653e-05,
-      "total_weight": 1.5191047952,
+      "total_weight": 0.3257844695,
       "voter": "0xb3467880204D2A2d5dbfF08Ee67584cDE9035253",
-      "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
+      "pool": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
       "type": "vote"
     },
     {
       "date": "2025-12-30T00:00:00.000",
       "ts": "2025-12-30T12:38:38.000",
       "voting_power": 2.00653e-05,
-      "total_weight": 0.2245720914,
+      "total_weight": 1.5191047952,
       "voter": "0xb3467880204D2A2d5dbfF08Ee67584cDE9035253",
-      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
+      "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
       "type": "vote"
     },
     {
@@ -308803,9 +308969,9 @@
       "date": "2025-12-30T00:00:00.000",
       "ts": "2025-12-30T12:38:38.000",
       "voting_power": 2.00653e-05,
-      "total_weight": 0.3257844695,
+      "total_weight": 0.2245720914,
       "voter": "0xb3467880204D2A2d5dbfF08Ee67584cDE9035253",
-      "pool": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
+      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
       "type": "vote"
     },
     {
@@ -308919,19 +309085,19 @@
     {
       "date": "2025-12-30T00:00:00.000",
       "ts": "2025-12-30T08:56:47.000",
-      "voting_power": 7.273e-06,
-      "total_weight": 0.2245501381,
+      "voting_power": 8.081e-07,
+      "total_weight": 0.0411510344,
       "voter": "0x6702097f6bDd69c3F8Dc85CeBA5FDB44a3CfAdD9",
-      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
+      "pool": "0x2a1ab0224a7a608d3A992Cb15594a2934F74f4C0",
       "type": "vote"
     },
     {
       "date": "2025-12-30T00:00:00.000",
       "ts": "2025-12-30T08:56:47.000",
-      "voting_power": 8.081e-07,
-      "total_weight": 0.0411510344,
+      "voting_power": 7.273e-06,
+      "total_weight": 0.2245501381,
       "voter": "0x6702097f6bDd69c3F8Dc85CeBA5FDB44a3CfAdD9",
-      "pool": "0x2a1ab0224a7a608d3A992Cb15594a2934F74f4C0",
+      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
       "type": "vote"
     },
     {
@@ -309054,10 +309220,10 @@
     {
       "date": "2025-12-30T00:00:00.000",
       "ts": "2025-12-30T00:03:39.000",
-      "voting_power": 0.0124,
-      "total_weight": 0.1598233948,
+      "voting_power": 0.031,
+      "total_weight": 1.456315832,
       "voter": "0x83DB892a6688B966122Be219fa873BF24D7db79F",
-      "pool": "0x6688F868E9c81Ee671867E77fBC618BBEA2e9782",
+      "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
       "type": "vote"
     },
     {
@@ -309072,10 +309238,10 @@
     {
       "date": "2025-12-30T00:00:00.000",
       "ts": "2025-12-30T00:03:39.000",
-      "voting_power": 0.031,
-      "total_weight": 1.456315832,
+      "voting_power": 0.0124,
+      "total_weight": 0.1598233948,
       "voter": "0x83DB892a6688B966122Be219fa873BF24D7db79F",
-      "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
+      "pool": "0x6688F868E9c81Ee671867E77fBC618BBEA2e9782",
       "type": "vote"
     },
     {
@@ -309189,15 +309355,6 @@
     {
       "date": "2025-12-29T00:00:00.000",
       "ts": "2025-12-29T22:03:11.000",
-      "voting_power": 0.0033645875,
-      "total_weight": 2.7762300451,
-      "voter": "0x8Ce65EfFfC1ec0810B143ab834b317c0c9067DF1",
-      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
-      "type": "vote"
-    },
-    {
-      "date": "2025-12-29T00:00:00.000",
-      "ts": "2025-12-29T22:03:11.000",
       "voting_power": 0.0050468812,
       "total_weight": 0.1520710978,
       "voter": "0x8Ce65EfFfC1ec0810B143ab834b317c0c9067DF1",
@@ -309206,10 +309363,10 @@
     },
     {
       "date": "2025-12-29T00:00:00.000",
-      "ts": "2025-12-29T21:06:53.000",
-      "voting_power": 0.0036331774,
-      "total_weight": 2.7728654576,
-      "voter": "0xf998803D54E7AD0Ac182F034e365b2F9a6dD669c",
+      "ts": "2025-12-29T22:03:11.000",
+      "voting_power": 0.0033645875,
+      "total_weight": 2.7762300451,
+      "voter": "0x8Ce65EfFfC1ec0810B143ab834b317c0c9067DF1",
       "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
       "type": "vote"
     },
@@ -309220,6 +309377,15 @@
       "total_weight": 1.4283243008,
       "voter": "0xf998803D54E7AD0Ac182F034e365b2F9a6dD669c",
       "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
+      "type": "vote"
+    },
+    {
+      "date": "2025-12-29T00:00:00.000",
+      "ts": "2025-12-29T21:06:53.000",
+      "voting_power": 0.0036331774,
+      "total_weight": 2.7728654576,
+      "voter": "0xf998803D54E7AD0Ac182F034e365b2F9a6dD669c",
+      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
       "type": "vote"
     },
     {
@@ -309478,18 +309644,18 @@
       "date": "2025-12-29T00:00:00.000",
       "ts": "2025-12-29T10:35:54.000",
       "voting_power": 0.0378617187,
-      "total_weight": 2.7688513773,
+      "total_weight": 1.4122037567,
       "voter": "0x69f592d7272Bb4246155d8B5046f57Da4a716135",
-      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
+      "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
       "type": "vote"
     },
     {
       "date": "2025-12-29T00:00:00.000",
       "ts": "2025-12-29T10:35:54.000",
       "voting_power": 0.0378617187,
-      "total_weight": 1.4122037567,
+      "total_weight": 2.7688513773,
       "voter": "0x69f592d7272Bb4246155d8B5046f57Da4a716135",
-      "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
+      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
       "type": "vote"
     },
     {
@@ -309594,15 +309760,6 @@
     {
       "date": "2025-12-28T00:00:00.000",
       "ts": "2025-12-28T22:54:10.000",
-      "voting_power": 2.3616e-06,
-      "total_weight": 0.327785959,
-      "voter": "0x06674c2413Fb7aC48CD1BD611AdA3d2411f83B20",
-      "pool": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
-      "type": "vote"
-    },
-    {
-      "date": "2025-12-28T00:00:00.000",
-      "ts": "2025-12-28T22:54:10.000",
       "voting_power": 4.7233e-06,
       "total_weight": 1.374336899,
       "voter": "0x06674c2413Fb7aC48CD1BD611AdA3d2411f83B20",
@@ -309616,6 +309773,15 @@
       "total_weight": 2.7034327428,
       "voter": "0x06674c2413Fb7aC48CD1BD611AdA3d2411f83B20",
       "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
+      "type": "vote"
+    },
+    {
+      "date": "2025-12-28T00:00:00.000",
+      "ts": "2025-12-28T22:54:10.000",
+      "voting_power": 2.3616e-06,
+      "total_weight": 0.327785959,
+      "voter": "0x06674c2413Fb7aC48CD1BD611AdA3d2411f83B20",
+      "pool": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
       "type": "vote"
     },
     {
@@ -309901,18 +310067,9 @@
       "date": "2025-12-28T00:00:00.000",
       "ts": "2025-12-28T10:58:34.000",
       "voting_power": 2.485e-07,
-      "total_weight": 0.1534453996,
+      "total_weight": 2.6731877139,
       "voter": "0xbb74F9D657a931818ec527CEED7650DF8c3D9592",
-      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
-      "type": "vote"
-    },
-    {
-      "date": "2025-12-28T00:00:00.000",
-      "ts": "2025-12-28T10:58:34.000",
-      "voting_power": 1.657e-07,
-      "total_weight": 0.0410429047,
-      "voter": "0xbb74F9D657a931818ec527CEED7650DF8c3D9592",
-      "pool": "0x2a1ab0224a7a608d3A992Cb15594a2934F74f4C0",
+      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
       "type": "vote"
     },
     {
@@ -309927,10 +310084,19 @@
     {
       "date": "2025-12-28T00:00:00.000",
       "ts": "2025-12-28T10:58:34.000",
-      "voting_power": 2.485e-07,
-      "total_weight": 2.6731877139,
+      "voting_power": 1.657e-07,
+      "total_weight": 0.0410429047,
       "voter": "0xbb74F9D657a931818ec527CEED7650DF8c3D9592",
-      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
+      "pool": "0x2a1ab0224a7a608d3A992Cb15594a2934F74f4C0",
+      "type": "vote"
+    },
+    {
+      "date": "2025-12-28T00:00:00.000",
+      "ts": "2025-12-28T10:58:34.000",
+      "voting_power": 2.485e-07,
+      "total_weight": 0.1534453996,
+      "voter": "0xbb74F9D657a931818ec527CEED7650DF8c3D9592",
+      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
       "type": "vote"
     },
     {
@@ -310035,10 +310201,10 @@
     {
       "date": "2025-12-27T00:00:00.000",
       "ts": "2025-12-27T14:38:24.000",
-      "voting_power": 8.2517e-06,
-      "total_weight": 2.6781130416,
+      "voting_power": 2.3576e-06,
+      "total_weight": 0.3301259509,
       "voter": "0xc9a927b9D7224494531B081C917a6f4485782cCc",
-      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
+      "pool": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
       "type": "vote"
     },
     {
@@ -310053,10 +310219,10 @@
     {
       "date": "2025-12-27T00:00:00.000",
       "ts": "2025-12-27T14:38:24.000",
-      "voting_power": 2.3576e-06,
-      "total_weight": 0.3301259509,
+      "voting_power": 8.2517e-06,
+      "total_weight": 2.6781130416,
       "voter": "0xc9a927b9D7224494531B081C917a6f4485782cCc",
-      "pool": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
+      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
       "type": "vote"
     },
     {
@@ -310144,24 +310310,6 @@
       "date": "2025-12-27T00:00:00.000",
       "ts": "2025-12-27T06:24:46.000",
       "voting_power": 2.2976e-06,
-      "total_weight": 45.8108132251,
-      "voter": "0x3FAE3634E4da5dC0086eFd6cb7340ca174562588",
-      "pool": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
-      "type": "vote"
-    },
-    {
-      "date": "2025-12-27T00:00:00.000",
-      "ts": "2025-12-27T06:24:46.000",
-      "voting_power": 2.2976e-06,
-      "total_weight": 2.6780528156,
-      "voter": "0x3FAE3634E4da5dC0086eFd6cb7340ca174562588",
-      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
-      "type": "vote"
-    },
-    {
-      "date": "2025-12-27T00:00:00.000",
-      "ts": "2025-12-27T06:24:46.000",
-      "voting_power": 2.2976e-06,
       "total_weight": 0.0020917681,
       "voter": "0x3FAE3634E4da5dC0086eFd6cb7340ca174562588",
       "pool": "0x329D64572F8922c3Fe90D23A3C74a360d8eA6235",
@@ -310178,11 +310326,29 @@
     },
     {
       "date": "2025-12-27T00:00:00.000",
+      "ts": "2025-12-27T06:24:46.000",
+      "voting_power": 2.2976e-06,
+      "total_weight": 2.6780528156,
+      "voter": "0x3FAE3634E4da5dC0086eFd6cb7340ca174562588",
+      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
+      "type": "vote"
+    },
+    {
+      "date": "2025-12-27T00:00:00.000",
+      "ts": "2025-12-27T06:24:46.000",
+      "voting_power": 2.2976e-06,
+      "total_weight": 45.8108132251,
+      "voter": "0x3FAE3634E4da5dC0086eFd6cb7340ca174562588",
+      "pool": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
+      "type": "vote"
+    },
+    {
+      "date": "2025-12-27T00:00:00.000",
       "ts": "2025-12-27T06:14:54.000",
-      "voting_power": 1.1031e-06,
-      "total_weight": 0.156924573,
+      "voting_power": 5.7914e-06,
+      "total_weight": 2.6780505181,
       "voter": "0x05a2A0F4B750f56F375097D8036DC6fEd12056f1",
-      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
+      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
       "type": "vote"
     },
     {
@@ -310197,10 +310363,10 @@
     {
       "date": "2025-12-27T00:00:00.000",
       "ts": "2025-12-27T06:14:54.000",
-      "voting_power": 5.7914e-06,
-      "total_weight": 2.6780505181,
+      "voting_power": 1.1031e-06,
+      "total_weight": 0.156924573,
       "voter": "0x05a2A0F4B750f56F375097D8036DC6fEd12056f1",
-      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
+      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
       "type": "vote"
     },
     {
@@ -310315,18 +310481,18 @@
       "date": "2025-12-26T00:00:00.000",
       "ts": "2025-12-26T17:04:45.000",
       "voting_power": 2e-05,
-      "total_weight": 0.1562664325,
+      "total_weight": 2.6693899932,
       "voter": "0x800417f1244BffB037F177F9fC8fe1Ca822425Ba",
-      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
+      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
       "type": "vote"
     },
     {
       "date": "2025-12-26T00:00:00.000",
       "ts": "2025-12-26T17:04:45.000",
       "voting_power": 2e-05,
-      "total_weight": 2.6693899932,
+      "total_weight": 0.1562664325,
       "voter": "0x800417f1244BffB037F177F9fC8fe1Ca822425Ba",
-      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
+      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
       "type": "vote"
     },
     {
@@ -310449,10 +310615,10 @@
     {
       "date": "2025-12-26T00:00:00.000",
       "ts": "2025-12-26T15:07:06.000",
-      "voting_power": 6.1028e-06,
-      "total_weight": 2.669368492,
+      "voting_power": 2.0343e-06,
+      "total_weight": 0.3260497006,
       "voter": "0x2dFE4CF5d1120d9ea221D0Fb30EA623e099Da79E",
-      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
+      "pool": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
       "type": "vote"
     },
     {
@@ -310467,19 +310633,19 @@
     {
       "date": "2025-12-26T00:00:00.000",
       "ts": "2025-12-26T15:07:06.000",
-      "voting_power": 1.0171e-06,
-      "total_weight": 1.3367622875,
+      "voting_power": 6.1028e-06,
+      "total_weight": 2.669368492,
       "voter": "0x2dFE4CF5d1120d9ea221D0Fb30EA623e099Da79E",
-      "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
+      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
       "type": "vote"
     },
     {
       "date": "2025-12-26T00:00:00.000",
       "ts": "2025-12-26T15:07:06.000",
-      "voting_power": 2.0343e-06,
-      "total_weight": 0.3260497006,
+      "voting_power": 1.0171e-06,
+      "total_weight": 1.3367622875,
       "voter": "0x2dFE4CF5d1120d9ea221D0Fb30EA623e099Da79E",
-      "pool": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
+      "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
       "type": "vote"
     },
     {
@@ -310531,15 +310697,6 @@
       "date": "2025-12-26T00:00:00.000",
       "ts": "2025-12-26T13:51:10.000",
       "voting_power": 5.43498e-05,
-      "total_weight": 0.0412886269,
-      "voter": "0x31b79CED4780002F81b99e6A3A5Ad6317af195bd",
-      "pool": "0x2a1ab0224a7a608d3A992Cb15594a2934F74f4C0",
-      "type": "vote"
-    },
-    {
-      "date": "2025-12-26T00:00:00.000",
-      "ts": "2025-12-26T13:51:10.000",
-      "voting_power": 5.43498e-05,
       "total_weight": 0.0020879693,
       "voter": "0x31b79CED4780002F81b99e6A3A5Ad6317af195bd",
       "pool": "0x329D64572F8922c3Fe90D23A3C74a360d8eA6235",
@@ -310558,9 +310715,9 @@
       "date": "2025-12-26T00:00:00.000",
       "ts": "2025-12-26T13:51:10.000",
       "voting_power": 5.43498e-05,
-      "total_weight": 45.8100174264,
+      "total_weight": 0.0412886269,
       "voter": "0x31b79CED4780002F81b99e6A3A5Ad6317af195bd",
-      "pool": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
+      "pool": "0x2a1ab0224a7a608d3A992Cb15594a2934F74f4C0",
       "type": "vote"
     },
     {
@@ -310601,6 +310758,24 @@
     },
     {
       "date": "2025-12-26T00:00:00.000",
+      "ts": "2025-12-26T13:51:10.000",
+      "voting_power": 5.43498e-05,
+      "total_weight": 45.8100174264,
+      "voter": "0x31b79CED4780002F81b99e6A3A5Ad6317af195bd",
+      "pool": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
+      "type": "vote"
+    },
+    {
+      "date": "2025-12-26T00:00:00.000",
+      "ts": "2025-12-26T13:48:27.000",
+      "voting_power": 0.008508825,
+      "total_weight": 0.061605952,
+      "voter": "0x9C7c2B00Ea7800fbe32FD50d844645Db07C27a74",
+      "pool": "0x5Cd2A025C001E07Ae354A4C22C3009908De1aC59",
+      "type": "vote"
+    },
+    {
+      "date": "2025-12-26T00:00:00.000",
       "ts": "2025-12-26T13:48:27.000",
       "voting_power": 0.106360313,
       "total_weight": 2.6693721707,
@@ -310621,27 +310796,18 @@
       "date": "2025-12-26T00:00:00.000",
       "ts": "2025-12-26T13:48:27.000",
       "voting_power": 0.0382897127,
-      "total_weight": 1.3365266649,
+      "total_weight": 45.8100545696,
       "voter": "0x9C7c2B00Ea7800fbe32FD50d844645Db07C27a74",
-      "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
-      "type": "vote"
-    },
-    {
-      "date": "2025-12-26T00:00:00.000",
-      "ts": "2025-12-26T13:48:27.000",
-      "voting_power": 0.008508825,
-      "total_weight": 0.061605952,
-      "voter": "0x9C7c2B00Ea7800fbe32FD50d844645Db07C27a74",
-      "pool": "0x5Cd2A025C001E07Ae354A4C22C3009908De1aC59",
+      "pool": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
       "type": "vote"
     },
     {
       "date": "2025-12-26T00:00:00.000",
       "ts": "2025-12-26T13:48:27.000",
       "voting_power": 0.0382897127,
-      "total_weight": 45.8100545696,
+      "total_weight": 1.3365266649,
       "voter": "0x9C7c2B00Ea7800fbe32FD50d844645Db07C27a74",
-      "pool": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
+      "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
       "type": "vote"
     },
     {
@@ -310738,18 +310904,18 @@
       "date": "2025-12-26T00:00:00.000",
       "ts": "2025-12-26T10:12:08.000",
       "voting_power": 0.0237275959,
-      "total_weight": 2.3743292996,
+      "total_weight": 1.1005266649,
       "voter": "0xB700A0f7bF7f864d7f3541E6975ad3f2cca4472e",
-      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
+      "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
       "type": "vote"
     },
     {
       "date": "2025-12-26T00:00:00.000",
       "ts": "2025-12-26T10:12:08.000",
       "voting_power": 0.0237275959,
-      "total_weight": 1.1005266649,
+      "total_weight": 2.3743292996,
       "voter": "0xB700A0f7bF7f864d7f3541E6975ad3f2cca4472e",
-      "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
+      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
       "type": "vote"
     },
     {
@@ -311034,19 +311200,19 @@
     {
       "date": "2025-12-25T00:00:00.000",
       "ts": "2025-12-25T19:55:51.000",
-      "voting_power": 8.7331e-06,
-      "total_weight": 0.1560560461,
+      "voting_power": 2.03772e-05,
+      "total_weight": 2.3521257155,
       "voter": "0x14C152D89887ed79C0115b502492575beb9537ae",
-      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
+      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
       "type": "vote"
     },
     {
       "date": "2025-12-25T00:00:00.000",
       "ts": "2025-12-25T19:55:51.000",
-      "voting_power": 2.03772e-05,
-      "total_weight": 2.3521257155,
+      "voting_power": 8.7331e-06,
+      "total_weight": 0.1560560461,
       "voter": "0x14C152D89887ed79C0115b502492575beb9537ae",
-      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
+      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
       "type": "vote"
     },
     {
@@ -311088,24 +311254,6 @@
     {
       "date": "2025-12-25T00:00:00.000",
       "ts": "2025-12-25T16:45:35.000",
-      "voting_power": 1.4252e-06,
-      "total_weight": 1.0774948651,
-      "voter": "0x8cE6Cf23c18202Fbb9b1206B596Ed58DaE30cb13",
-      "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
-      "type": "vote"
-    },
-    {
-      "date": "2025-12-25T00:00:00.000",
-      "ts": "2025-12-25T16:45:35.000",
-      "voting_power": 4.2755e-06,
-      "total_weight": 45.7805545696,
-      "voter": "0x8cE6Cf23c18202Fbb9b1206B596Ed58DaE30cb13",
-      "pool": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
-      "type": "vote"
-    },
-    {
-      "date": "2025-12-25T00:00:00.000",
-      "ts": "2025-12-25T16:45:35.000",
       "voting_power": 7.1259e-06,
       "total_weight": 2.3520556236,
       "voter": "0x8cE6Cf23c18202Fbb9b1206B596Ed58DaE30cb13",
@@ -311123,11 +311271,20 @@
     },
     {
       "date": "2025-12-25T00:00:00.000",
-      "ts": "2025-12-25T16:26:31.000",
-      "voting_power": 4.097e-07,
-      "total_weight": 0.061605952,
-      "voter": "0x89224310bf3ae73E965C8440Ec787b003De73386",
-      "pool": "0x5Cd2A025C001E07Ae354A4C22C3009908De1aC59",
+      "ts": "2025-12-25T16:45:35.000",
+      "voting_power": 1.4252e-06,
+      "total_weight": 1.0774948651,
+      "voter": "0x8cE6Cf23c18202Fbb9b1206B596Ed58DaE30cb13",
+      "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
+      "type": "vote"
+    },
+    {
+      "date": "2025-12-25T00:00:00.000",
+      "ts": "2025-12-25T16:45:35.000",
+      "voting_power": 4.2755e-06,
+      "total_weight": 45.7805545696,
+      "voter": "0x8cE6Cf23c18202Fbb9b1206B596Ed58DaE30cb13",
+      "pool": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
       "type": "vote"
     },
     {
@@ -311155,6 +311312,15 @@
       "total_weight": 0.0021251126,
       "voter": "0x89224310bf3ae73E965C8440Ec787b003De73386",
       "pool": "0x329D64572F8922c3Fe90D23A3C74a360d8eA6235",
+      "type": "vote"
+    },
+    {
+      "date": "2025-12-25T00:00:00.000",
+      "ts": "2025-12-25T16:26:31.000",
+      "voting_power": 4.097e-07,
+      "total_weight": 0.061605952,
+      "voter": "0x89224310bf3ae73E965C8440Ec787b003De73386",
+      "pool": "0x5Cd2A025C001E07Ae354A4C22C3009908De1aC59",
       "type": "vote"
     },
     {
@@ -311278,15 +311444,6 @@
       "date": "2025-12-25T00:00:00.000",
       "ts": "2025-12-25T13:11:00.000",
       "voting_power": 9.80382e-05,
-      "total_weight": 0.5342031829,
-      "voter": "0xEEF697ac272B913Ce523f1364253F90C8a8C005f",
-      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
-      "type": "vote"
-    },
-    {
-      "date": "2025-12-25T00:00:00.000",
-      "ts": "2025-12-25T13:11:00.000",
-      "voting_power": 9.80382e-05,
       "total_weight": 0.0616061472,
       "voter": "0xEEF697ac272B913Ce523f1364253F90C8a8C005f",
       "pool": "0x5Cd2A025C001E07Ae354A4C22C3009908De1aC59",
@@ -311296,27 +311453,9 @@
       "date": "2025-12-25T00:00:00.000",
       "ts": "2025-12-25T13:11:00.000",
       "voting_power": 9.80382e-05,
-      "total_weight": 0.0652706451,
+      "total_weight": 0.5342031829,
       "voter": "0xEEF697ac272B913Ce523f1364253F90C8a8C005f",
-      "pool": "0x6688F868E9c81Ee671867E77fBC618BBEA2e9782",
-      "type": "vote"
-    },
-    {
-      "date": "2025-12-25T00:00:00.000",
-      "ts": "2025-12-25T13:11:00.000",
-      "voting_power": 9.80382e-05,
-      "total_weight": 0.0033313093,
-      "voter": "0xEEF697ac272B913Ce523f1364253F90C8a8C005f",
-      "pool": "0xf6f950485b0A65828F07581Ca979ef1271778d6A",
-      "type": "vote"
-    },
-    {
-      "date": "2025-12-25T00:00:00.000",
-      "ts": "2025-12-25T13:11:00.000",
-      "voting_power": 9.80382e-05,
-      "total_weight": 0.3302498113,
-      "voter": "0xEEF697ac272B913Ce523f1364253F90C8a8C005f",
-      "pool": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
+      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
       "type": "vote"
     },
     {
@@ -311332,6 +311471,24 @@
       "date": "2025-12-25T00:00:00.000",
       "ts": "2025-12-25T13:11:00.000",
       "voting_power": 9.80382e-05,
+      "total_weight": 0.0652706451,
+      "voter": "0xEEF697ac272B913Ce523f1364253F90C8a8C005f",
+      "pool": "0x6688F868E9c81Ee671867E77fBC618BBEA2e9782",
+      "type": "vote"
+    },
+    {
+      "date": "2025-12-25T00:00:00.000",
+      "ts": "2025-12-25T13:11:00.000",
+      "voting_power": 9.80382e-05,
+      "total_weight": 0.3302498113,
+      "voter": "0xEEF697ac272B913Ce523f1364253F90C8a8C005f",
+      "pool": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
+      "type": "vote"
+    },
+    {
+      "date": "2025-12-25T00:00:00.000",
+      "ts": "2025-12-25T13:11:00.000",
+      "voting_power": 9.80382e-05,
       "total_weight": 0.1685708802,
       "voter": "0xEEF697ac272B913Ce523f1364253F90C8a8C005f",
       "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
@@ -311339,11 +311496,11 @@
     },
     {
       "date": "2025-12-25T00:00:00.000",
-      "ts": "2025-12-25T12:33:22.000",
-      "voting_power": 0.0360986483,
-      "total_weight": 0.15295412,
-      "voter": "0x39A9ebc72FA4DC271B308fCbF1C1B185D5d9586A",
-      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
+      "ts": "2025-12-25T13:11:00.000",
+      "voting_power": 9.80382e-05,
+      "total_weight": 0.0033313093,
+      "voter": "0xEEF697ac272B913Ce523f1364253F90C8a8C005f",
+      "pool": "0xf6f950485b0A65828F07581Ca979ef1271778d6A",
       "type": "vote"
     },
     {
@@ -311353,6 +311510,15 @@
       "total_weight": 0.5341051447,
       "voter": "0x39A9ebc72FA4DC271B308fCbF1C1B185D5d9586A",
       "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
+      "type": "vote"
+    },
+    {
+      "date": "2025-12-25T00:00:00.000",
+      "ts": "2025-12-25T12:33:22.000",
+      "voting_power": 0.0360986483,
+      "total_weight": 0.15295412,
+      "voter": "0x39A9ebc72FA4DC271B308fCbF1C1B185D5d9586A",
+      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
       "type": "vote"
     },
     {
@@ -311682,19 +311848,19 @@
     {
       "date": "2025-12-25T00:00:00.000",
       "ts": "2025-12-25T02:10:25.000",
-      "voting_power": 0.106360313,
-      "total_weight": 0.5549660636,
+      "voting_power": 0.0212720626,
+      "total_weight": 0.1737013937,
       "voter": "0x9C7c2B00Ea7800fbe32FD50d844645Db07C27a74",
-      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
+      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
       "type": "vote"
     },
     {
       "date": "2025-12-25T00:00:00.000",
       "ts": "2025-12-25T02:10:25.000",
-      "voting_power": 0.0212720626,
-      "total_weight": 0.1737013937,
+      "voting_power": 0.106360313,
+      "total_weight": 0.5549660636,
       "voter": "0x9C7c2B00Ea7800fbe32FD50d844645Db07C27a74",
-      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
+      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
       "type": "vote"
     },
     {
@@ -311817,15 +311983,6 @@
     {
       "date": "2025-12-24T00:00:00.000",
       "ts": "2025-12-24T14:48:53.000",
-      "voting_power": 6.1935e-06,
-      "total_weight": 0.1521928572,
-      "voter": "0xd0078fa789f6a373ebb6d1cb054E34ecF12e17bB",
-      "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
-      "type": "vote"
-    },
-    {
-      "date": "2025-12-24T00:00:00.000",
-      "ts": "2025-12-24T14:48:53.000",
       "voting_power": 3.0968e-06,
       "total_weight": 0.4550992739,
       "voter": "0xd0078fa789f6a373ebb6d1cb054E34ecF12e17bB",
@@ -311839,6 +311996,15 @@
       "total_weight": 0.1744386943,
       "voter": "0xd0078fa789f6a373ebb6d1cb054E34ecF12e17bB",
       "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
+      "type": "vote"
+    },
+    {
+      "date": "2025-12-24T00:00:00.000",
+      "ts": "2025-12-24T14:48:53.000",
+      "voting_power": 6.1935e-06,
+      "total_weight": 0.1521928572,
+      "voter": "0xd0078fa789f6a373ebb6d1cb054E34ecF12e17bB",
+      "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
       "type": "vote"
     },
     {
@@ -311961,15 +312127,6 @@
     {
       "date": "2025-12-24T00:00:00.000",
       "ts": "2025-12-24T08:07:42.000",
-      "voting_power": 1.24553e-05,
-      "total_weight": 44.8514886144,
-      "voter": "0x530BE2a42309cb99874cF3DDB5853DB2575F5235",
-      "pool": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
-      "type": "vote"
-    },
-    {
-      "date": "2025-12-24T00:00:00.000",
-      "ts": "2025-12-24T08:07:42.000",
       "voting_power": 8.8966e-06,
       "total_weight": 0.1521801637,
       "voter": "0x530BE2a42309cb99874cF3DDB5853DB2575F5235",
@@ -311992,6 +312149,15 @@
       "total_weight": 0.3393626314,
       "voter": "0x530BE2a42309cb99874cF3DDB5853DB2575F5235",
       "pool": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
+      "type": "vote"
+    },
+    {
+      "date": "2025-12-24T00:00:00.000",
+      "ts": "2025-12-24T08:07:42.000",
+      "voting_power": 1.24553e-05,
+      "total_weight": 44.8514886144,
+      "voter": "0x530BE2a42309cb99874cF3DDB5853DB2575F5235",
+      "pool": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
       "type": "vote"
     },
     {
@@ -312042,19 +312208,19 @@
     {
       "date": "2025-12-24T00:00:00.000",
       "ts": "2025-12-24T01:45:06.000",
-      "voting_power": 0.0001181508,
-      "total_weight": 0.4537217994,
+      "voting_power": 5.90754e-05,
+      "total_weight": 0.1521712671,
       "voter": "0x2C7b794b15E729B84747A6A45c038d625816345F",
-      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
+      "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
       "type": "vote"
     },
     {
       "date": "2025-12-24T00:00:00.000",
       "ts": "2025-12-24T01:45:06.000",
-      "voting_power": 5.90754e-05,
-      "total_weight": 0.1521712671,
+      "voting_power": 0.0001181508,
+      "total_weight": 0.4537217994,
       "voter": "0x2C7b794b15E729B84747A6A45c038d625816345F",
-      "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
+      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
       "type": "vote"
     },
     {
@@ -312429,10 +312595,10 @@
     {
       "date": "2025-12-23T00:00:00.000",
       "ts": "2025-12-23T02:19:42.000",
-      "voting_power": 2.272e-07,
-      "total_weight": 0.1508600118,
+      "voting_power": 5.68e-08,
+      "total_weight": 0.0938919489,
       "voter": "0xc2E0C7908bf152d93135c2A5e2CF7138aeAc3Bba",
-      "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
+      "pool": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
       "type": "vote"
     },
     {
@@ -312474,10 +312640,10 @@
     {
       "date": "2025-12-23T00:00:00.000",
       "ts": "2025-12-23T02:19:42.000",
-      "voting_power": 5.68e-08,
-      "total_weight": 0.0938919489,
+      "voting_power": 2.272e-07,
+      "total_weight": 0.1508600118,
       "voter": "0xc2E0C7908bf152d93135c2A5e2CF7138aeAc3Bba",
-      "pool": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
+      "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
       "type": "vote"
     },
     {
@@ -312555,6 +312721,15 @@
     {
       "date": "2025-12-21T00:00:00.000",
       "ts": "2025-12-21T03:22:56.000",
+      "voting_power": 6.33145e-05,
+      "total_weight": 0.4349921769,
+      "voter": "0x1389756489d396068Cf1ada8Eb73964Cd8eB51c0",
+      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
+      "type": "vote"
+    },
+    {
+      "date": "2025-12-21T00:00:00.000",
+      "ts": "2025-12-21T03:22:56.000",
       "voting_power": 3.16573e-05,
       "total_weight": 0.1912439954,
       "voter": "0x1389756489d396068Cf1ada8Eb73964Cd8eB51c0",
@@ -312566,24 +312741,6 @@
       "ts": "2025-12-21T03:22:56.000",
       "voting_power": 6.33145e-05,
       "total_weight": 0.0941047188,
-      "voter": "0x1389756489d396068Cf1ada8Eb73964Cd8eB51c0",
-      "pool": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
-      "type": "vote"
-    },
-    {
-      "date": "2025-12-21T00:00:00.000",
-      "ts": "2025-12-21T03:22:56.000",
-      "voting_power": 6.33145e-05,
-      "total_weight": 0.4349921769,
-      "voter": "0x1389756489d396068Cf1ada8Eb73964Cd8eB51c0",
-      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
-      "type": "vote"
-    },
-    {
-      "date": "2025-12-21T00:00:00.000",
-      "ts": "2025-12-21T03:22:10.000",
-      "voting_power": 0.0101721165,
-      "total_weight": 0.0940414043,
       "voter": "0x1389756489d396068Cf1ada8Eb73964Cd8eB51c0",
       "pool": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
       "type": "vote"
@@ -312604,6 +312761,24 @@
       "total_weight": 0.1912123381,
       "voter": "0x1389756489d396068Cf1ada8Eb73964Cd8eB51c0",
       "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
+      "type": "vote"
+    },
+    {
+      "date": "2025-12-21T00:00:00.000",
+      "ts": "2025-12-21T03:22:10.000",
+      "voting_power": 0.0101721165,
+      "total_weight": 0.0940414043,
+      "voter": "0x1389756489d396068Cf1ada8Eb73964Cd8eB51c0",
+      "pool": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
+      "type": "vote"
+    },
+    {
+      "date": "2025-12-21T00:00:00.000",
+      "ts": "2025-12-21T01:52:09.000",
+      "voting_power": 3.232e-07,
+      "total_weight": 0.0859806543,
+      "voter": "0x2263c638f36e445AC6871B0B0D903644F34Ab540",
+      "pool": "0x6688F868E9c81Ee671867E77fBC618BBEA2e9782",
       "type": "vote"
     },
     {
@@ -312640,15 +312815,6 @@
       "total_weight": 44.8578029344,
       "voter": "0x2263c638f36e445AC6871B0B0D903644F34Ab540",
       "pool": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
-      "type": "vote"
-    },
-    {
-      "date": "2025-12-21T00:00:00.000",
-      "ts": "2025-12-21T01:52:09.000",
-      "voting_power": 3.232e-07,
-      "total_weight": 0.0859806543,
-      "voter": "0x2263c638f36e445AC6871B0B0D903644F34Ab540",
-      "pool": "0x6688F868E9c81Ee671867E77fBC618BBEA2e9782",
       "type": "vote"
     },
     {
@@ -312708,19 +312874,28 @@
     {
       "date": "2025-12-20T00:00:00.000",
       "ts": "2025-12-20T17:59:21.000",
-      "voting_power": 3.55232e-05,
-      "total_weight": 0.0838679949,
+      "voting_power": 0.0003197088,
+      "total_weight": 0.0665971183,
       "voter": "0xdbDd37c697fB9a8f561583BDc081EACC4b1b656e",
-      "pool": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
+      "pool": "0x2a1ab0224a7a608d3A992Cb15594a2934F74f4C0",
       "type": "vote"
     },
     {
       "date": "2025-12-20T00:00:00.000",
       "ts": "2025-12-20T17:59:21.000",
-      "voting_power": 0.001065696,
-      "total_weight": 0.1532306799,
+      "voting_power": 0.000355232,
+      "total_weight": 0.1810373689,
       "voter": "0xdbDd37c697fB9a8f561583BDc081EACC4b1b656e",
-      "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
+      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
+      "type": "vote"
+    },
+    {
+      "date": "2025-12-20T00:00:00.000",
+      "ts": "2025-12-20T17:59:21.000",
+      "voting_power": 3.55232e-05,
+      "total_weight": 0.0838679949,
+      "voter": "0xdbDd37c697fB9a8f561583BDc081EACC4b1b656e",
+      "pool": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
       "type": "vote"
     },
     {
@@ -312735,19 +312910,10 @@
     {
       "date": "2025-12-20T00:00:00.000",
       "ts": "2025-12-20T17:59:21.000",
-      "voting_power": 0.0003197088,
-      "total_weight": 0.0665971183,
+      "voting_power": 0.001065696,
+      "total_weight": 0.1532306799,
       "voter": "0xdbDd37c697fB9a8f561583BDc081EACC4b1b656e",
-      "pool": "0x2a1ab0224a7a608d3A992Cb15594a2934F74f4C0",
-      "type": "vote"
-    },
-    {
-      "date": "2025-12-20T00:00:00.000",
-      "ts": "2025-12-20T17:59:21.000",
-      "voting_power": 0.000355232,
-      "total_weight": 0.1810373689,
-      "voter": "0xdbDd37c697fB9a8f561583BDc081EACC4b1b656e",
-      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
+      "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
       "type": "vote"
     },
     {
@@ -312826,9 +312992,9 @@
       "date": "2025-12-19T00:00:00.000",
       "ts": "2025-12-19T22:50:13.000",
       "voting_power": 6.78119e-05,
-      "total_weight": 0.183202927,
+      "total_weight": 0.0913798274,
       "voter": "0xd16F12b1C5B1CFbc14893b620578196021E97e68",
-      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
+      "pool": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
       "type": "vote"
     },
     {
@@ -312844,9 +313010,9 @@
       "date": "2025-12-19T00:00:00.000",
       "ts": "2025-12-19T22:50:13.000",
       "voting_power": 6.78119e-05,
-      "total_weight": 0.0913798274,
+      "total_weight": 0.183202927,
       "voter": "0xd16F12b1C5B1CFbc14893b620578196021E97e68",
-      "pool": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
+      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
       "type": "vote"
     },
     {
@@ -312862,18 +313028,18 @@
       "date": "2025-12-19T00:00:00.000",
       "ts": "2025-12-19T19:38:00.000",
       "voting_power": 0.025,
-      "total_weight": 0.152165094,
+      "total_weight": 0.431161655,
       "voter": "0x9eEf87f4C08d8934cB2a3309dF4deC5635338115",
-      "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
+      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
       "type": "vote"
     },
     {
       "date": "2025-12-19T00:00:00.000",
       "ts": "2025-12-19T19:38:00.000",
       "voting_power": 0.025,
-      "total_weight": 0.431161655,
+      "total_weight": 0.152165094,
       "voter": "0x9eEf87f4C08d8934cB2a3309dF4deC5635338115",
-      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
+      "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
       "type": "vote"
     },
     {
@@ -312952,15 +313118,6 @@
       "date": "2025-12-19T00:00:00.000",
       "ts": "2025-12-19T19:13:59.000",
       "voting_power": 2.4896e-06,
-      "total_weight": 0.0667945355,
-      "voter": "0x6b49f23c18Ed8C1486e2b51Ca3105fb2441157B7",
-      "pool": "0x2a1ab0224a7a608d3A992Cb15594a2934F74f4C0",
-      "type": "vote"
-    },
-    {
-      "date": "2025-12-19T00:00:00.000",
-      "ts": "2025-12-19T19:13:59.000",
-      "voting_power": 2.4896e-06,
       "total_weight": 0.4061589404,
       "voter": "0x6b49f23c18Ed8C1486e2b51Ca3105fb2441157B7",
       "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
@@ -312979,6 +313136,15 @@
       "date": "2025-12-19T00:00:00.000",
       "ts": "2025-12-19T19:13:59.000",
       "voting_power": 2.4896e-06,
+      "total_weight": 0.0667945355,
+      "voter": "0x6b49f23c18Ed8C1486e2b51Ca3105fb2441157B7",
+      "pool": "0x2a1ab0224a7a608d3A992Cb15594a2934F74f4C0",
+      "type": "vote"
+    },
+    {
+      "date": "2025-12-19T00:00:00.000",
+      "ts": "2025-12-19T19:13:59.000",
+      "voting_power": 2.4896e-06,
       "total_weight": 0.0228953493,
       "voter": "0x6b49f23c18Ed8C1486e2b51Ca3105fb2441157B7",
       "pool": "0x329D64572F8922c3Fe90D23A3C74a360d8eA6235",
@@ -312988,9 +313154,9 @@
       "date": "2025-12-19T00:00:00.000",
       "ts": "2025-12-19T19:13:59.000",
       "voting_power": 2.4896e-06,
-      "total_weight": 0.1271623794,
+      "total_weight": 0.0241559457,
       "voter": "0x6b49f23c18Ed8C1486e2b51Ca3105fb2441157B7",
-      "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
+      "pool": "0xf6f950485b0A65828F07581Ca979ef1271778d6A",
       "type": "vote"
     },
     {
@@ -313006,9 +313172,9 @@
       "date": "2025-12-19T00:00:00.000",
       "ts": "2025-12-19T19:13:59.000",
       "voting_power": 2.4896e-06,
-      "total_weight": 0.0241559457,
+      "total_weight": 0.1271623794,
       "voter": "0x6b49f23c18Ed8C1486e2b51Ca3105fb2441157B7",
-      "pool": "0xf6f950485b0A65828F07581Ca979ef1271778d6A",
+      "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
       "type": "vote"
     },
     {
@@ -322970,7 +323136,7 @@
     {
       "pool_address": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
       "pool_name": "0xb4D49802...",
-      "current_votes": 0.3157145039776854,
+      "current_votes": 0.31617282435098415,
       "bribes": {
         "MUSD": 0.0,
         "BTC": 0.0
@@ -322992,13 +323158,13 @@
         "mUSDT": 0.0,
         "BTC": 0.02499
       },
-      "bribes_usd": 2345.71134,
+      "bribes_usd": 2347.1607599999998,
       "fees": {},
       "fees_usd": 0.0,
       "apr_bribes": 17.93184391102643,
       "apr_fees": 0.0,
       "apr_total": 17.93184391102643,
-      "usd_per_vote": 323.6904731831552
+      "usd_per_vote": 323.89048221139353
     },
     {
       "pool_address": "0x2a1ab0224a7a608d3A992Cb15594a2934F74f4C0",
@@ -323040,13 +323206,13 @@
         "BTC": 0.04165,
         "MUSD": 0.0
       },
-      "bribes_usd": 3909.5189,
+      "bribes_usd": 3911.9346,
       "fees": {},
       "fees_usd": 0.0,
       "apr_bribes": 9.8529464844999,
       "apr_fees": 0.0,
       "apr_total": 9.8529464844999,
-      "usd_per_vote": 177.85705282962843
+      "usd_per_vote": 177.9669510788786
     },
     {
       "pool_address": "0x5Cd2A025C001E07Ae354A4C22C3009908De1aC59",
@@ -323073,13 +323239,13 @@
         "MUSD": 0.0,
         "BTC": 0.004165
       },
-      "bribes_usd": 390.95189000000005,
+      "bribes_usd": 391.19346,
       "fees": {},
       "fees_usd": 0.0,
       "apr_bribes": 26.744969721389705,
       "apr_fees": 0.0,
       "apr_total": 26.744969721389705,
-      "usd_per_vote": 482.77756305153196
+      "usd_per_vote": 483.07587232919354
     },
     {
       "pool_address": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
@@ -323089,13 +323255,13 @@
         "mcbBTC": 0.0,
         "BTC": 0.004165
       },
-      "bribes_usd": 390.95189000000005,
+      "bribes_usd": 391.19346,
       "fees": {},
       "fees_usd": 0.0,
       "apr_bribes": 0.47317681498483166,
       "apr_fees": 0.0,
       "apr_total": 0.47317681498483166,
-      "usd_per_vote": 8.541387483724272
+      "usd_per_vote": 8.54666522512218
     },
     {
       "pool_address": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
@@ -323106,13 +323272,13 @@
         "MUSD": 0.0,
         "BTC": 0.00833
       },
-      "bribes_usd": 781.9037800000001,
+      "bribes_usd": 782.38692,
       "fees": {},
       "fees_usd": 0.0,
       "apr_bribes": 4.662919122362375,
       "apr_fees": 0.0,
       "apr_total": 4.662919122362375,
-      "usd_per_vote": 84.17107044993591
+      "usd_per_vote": 84.22307993245455
     },
     {
       "pool_address": "0xf6f950485b0A65828F07581Ca979ef1271778d6A",
@@ -323135,7 +323301,7 @@
     {
       "pool_address": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
       "pool_name": "0xb4D49802...",
-      "current_votes": 0.3157145039776854,
+      "current_votes": 0.31617282435098415,
       "bribes": {
         "MUSD": 0.0,
         "BTC": 0.0
@@ -323205,13 +323371,13 @@
         "BTC": 0.04165,
         "MUSD": 0.0
       },
-      "bribes_usd": 3909.5189,
+      "bribes_usd": 3911.9346,
       "fees": {},
       "fees_usd": 0.0,
       "apr_bribes": 9.8529464844999,
       "apr_fees": 0.0,
       "apr_total": 9.8529464844999,
-      "usd_per_vote": 177.85705282962843
+      "usd_per_vote": 177.9669510788786
     },
     {
       "pool_address": "0x5Cd2A025C001E07Ae354A4C22C3009908De1aC59",
@@ -323238,13 +323404,13 @@
         "MUSD": 0.0,
         "BTC": 0.004165
       },
-      "bribes_usd": 390.95189000000005,
+      "bribes_usd": 391.19346,
       "fees": {},
       "fees_usd": 0.0,
       "apr_bribes": 26.744969721389705,
       "apr_fees": 0.0,
       "apr_total": 26.744969721389705,
-      "usd_per_vote": 482.77756305153196
+      "usd_per_vote": 483.07587232919354
     },
     {
       "pool_address": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
@@ -323254,13 +323420,13 @@
         "mcbBTC": 0.0,
         "BTC": 0.004165
       },
-      "bribes_usd": 390.95189000000005,
+      "bribes_usd": 391.19346,
       "fees": {},
       "fees_usd": 0.0,
       "apr_bribes": 0.47317681498483166,
       "apr_fees": 0.0,
       "apr_total": 0.47317681498483166,
-      "usd_per_vote": 8.541387483724272
+      "usd_per_vote": 8.54666522512218
     },
     {
       "pool_address": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
@@ -323271,13 +323437,13 @@
         "MUSD": 0.0,
         "BTC": 0.03332
       },
-      "bribes_usd": 3127.6151200000004,
+      "bribes_usd": 3129.54768,
       "fees": {},
       "fees_usd": 0.0,
       "apr_bribes": 18.6516764894495,
       "apr_fees": 0.0,
       "apr_total": 18.6516764894495,
-      "usd_per_vote": 336.68428179974364
+      "usd_per_vote": 336.8923197298182
     },
     {
       "pool_address": "0xf6f950485b0A65828F07581Ca979ef1271778d6A",
@@ -323296,5 +323462,5 @@
       "usd_per_vote": 0.0
     }
   ],
-  "last_updated": 1767628549
+  "last_updated": 1767629052
 }
