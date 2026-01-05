@@ -517,22 +517,15 @@ def generate_dashboard(locks: List[Dict[str, Any]], votes: List[Dict[str, Any]],
                 // Set default dates
                 const defaultStart = "2025-12-18";
 
-                // Find max date in data, default to today (local timezone)
+                // Set end date to today (local timezone)
                 const now = new Date();
                 const today = now.getFullYear() + '-' +
                     String(now.getMonth() + 1).padStart(2, '0') + '-' +
                     String(now.getDate()).padStart(2, '0');
-                let maxDate = today;
 
                 // Sort raw data using UTC helper
                 rawLocks.sort((a, b) => parseDateUTC(a.date) - parseDateUTC(b.date));
                 rawVotes.sort((a, b) => parseDateUTC(a.date) - parseDateUTC(b.date));
-
-                if (rawLocks.length > 0) {{
-                    const lastLockDate = rawLocks[rawLocks.length-1].date;
-                    // Use the later of last lock date or today
-                    maxDate = lastLockDate > today ? lastLockDate : today;
-                }}
 
                 // Set date inputs with proper browser rendering
                 const startDateInput = document.getElementById("startDate");
@@ -544,13 +537,13 @@ def generate_dashboard(locks: List[Dict[str, Any]], votes: List[Dict[str, Any]],
                 }}
 
                 if (endDateInput) {{
-                    endDateInput.setAttribute('value', maxDate);
-                    endDateInput.value = maxDate;
-                    console.log("Set endDate to:", maxDate);
+                    endDateInput.setAttribute('value', today);
+                    endDateInput.value = today;
+                    console.log("Set endDate to:", today);
                 }}
 
                 console.log("Init complete. rawLocks:", rawLocks.length, "rawVotes:", rawVotes.length);
-                console.log("Date range:", defaultStart, "to", maxDate);
+                console.log("Date range:", defaultStart, "to", today);
 
                 updateDashboard();
 
