@@ -204,7 +204,7 @@ class BotCommands:
             user_status = None
 
             if subscriber and subscriber.wallet_address:
-                has_voted, _ = self.notification_engine.check_if_user_voted(
+                has_voted, votes = self.notification_engine.check_if_user_voted(
                     subscriber.wallet_address,
                     epoch_info['epoch_number']
                 )
@@ -214,9 +214,14 @@ class BotCommands:
                 vp_str = f"{voting_power:.2f}".replace('.', '\\.')
 
                 if has_voted:
-                    user_status = f"Voted ✅ \\({vp_str} veBTC\\)"
+                    # Calculate total voting weight used
+                    total_voted_weight = sum(v.get('voting_power', 0) for v in votes)
+                    voted_str = f"{total_voted_weight:.2f}".replace('.', '\\.')
+                    num_pools = len(votes)
+                    pools_str = f"{num_pools} pool" if num_pools == 1 else f"{num_pools} pools"
+                    user_status = f"Voted ✅ {voted_str} veBTC across {pools_str}"
                 else:
-                    user_status = f"Not voted \\({vp_str} veBTC\\)"
+                    user_status = f"Not voted \\({vp_str} veBTC available\\)"
             else:
                 user_status = "Not linked \\(use /link\\)"
 

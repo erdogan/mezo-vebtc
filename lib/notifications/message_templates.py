@@ -129,10 +129,13 @@ Link your wallet with:
         time_remaining = time_remaining.replace('.', '\\.')
         voting_time_remaining = voting_time_remaining.replace('.', '\\.')
 
-        user_line = f"\n*Your Status:* {user_status}" if user_status else ""
-
         # Format number with escaped period
         total_voted_str = f"{total_voted:.2f}".replace('.', '\\.')
+
+        # Format user status line
+        user_line = ""
+        if user_status:
+            user_line = f"\n\n*Your Wallet:* {user_status}"
 
         return f"""*Current Epoch Status* 📊
 
