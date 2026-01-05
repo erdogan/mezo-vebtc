@@ -96,12 +96,12 @@ class EpochTracker:
         """
         return self.epoch_next(timestamp) - self.VOTE_BUFFER_SECONDS
 
-    def get_epoch_number(self, timestamp: int, genesis_timestamp: int = 1733836800) -> int:
+    def get_epoch_number(self, timestamp: int, genesis_timestamp: int = 1733961600) -> int:
         """Calculate epoch number since genesis.
 
         Args:
             timestamp: Unix timestamp
-            genesis_timestamp: First epoch start (default: Dec 10, 2024)
+            genesis_timestamp: First epoch start (default: Dec 11, 2024 19:00 UTC)
 
         Returns:
             Epoch number (0-indexed)
@@ -162,12 +162,12 @@ class EpochTracker:
             current_ts=ts
         )
 
-    def get_epoch_by_number(self, epoch_number: int, genesis_timestamp: int = 1733836800) -> EpochInfo:
+    def get_epoch_by_number(self, epoch_number: int, genesis_timestamp: int = 1733961600) -> EpochInfo:
         """Get information about a specific epoch by number.
 
         Args:
             epoch_number: Epoch number (0-indexed)
-            genesis_timestamp: First epoch start
+            genesis_timestamp: First epoch start (default: Dec 11, 2024 19:00 UTC)
 
         Returns:
             EpochInfo object
