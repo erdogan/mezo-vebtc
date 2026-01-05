@@ -19,6 +19,7 @@ from lib.config import load_config
 from lib.utils.time_utils import get_current_timestamp, format_datetime_short
 from lib.analytics.epoch_tracker import get_current_epoch_info
 from lib.notifications.subscriber_manager import SubscriberManager, Subscriber
+from lib.notifications.postgres_subscriber_manager import PostgresSubscriberManager
 from lib.notifications.notification_engine import NotificationEngine
 from lib.notifications.bot_commands import BotCommands
 from lib.notifications.message_templates import MessageTemplates
@@ -52,16 +53,24 @@ class VeBTCBot:
         if not self.bot_token:
             raise ValueError("TELEGRAM_BOT_TOKEN environment variable not set")
 
-        # Get database path from environment (for Railway volume support)
-        db_path = os.getenv("DATABASE_PATH", "subscribers.db")
+        # Get data file path
         data_file = os.getenv("DATA_FILE", "vebtc_data.json")
-
-        logger.info(f"Using database path: {db_path}")
         logger.info(f"Using data file: {data_file}")
 
-        # Initialize managers
-        self.subscriber_manager = SubscriberManager(db_path)
-        self.notification_engine = NotificationEngine(data_file, db_path)
+        # Check if PostgreSQL database URL is available (Railway)
+        database_url = os.getenv("DATABASE_URL")
+
+        if database_url:
+            logger.info("Using PostgreSQL database (persistent)")
+            self.subscriber_manager = PostgresSubscriberManager(database_url)
+        else:
+            # Fall back to SQLite (local development)
+            db_path = os.getenv("DATABASE_PATH", "subscribers.db")
+            logger.info(f"Using SQLite database: {db_path}")
+            self.subscriber_manager = SubscriberManager(db_path)
+
+        # Initialize notification engine (it doesn't use the DB directly)
+        self.notification_engine = NotificationEngine(data_file)
         self.bot_commands = BotCommands(self.subscriber_manager, self.notification_engine)
         self.templates = MessageTemplates()
 
