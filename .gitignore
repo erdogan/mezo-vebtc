@@ -1,15 +1,66 @@
+# Test/Dev Files
 repro_dash.py
 test_dash.html
 diag.py
+test_*.py
+test_*.html
+test_*.md
+*_test.py
+*.test.js
+
+# Python
 __pycache__/
 *.pyc
+*.pyo
+*.pyd
+.Python
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
 .DS_Store
 
 # Telegram Bot
 .env
 subscribers.db
 *.db
+*.log
 
-# Cache
+# Cache & Temp
 cache/
 *.log
+*.tmp
+tmp/
+temp/
+
+# Documentation with secrets (create sanitized versions without tokens)
+GCP_DEPLOY.md
+RAILWAY_DEPLOY.md
+RENDER_DEPLOY.md
+BOT_QUICKSTART.md
+DEPLOYMENT*.md
+
+# Reports
+phase*.md
+*_report.md
+
+# Backup files
+*.bak
+*.backup
+*~
+
+# Claude/AI files
+.claude/
+*.claude
+
+# Old/unused files
+vebtc_dashboard.html
+telegram_bot/
