@@ -52,9 +52,16 @@ class VeBTCBot:
         if not self.bot_token:
             raise ValueError("TELEGRAM_BOT_TOKEN environment variable not set")
 
+        # Get database path from environment (for Railway volume support)
+        db_path = os.getenv("DATABASE_PATH", "subscribers.db")
+        data_file = os.getenv("DATA_FILE", "vebtc_data.json")
+
+        logger.info(f"Using database path: {db_path}")
+        logger.info(f"Using data file: {data_file}")
+
         # Initialize managers
-        self.subscriber_manager = SubscriberManager("subscribers.db")
-        self.notification_engine = NotificationEngine("vebtc_data.json", "subscribers.db")
+        self.subscriber_manager = SubscriberManager(db_path)
+        self.notification_engine = NotificationEngine(data_file, db_path)
         self.bot_commands = BotCommands(self.subscriber_manager, self.notification_engine)
         self.templates = MessageTemplates()
 
