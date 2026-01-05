@@ -216,7 +216,7 @@ Bribes: {bribes_str} \\| $/vote: ${usd_per_vote_str}
 
 {pools_text}
 
-Vote now: /status"""
+Epoch status: /status"""
 
     @staticmethod
     def settings_message(subscriber: Any) -> str:
