@@ -381,6 +381,13 @@ This could be a great opportunity\\!
 View details: /pools"""
 
     @staticmethod
+    def unknown_command_message() -> str:
+        """Message for unrecognized commands."""
+        return """*Command not recognized* ❓
+
+Use /help to see available commands\\."""
+
+    @staticmethod
     def error_message(error: str = "An error occurred") -> str:
         """Generic error message."""
         return f"""*Error* ❌
