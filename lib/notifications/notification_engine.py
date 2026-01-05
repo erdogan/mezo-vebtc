@@ -106,23 +106,24 @@ class NotificationEngine:
             return False, []
 
     def get_user_voting_power(self, wallet_address: str) -> float:
-        """Get user's current voting power.
+        """Get user's total voting power from all their locks.
 
         Args:
             wallet_address: Ethereum wallet address
 
         Returns:
-            Current voting power in veBTC
+            Total voting power in veBTC (sum of all locks)
         """
         try:
             locks, votes = self.load_current_data()
-            analyzer = ParticipantAnalyzer(locks, votes)
 
-            participant = analyzer.get_participant(wallet_address)
-            if participant:
-                return participant.current_voting_power
+            # Sum up all locks for this user
+            total_locked = 0.0
+            for lock in locks:
+                if lock.get('sender', '').lower() == wallet_address.lower():
+                    total_locked += lock.get('amount', 0)
 
-            return 0.0
+            return total_locked
         except Exception as e:
             logger.error(f"Error getting voting power: {e}")
             return 0.0
