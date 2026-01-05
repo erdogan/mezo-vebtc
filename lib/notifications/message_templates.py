@@ -239,9 +239,7 @@ Epoch Start: {'✅' if subscriber.notify_epoch_start else '❌'}
 High APR Alerts: {'✅' if subscriber.notify_high_apr else '❌'}
 
 *Wallet:* {wallet_display}
-*High APR Threshold:* {threshold_str}%
-
-To update settings, contact support or use individual commands"""
+*High APR Threshold:* {threshold_str}%"""
 
     @staticmethod
     def notification_24h_reminder_broadcast(
