@@ -41,7 +41,8 @@ Commands: /help"""
 /status \\- Current epoch \\& voting status
 /myvotes \\- Your voting history \\(requires link\\)
 /pools \\- Top pools by APR
-/settings \\- Configure notification preferences"""
+/settings \\- Configure notification preferences
+/stats \\- View bot usage statistics"""
 
     @staticmethod
     def already_subscribed_message() -> str:
@@ -395,3 +396,75 @@ Use /help to see available commands\\."""
 {error}
 
 Please try again or contact support\\."""
+
+    @staticmethod
+    def stats_message(stats: Dict[str, Any], epoch_number: int) -> str:
+        """Bot statistics message.
+
+        Args:
+            stats: Statistics dictionary from BotAnalytics
+            epoch_number: Current epoch number
+        """
+        # Subscribers
+        total_subs = stats['subscribers']['total']
+        linked_wallets = stats['subscribers']['linked_wallets']
+        wallet_rate = stats['subscribers']['wallet_link_rate']
+        recent_7d = stats['subscribers']['recent_7d']
+        recent_30d = stats['subscribers']['recent_30d']
+
+        # Engagement
+        active_7d = stats['engagement']['active_7d']
+        active_30d = stats['engagement']['active_30d']
+        active_rate_7d = stats['engagement']['active_rate_7d']
+        active_rate_30d = stats['engagement']['active_rate_30d']
+
+        # Notifications (all-time)
+        all_time_notifs = stats['notifications']['all_time']
+        total_notifs = sum(all_time_notifs.values())
+        notif_24h = all_time_notifs.get('24h_reminder', 0)
+        notif_final = all_time_notifs.get('final_warning', 0)
+        notif_epoch = all_time_notifs.get('epoch_start', 0)
+        notif_apr = all_time_notifs.get('high_apr', 0)
+
+        # Current epoch notifications
+        epoch_notifs = stats['notifications']['current_epoch']
+        epoch_total = sum(epoch_notifs.values())
+
+        # Preferences
+        prefs = stats['preferences']
+        pref_24h = prefs.get('24h_reminder', 0)
+        pref_final = prefs.get('final_warning', 0)
+        pref_epoch = prefs.get('epoch_start', 0)
+        pref_apr = prefs.get('high_apr', 0)
+
+        # Escape decimal points
+        wallet_rate_str = f"{wallet_rate:.1f}".replace('.', '\\.')
+        active_rate_7d_str = f"{active_rate_7d:.1f}".replace('.', '\\.')
+        active_rate_30d_str = f"{active_rate_30d:.1f}".replace('.', '\\.')
+
+        return f"""*Bot Statistics* 📊
+
+*Subscribers*
+Total: {total_subs}
+Linked Wallets: {linked_wallets} \\({wallet_rate_str}%\\)
+New \\(7d\\): {recent_7d}
+New \\(30d\\): {recent_30d}
+
+*Engagement*
+Active \\(7d\\): {active_7d} \\({active_rate_7d_str}%\\)
+Active \\(30d\\): {active_30d} \\({active_rate_30d_str}%\\)
+
+*Notifications Sent*
+All\\-Time: {total_notifs}
+  • 24h Reminders: {notif_24h}
+  • Final Warnings: {notif_final}
+  • Epoch Starts: {notif_epoch}
+  • High APR: {notif_apr}
+
+Epoch {epoch_number}: {epoch_total}
+
+*Preferences*
+24h Reminder: {pref_24h}
+Final Warning: {pref_final}
+Epoch Start: {pref_epoch}
+High APR Alerts: {pref_apr}"""

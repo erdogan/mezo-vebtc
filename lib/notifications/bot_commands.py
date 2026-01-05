@@ -11,6 +11,7 @@ from lib.analytics.epoch_tracker import get_current_epoch_info
 from .subscriber_manager import SubscriberManager
 from .notification_engine import NotificationEngine
 from .message_templates import MessageTemplates
+from .bot_analytics import BotAnalytics
 
 logger = logging.getLogger(__name__)
 
@@ -28,6 +29,7 @@ class BotCommands:
         self.subscriber_manager = subscriber_manager
         self.notification_engine = notification_engine
         self.templates = MessageTemplates()
+        self.analytics = BotAnalytics(subscriber_manager)
 
     async def start_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         """Handle /start command."""
@@ -558,6 +560,40 @@ class BotCommands:
 
         except Exception as e:
             logger.error(f"Error in test_notification_command: {e}")
+            await update.message.reply_text(
+                self.templates.error_message(),
+                parse_mode=ParseMode.MARKDOWN_V2
+            )
+
+    async def stats_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+        """Handle /stats command - show bot usage statistics.
+
+        Usage:
+            /stats - Show comprehensive bot statistics
+        """
+        try:
+            chat_id = update.effective_chat.id
+
+            # Get current epoch for epoch-specific stats
+            current_ts = get_current_timestamp()
+            epoch_info = get_current_epoch_info(current_ts)
+            epoch_number = epoch_info['epoch_number']
+
+            # Get comprehensive stats
+            stats = self.analytics.get_comprehensive_stats(current_epoch=epoch_number)
+
+            # Format message
+            message = self.templates.stats_message(stats, epoch_number)
+
+            await update.message.reply_text(
+                message,
+                parse_mode=ParseMode.MARKDOWN_V2
+            )
+
+            logger.info(f"Stats viewed by {chat_id}")
+
+        except Exception as e:
+            logger.error(f"Error in stats_command: {e}")
             await update.message.reply_text(
                 self.templates.error_message(),
                 parse_mode=ParseMode.MARKDOWN_V2
