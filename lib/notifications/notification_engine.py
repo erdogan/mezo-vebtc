@@ -130,6 +130,43 @@ class NotificationEngine:
             logger.error(f"Error getting voting power: {e}")
             return 0.0
 
+    def get_total_voted_in_epoch(self, epoch_number: int) -> float:
+        """Get total voting power used in specific epoch.
+
+        Args:
+            epoch_number: Epoch number to check
+
+        Returns:
+            Total veBTC voted in the epoch
+        """
+        try:
+            locks, votes = self.load_current_data()
+            epoch_info = self.epoch_tracker.get_epoch_by_number(epoch_number)
+
+            if not epoch_info:
+                return 0.0
+
+            # Sum all voting power from votes in this epoch
+            total_voted = 0.0
+            for v in votes:
+                vote_ts = v.get('ts')
+                if vote_ts:
+                    if isinstance(vote_ts, str):
+                        dt = datetime.fromisoformat(vote_ts.replace('Z', '+00:00'))
+                        vote_ts = dt.timestamp()
+                    elif hasattr(vote_ts, 'timestamp'):
+                        vote_ts = vote_ts.timestamp()
+                    else:
+                        vote_ts = float(vote_ts)
+
+                    if epoch_info.vote_start_ts <= vote_ts <= epoch_info.vote_end_ts:
+                        total_voted += v.get('voting_power', 0)
+
+            return total_voted
+        except Exception as e:
+            logger.error(f"Error getting total voted: {e}")
+            return 0.0
+
     def get_top_pools(self, limit: int = 3) -> List[Dict[str, Any]]:
         """Get top pools by APR.
 
