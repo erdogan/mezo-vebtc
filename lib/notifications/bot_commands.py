@@ -424,3 +424,124 @@ class BotCommands:
                 )
             except Exception as e:
                 logger.error(f"Failed to send error message to user: {e}")
+
+    async def test_notification_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+        """Handle /test command (hidden, for testing notifications).
+
+        Usage:
+            /test 24h - Test 24h reminder
+            /test final - Test final warning
+            /test epoch - Test epoch start
+            /test apr - Test high APR alert
+        """
+        try:
+            chat_id = update.effective_chat.id
+
+            # Check if subscriber exists
+            subscriber = self.subscriber_manager.get_subscriber(chat_id)
+            if not subscriber:
+                await update.message.reply_text(
+                    "Please use /start first to subscribe.",
+                    parse_mode=ParseMode.MARKDOWN_V2
+                )
+                return
+
+            # Get test type from args
+            if not context.args or len(context.args) == 0:
+                await update.message.reply_text(
+                    "Usage: /test \\<type\\>\\n\\nTypes: 24h, final, epoch, apr",
+                    parse_mode=ParseMode.MARKDOWN_V2
+                )
+                return
+
+            test_type = context.args[0].lower()
+            current_ts = get_current_timestamp()
+            epoch_info = get_current_epoch_info(current_ts)
+            epoch_number = epoch_info['epoch_number']
+
+            # Get sample data
+            top_pools = self.notification_engine.get_top_pools(limit=3)
+            close_time = format_datetime_short(epoch_info['vote_end_ts'])
+
+            message = None
+
+            if test_type == "24h":
+                # Test 24h reminder
+                if subscriber.wallet_address:
+                    voting_power = self.notification_engine.get_user_voting_power(subscriber.wallet_address)
+                    message = self.templates.notification_24h_reminder_personalized(
+                        username=subscriber.username or 'there',
+                        epoch_number=epoch_number,
+                        close_time=close_time,
+                        voting_power=voting_power,
+                        top_pools=top_pools,
+                        has_voted=False
+                    )
+                else:
+                    message = self.templates.notification_24h_reminder_broadcast(
+                        epoch_number=epoch_number,
+                        close_time=close_time,
+                        top_pools=top_pools
+                    )
+
+            elif test_type == "final":
+                # Test final warning
+                if not subscriber.wallet_address:
+                    await update.message.reply_text(
+                        "Final warning requires linked wallet\\. Use /link first\\.",
+                        parse_mode=ParseMode.MARKDOWN_V2
+                    )
+                    return
+
+                voting_power = self.notification_engine.get_user_voting_power(subscriber.wallet_address)
+                message = self.templates.notification_final_warning(
+                    username=subscriber.username or 'there',
+                    epoch_number=epoch_number,
+                    close_time=close_time,
+                    voting_power=voting_power
+                )
+
+            elif test_type == "epoch":
+                # Test epoch start
+                voting_duration = epoch_info['voting_time_remaining_formatted']
+                message = self.templates.notification_epoch_start(
+                    epoch_number=epoch_number,
+                    close_date=close_time,
+                    voting_duration=voting_duration,
+                    top_pools=top_pools
+                )
+
+            elif test_type == "apr":
+                # Test high APR alert
+                if top_pools:
+                    pool = top_pools[0]
+                    message = self.templates.notification_high_apr(
+                        pool_name=pool.get('pool_name', 'Unknown Pool'),
+                        apr=pool.get('apr_total', 0),
+                        bribes_usd=pool.get('bribes_usd', 0),
+                        current_votes=pool.get('current_votes', 0)
+                    )
+                else:
+                    message = "No pool data available for APR test\\."
+
+            else:
+                await update.message.reply_text(
+                    f"Unknown test type: {test_type}\\n\\nValid types: 24h, final, epoch, apr",
+                    parse_mode=ParseMode.MARKDOWN_V2
+                )
+                return
+
+            # Send the test notification
+            if message:
+                await update.message.reply_text(
+                    message,
+                    parse_mode=ParseMode.MARKDOWN_V2
+                )
+                logger.info(f"Sent test notification ({test_type}) to {chat_id}")
+
+        except Exception as e:
+            logger.error(f"Error in test_notification_command: {e}")
+            await update.message.reply_text(
+                self.templates.error_message(),
+                parse_mode=ParseMode.MARKDOWN_V2
+            )
