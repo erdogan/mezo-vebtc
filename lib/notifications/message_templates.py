@@ -121,6 +121,7 @@ Link your wallet with:
         voting_status: str,
         voting_time_remaining: str,
         total_voted: float,
+        unique_voters: int,
         user_status: Optional[str] = None
     ) -> str:
         """Current epoch status message."""
@@ -146,7 +147,8 @@ Link your wallet with:
 *Voting Status:* {voting_status}
 *Voting Closes In:* {voting_time_remaining}
 
-*Total Voted:* {total_voted_str} veBTC{user_line}
+*Total Voted:* {total_voted_str} veBTC
+*Total Voters:* {unique_voters}{user_line}
 
 View top pools: /pools"""
 

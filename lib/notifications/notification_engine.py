@@ -164,6 +164,45 @@ class NotificationEngine:
             logger.error(f"Error getting total voted: {e}")
             return 0.0
 
+    def get_unique_voters_in_epoch(self, epoch_number: int) -> int:
+        """Get number of unique voters in specific epoch.
+
+        Args:
+            epoch_number: Epoch number
+
+        Returns:
+            Number of unique voters
+        """
+        try:
+            locks, votes = self.load_current_data()
+            epoch_info = self.epoch_tracker.get_epoch_by_number(epoch_number)
+
+            if not epoch_info:
+                return 0
+
+            # Count unique voters in this epoch
+            unique_voters = set()
+            for v in votes:
+                vote_ts = v.get('ts')
+                if vote_ts:
+                    if isinstance(vote_ts, str):
+                        dt = datetime.fromisoformat(vote_ts.replace('Z', '+00:00'))
+                        vote_ts = dt.timestamp()
+                    elif hasattr(vote_ts, 'timestamp'):
+                        vote_ts = vote_ts.timestamp()
+                    else:
+                        vote_ts = float(vote_ts)
+
+                    if epoch_info.vote_start_ts <= vote_ts <= epoch_info.vote_end_ts:
+                        voter = v.get('voter')
+                        if voter and voter != 'Unknown':
+                            unique_voters.add(voter.lower())
+
+            return len(unique_voters)
+        except Exception as e:
+            logger.error(f"Error getting unique voters: {e}")
+            return 0
+
     def get_pool_name(self, pool_address: str) -> str:
         """Get pool name from address.
 

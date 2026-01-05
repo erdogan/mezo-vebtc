@@ -225,8 +225,9 @@ class BotCommands:
             else:
                 user_status = "Not linked \\(use /link\\)"
 
-            # Get total voted in current epoch
+            # Get total voted and unique voters in current epoch
             total_voted = self.notification_engine.get_total_voted_in_epoch(epoch_info['epoch_number'])
+            unique_voters = self.notification_engine.get_unique_voters_in_epoch(epoch_info['epoch_number'])
 
             # Format dates
             start_date = format_datetime_short(epoch_info['start_ts'])
@@ -239,6 +240,7 @@ class BotCommands:
                 voting_status=voting_status,
                 voting_time_remaining=epoch_info['voting_time_remaining_formatted'],
                 total_voted=total_voted,
+                unique_voters=unique_voters,
                 user_status=user_status
             )
 
