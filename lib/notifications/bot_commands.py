@@ -297,8 +297,11 @@ class BotCommands:
             # Format votes for display
             formatted_votes = []
             for vote in votes:
+                pool_address = vote.get('pool', '')
+                # Resolve pool address to pool name
+                pool_name = self.notification_engine.get_pool_name(pool_address) if pool_address else 'Unknown'
                 formatted_votes.append({
-                    'pool_name': vote.get('pool', 'Unknown'),
+                    'pool_name': pool_name,
                     'voting_power': vote.get('voting_power', 0)
                 })
 
