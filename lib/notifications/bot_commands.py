@@ -301,21 +301,34 @@ class BotCommands:
                         timestamp = int(vote_ts)
                     vote_date = format_datetime_short(timestamp)
 
-            # Format votes for display (filter out zero-value votes)
-            formatted_votes = []
+            # Aggregate votes by pool and filter out zero-display votes
+            from collections import defaultdict
+            pool_votes = defaultdict(float)
+
             for vote in votes:
                 voting_power = vote.get('voting_power', 0)
-                # Skip votes with zero or negligible voting power
-                if voting_power <= 0.000001:  # Filter out essentially zero votes
-                    continue
-
                 pool_address = vote.get('pool', '')
+
                 # Resolve pool address to pool name
                 pool_name = self.notification_engine.get_pool_name(pool_address) if pool_address else 'Unknown'
+
+                # Aggregate by pool name
+                pool_votes[pool_name] += voting_power
+
+            # Format for display, filtering out votes that display as 0.00
+            formatted_votes = []
+            for pool_name, total_vp in pool_votes.items():
+                # Skip votes that would display as 0.00 (< 0.005 rounds to 0.00)
+                if total_vp < 0.005:
+                    continue
+
                 formatted_votes.append({
                     'pool_name': pool_name,
-                    'voting_power': voting_power
+                    'voting_power': total_vp
                 })
+
+            # Sort by voting power descending
+            formatted_votes.sort(key=lambda x: x['voting_power'], reverse=True)
 
             message = self.templates.myvotes_message(
                 wallet_address=subscriber.wallet_address,
