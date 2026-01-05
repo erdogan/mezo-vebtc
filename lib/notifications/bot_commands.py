@@ -396,6 +396,16 @@ class BotCommands:
                 parse_mode=ParseMode.MARKDOWN_V2
             )
 
+    async def unknown_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+        """Handle unknown commands."""
+        try:
+            await update.message.reply_text(
+                self.templates.unknown_command_message(),
+                parse_mode=ParseMode.MARKDOWN_V2
+            )
+        except Exception as e:
+            logger.error(f"Error in unknown_command: {e}")
+
     async def error_handler(self, update: object, context: ContextTypes.DEFAULT_TYPE) -> None:
         """Handle errors in the bot."""
         logger.error(f"Update {update} caused error {context.error}")

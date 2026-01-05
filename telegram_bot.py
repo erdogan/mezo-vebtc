@@ -9,7 +9,7 @@ from datetime import datetime
 from typing import List
 
 from telegram import Bot, Update
-from telegram.ext import Application, CommandHandler
+from telegram.ext import Application, CommandHandler, MessageHandler, filters
 from telegram.constants import ParseMode
 from dotenv import load_dotenv
 from apscheduler.schedulers.asyncio import AsyncIOScheduler
@@ -114,6 +114,9 @@ class VeBTCBot:
         self.application.add_handler(CommandHandler("pools", self.bot_commands.pools_command))
         self.application.add_handler(CommandHandler("settings", self.bot_commands.settings_command))
         self.application.add_handler(CommandHandler("help", self.bot_commands.help_command))
+
+        # Unknown command handler (must be after all command handlers)
+        self.application.add_handler(MessageHandler(filters.COMMAND, self.bot_commands.unknown_command))
 
         # Error handler
         self.application.add_error_handler(self.bot_commands.error_handler)
