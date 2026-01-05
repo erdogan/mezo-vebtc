@@ -117,6 +117,7 @@ class VeBTCBot:
 
         # Hidden test command (not shown in help)
         self.application.add_handler(CommandHandler("test", self.bot_commands.test_notification_command))
+        self.application.add_handler(CommandHandler("stats", self.bot_commands.stats_command))
 
         # Unknown command handler (must be after all command handlers)
         self.application.add_handler(MessageHandler(filters.COMMAND, self.bot_commands.unknown_command))
