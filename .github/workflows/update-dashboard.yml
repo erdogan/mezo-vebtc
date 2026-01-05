@@ -2,17 +2,15 @@ name: Update veBTC Dashboard
 
 on:
   schedule:
-    # Run every 5 minutes
-    - cron: '*/5 * * * *'
+    # Run every 10 minutes to reduce rate limiting
+    - cron: '*/10 * * * *'
   # Allow manual trigger
   workflow_dispatch:
-  # Run on push to main for testing
-  push:
-    branches: [ main ]
 
 jobs:
   update-dashboard:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
 
     steps:
       - name: Checkout repository
@@ -31,10 +29,17 @@ jobs:
 
       - name: Generate dashboard and data
         env:
-          # Add any secrets here if needed
           PYTHONUNBUFFERED: 1
         run: |
+          # Run dashboard generation (may have 429 warnings but still succeeds)
           python vebtc_dashboard.py
+
+          # Verify files were generated
+          if [ ! -f "index.html" ] || [ ! -f "vebtc_data.json" ]; then
+            echo "Error: Required files not generated"
+            exit 1
+          fi
+
           echo "Dashboard generated successfully"
 
       - name: Prepare deployment files
@@ -53,6 +58,22 @@ jobs:
 
           # Optional: Create a .nojekyll file to prevent GitHub from processing the site
           touch deploy/.nojekyll
+
+      - name: Commit updated files to main
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+
+          # Add generated files
+          git add index.html vebtc_data.json
+
+          # Only commit if there are changes
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "Auto-update dashboard data [skip ci]"
+            git push
+          fi
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
