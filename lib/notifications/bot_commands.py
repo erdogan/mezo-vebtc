@@ -315,17 +315,14 @@ class BotCommands:
                 # Aggregate by pool name
                 pool_votes[pool_name] += voting_power
 
-            # Format for display, filtering out votes that display as 0.00
-            formatted_votes = []
-            for pool_name, total_vp in pool_votes.items():
-                # Skip votes that would display as 0.00 (< 0.005 rounds to 0.00)
-                if total_vp < 0.005:
-                    continue
-
-                formatted_votes.append({
+            # Format all votes for display (no filtering)
+            formatted_votes = [
+                {
                     'pool_name': pool_name,
                     'voting_power': total_vp
-                })
+                }
+                for pool_name, total_vp in pool_votes.items()
+            ]
 
             # Sort by voting power descending
             formatted_votes.sort(key=lambda x: x['voting_power'], reverse=True)
