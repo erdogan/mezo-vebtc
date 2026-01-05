@@ -195,7 +195,7 @@ class BotCommands:
             )
 
     async def status_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-        """Handle /status command."""
+        """Handle /epoch command."""
         try:
             chat_id = update.effective_chat.id
             current_ts = get_current_timestamp()
@@ -566,10 +566,10 @@ class BotCommands:
             )
 
     async def stats_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-        """Handle /stats command - show bot usage statistics.
+        """Handle /botstats command - show bot usage statistics.
 
         Usage:
-            /stats - Show comprehensive bot statistics
+            /botstats - Show comprehensive bot statistics
         """
         try:
             chat_id = update.effective_chat.id
