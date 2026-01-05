@@ -41,9 +41,7 @@ Commands: /help"""
 /status \\- Current epoch \\& voting status
 /myvotes \\- Your voting history \\(requires link\\)
 /pools \\- Top pools by APR
-/settings \\- Configure notification preferences
-
-*Need help?* Visit the [dashboard](https://mezo\\.org)"""
+/settings \\- Configure notification preferences"""
 
     @staticmethod
     def already_subscribed_message() -> str:
@@ -77,7 +75,7 @@ Use /start anytime to re\\-subscribe"""
     @staticmethod
     def wallet_linked_message(address: str) -> str:
         """Message when wallet is linked."""
-        addr_short = f"{address[:6]}\\\\\\.\\\\\\.\\\\\\.{address[-4:]}"
+        addr_short = f"{address[:6]}\\.\\.\\.{address[-4:]}"
         return f"""*Wallet Linked Successfully\\!* ✅
 
 Address: `{addr_short}`
@@ -99,7 +97,7 @@ Use /link \\<address\\> anytime to re\\-link"""
         return """*Invalid wallet address* ❌
 
 Please provide a valid Ethereum address:
-/link 0x1234\\\\\\.\\\\\\.\\\\\\.5678
+/link 0x1234\\.\\.\\.5678
 
 Example:
 /link 0x742d35Cc6634C0532925a3b844Bc9e7595f96f52"""
