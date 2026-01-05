@@ -302,7 +302,6 @@ def generate_dashboard(locks: List[Dict[str, Any]], votes: List[Dict[str, Any]],
 <html>
 <head>
     <title>veBTC Locks & Votes</title>
-    <meta http-equiv="refresh" content="60">
     <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
     <style>
         body {{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; margin: 0; padding: 20px; background: #f4f4f4; }}
@@ -504,23 +503,41 @@ def generate_dashboard(locks: List[Dict[str, Any]], votes: List[Dict[str, Any]],
             try {{
                 // Set default dates
                 const defaultStart = "2025-12-18";
-                
-                // Find max date in data
-                let maxDate = "2026-01-01";
-                
+
+                // Find max date in data, default to today
+                const today = new Date().toISOString().split('T')[0];
+                let maxDate = today;
+
                 // Sort raw data using UTC helper
                 rawLocks.sort((a, b) => parseDateUTC(a.date) - parseDateUTC(b.date));
                 rawVotes.sort((a, b) => parseDateUTC(a.date) - parseDateUTC(b.date));
-                
-                if (rawLocks.length > 0) maxDate = rawLocks[rawLocks.length-1].date;
-                
-                document.getElementById("startDate").value = defaultStart;
-                document.getElementById("endDate").value = maxDate;
-                
+
+                if (rawLocks.length > 0) {{
+                    const lastLockDate = rawLocks[rawLocks.length-1].date;
+                    // Use the later of last lock date or today
+                    maxDate = lastLockDate > today ? lastLockDate : today;
+                }}
+
+                // Set date inputs with proper browser rendering
+                const startDateInput = document.getElementById("startDate");
+                const endDateInput = document.getElementById("endDate");
+
+                if (startDateInput) {{
+                    startDateInput.setAttribute('value', defaultStart);
+                    startDateInput.value = defaultStart;
+                }}
+
+                if (endDateInput) {{
+                    endDateInput.setAttribute('value', maxDate);
+                    endDateInput.value = maxDate;
+                    console.log("Set endDate to:", maxDate);
+                }}
+
                 console.log("Init complete. rawLocks:", rawLocks.length, "rawVotes:", rawVotes.length);
-                
+                console.log("Date range:", defaultStart, "to", maxDate);
+
                 updateDashboard();
-                
+
                 // Resize Handler
                 window.onresize = function() {{
                     Plotly.Plots.resize('mainChart');
@@ -535,9 +552,13 @@ def generate_dashboard(locks: List[Dict[str, Any]], votes: List[Dict[str, Any]],
         }};
 
         function resetDates() {{
+             const today = new Date().toISOString().split('T')[0];
              document.getElementById("startDate").value = "2025-12-18";
              if (rawLocks.length > 0) {{
-                document.getElementById("endDate").value = rawLocks[rawLocks.length-1].date;
+                const lastLockDate = rawLocks[rawLocks.length-1].date;
+                document.getElementById("endDate").value = lastLockDate > today ? lastLockDate : today;
+             }} else {{
+                document.getElementById("endDate").value = today;
              }}
              updateDashboard();
         }}

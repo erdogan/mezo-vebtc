@@ -1,0 +1,59 @@
+{
+  "version": "2.0.0",
+  "network": {
+    "name": "mezo",
+    "chain_id": 31612,
+    "rpc_url": "https://mainnet.mezo.public.validationcloud.io/",
+    "fallback_rpcs": [],
+    "explorer_api": "https://api.explorer.mezo.org/api/v2",
+    "block_time": 2
+  },
+  "contracts": {
+    "veBTC": {
+      "address": "0x3D4b1b884A7a1E59fE8589a3296EC8f8cBB6f279",
+      "token": "0x7b7C000000000000000000000000000000000000",
+      "deployment_block": 5500000
+    },
+    "voter": {
+      "address": "0x48233cCC97B87Ba93bCA212cbEe48e3210211f03",
+      "deployment_block": 5500000
+    }
+  },
+  "pools": [],
+  "cache": {
+    "epoch_ttl": 300,
+    "balance_ttl": 60,
+    "rewards_ttl": 120,
+    "price_ttl": 300
+  },
+  "display": {
+    "leaderboard_size": 20,
+    "refresh_interval": 60,
+    "decimals": {
+      "btc": 8,
+      "vebtc": 4,
+      "usd": 2
+    }
+  },
+  "api": {
+    "lock_url": "https://api.explorer.mezo.org/api/v2/addresses/0x3D4b1b884A7a1E59fE8589a3296EC8f8cBB6f279/token-transfers",
+    "vote_url": "https://api.explorer.mezo.org/api/v2/addresses/0x48233cCC97B87Ba93bCA212cbEe48e3210211f03/logs",
+    "lock_token": "0x7b7C000000000000000000000000000000000000",
+    "voted_topic_0": "0x452d440efc30dfa14a0ef803ccb55936af860ec6a6960ed27f129bef913f296a"
+  },
+  "constants": {
+    "default_decimals": 18,
+    "week_seconds": 604800,
+    "vote_buffer_seconds": 3600
+  },
+  "telegram": {
+    "bot_token": "${TELEGRAM_BOT_TOKEN}",
+    "admin_chat_ids": [],
+    "notification_check_interval": 300,
+    "high_apr_threshold_default": 50.0,
+    "rate_limit": {
+      "messages_per_second": 30,
+      "messages_per_minute": 20
+    }
+  }
+}
