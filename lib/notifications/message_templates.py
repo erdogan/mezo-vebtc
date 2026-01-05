@@ -75,7 +75,8 @@ Use /start anytime to re\\-subscribe"""
     @staticmethod
     def wallet_linked_message(address: str) -> str:
         """Message when wallet is linked."""
-        addr_short = f"{address[:6]}\\.\\.\\.{address[-4:]}"
+        # No escaping needed inside code blocks
+        addr_short = f"{address[:6]}...{address[-4:]}"
         return f"""*Wallet Linked Successfully\\!* ✅
 
 Address: `{addr_short}`
