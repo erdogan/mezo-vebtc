@@ -220,6 +220,9 @@ class BotCommands:
             else:
                 user_status = "Not linked \\(use /link\\)"
 
+            # Get total voted in current epoch
+            total_voted = self.notification_engine.get_total_voted_in_epoch(epoch_info['epoch_number'])
+
             # Format dates
             start_date = format_datetime_short(epoch_info['start_ts'])
             voting_status = "OPEN" if epoch_info['is_voting_open'] else "CLOSED"
@@ -230,7 +233,7 @@ class BotCommands:
                 time_remaining=epoch_info['time_remaining_formatted'],
                 voting_status=voting_status,
                 voting_time_remaining=epoch_info['voting_time_remaining_formatted'],
-                total_voted=float(epoch_info.get('total_voted', 0)),
+                total_voted=total_voted,
                 user_status=user_status
             )
 
