@@ -167,6 +167,34 @@ class NotificationEngine:
             logger.error(f"Error getting total voted: {e}")
             return 0.0
 
+    def get_pool_name(self, pool_address: str) -> str:
+        """Get pool name from address.
+
+        Args:
+            pool_address: Pool contract address
+
+        Returns:
+            Pool name (e.g., "WBTC/ETH") or shortened address if not found
+        """
+        try:
+            incentives_data = self.load_incentives_data()
+            if not incentives_data:
+                # Return shortened address if no data
+                return f"{pool_address[:6]}...{pool_address[-4:]}"
+
+            # Find pool by address
+            for pool in incentives_data:
+                if pool.get('pool_address', '').lower() == pool_address.lower():
+                    pool_name = pool.get('pool_name', '')
+                    if pool_name:
+                        return pool_name
+
+            # Not found, return shortened address
+            return f"{pool_address[:6]}...{pool_address[-4:]}"
+        except Exception as e:
+            logger.error(f"Error getting pool name: {e}")
+            return f"{pool_address[:6]}...{pool_address[-4:]}"
+
     def get_top_pools(self, limit: int = 3) -> List[Dict[str, Any]]:
         """Get top pools by APR.
 
