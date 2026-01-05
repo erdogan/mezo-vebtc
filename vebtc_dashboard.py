@@ -602,56 +602,43 @@ def main():
 
         print(f"Calculated APRs for {len(incentives_data)} pools (current epoch)")
 
-        # Fetch pool incentives for PREVIOUS epoch (1 week ago = 604800 seconds)
+        # Load PREVIOUS epoch incentives from cached data
+        # Note: We don't query blockchain for previous epoch because contracts return current state,
+        # not historical state. Instead, we use cached data from epochs_data.
         try:
-            print("\nQuerying on-chain incentives for previous epoch...")
-            previous_ts = current_ts - 604800  # 1 week ago
-            pools_raw_prev = contract_fetcher.get_all_pool_incentives(config.voter_address, previous_ts)
-            print(f"Found {len(pools_raw_prev)} pools with incentives (previous epoch)")
-
+            print("\nLoading previous epoch incentives from cache...")
             previous_incentives_data = []
 
-            for pool_raw in pools_raw_prev:
-                # Get pool name (token pair)
-                pool_name = contract_fetcher.get_pool_name(pool_raw["pool_address"])
+            # Load existing extended data to get cached previous epoch
+            from lib.data_store import load_extended_data
+            existing_extended = load_extended_data("vebtc_data.json")
+            existing_epochs = existing_extended.get('epochs', {})
 
-                # Get token symbols for bribes
-                bribes_tokens = {}
-                for token_addr, amount in pool_raw["bribes"]["amounts"].items():
-                    symbol = contract_fetcher.get_token_symbol(token_addr)
-                    bribes_tokens[symbol] = amount
+            previous_epoch_key = str(epoch_info['epoch_number'] - 1)
+            if previous_epoch_key in existing_epochs:
+                previous_epoch = existing_epochs[previous_epoch_key]
+                previous_pools = previous_epoch.get('incentives', {}).get('pools', [])
 
-                # Get token symbols for fees
-                fees_tokens = {}
-                for token_addr, amount in pool_raw["fees"]["amounts"].items():
-                    symbol = contract_fetcher.get_token_symbol(token_addr)
-                    fees_tokens[symbol] = amount
+                # Convert cached pool data to the format expected by HTML generator
+                for pool in previous_pools:
+                    # Reconstruct bribes dict (we only have USD total in cache)
+                    previous_incentives_data.append({
+                        "pool_address": pool.get('pool_address'),
+                        "pool_name": pool.get('pool_name'),
+                        "current_votes": pool.get('votes', 0),
+                        "bribes": {},  # We don't have token breakdown in cache
+                        "bribes_usd": pool.get('bribes_usd', 0),
+                        "fees": {},  # We don't have token breakdown in cache
+                        "fees_usd": pool.get('fees_usd', 0),
+                        "apr_bribes": 0,  # Not stored separately
+                        "apr_fees": 0,  # Not stored separately
+                        "apr_total": pool.get('apr_total', 0),
+                        "usd_per_vote": (pool.get('bribes_usd', 0) + pool.get('fees_usd', 0)) / pool.get('votes', 1) if pool.get('votes', 0) > 0 else 0
+                    })
 
-                # Calculate pool incentives with APR
-                pool_incentives = incentives_calculator.calculate_pool_incentives(
-                    pool_address=pool_raw["pool_address"],
-                    pool_name=pool_name,
-                    current_votes=pool_raw["voting_weight"],
-                    current_epoch_bribes=bribes_tokens,
-                    historical_fees=None
-                )
-
-                # Convert to dict for HTML generation
-                previous_incentives_data.append({
-                    "pool_address": pool_incentives.pool_address,
-                    "pool_name": pool_incentives.pool_name,
-                    "current_votes": pool_incentives.current_votes,
-                    "bribes": pool_incentives.bribes,
-                    "bribes_usd": pool_incentives.bribes_usd,
-                    "fees": pool_incentives.fees,
-                    "fees_usd": pool_incentives.fees_usd,
-                    "apr_bribes": pool_incentives.apr_bribes,
-                    "apr_fees": pool_incentives.apr_fees,
-                    "apr_total": pool_incentives.apr_total,
-                    "usd_per_vote": pool_incentives.usd_per_vote
-                })
-
-            print(f"Calculated APRs for {len(previous_incentives_data)} pools (previous epoch)")
+                print(f"Loaded {len(previous_incentives_data)} pools from cached previous epoch (Epoch {previous_epoch_key})")
+            else:
+                print(f"No cached data for previous epoch (Epoch {previous_epoch_key}), skipping comparison")
 
         except Exception as e:
             print(f"Warning: Failed to fetch previous epoch incentives: {e}")
