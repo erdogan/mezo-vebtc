@@ -101,7 +101,8 @@ def generate_dashboard(locks: List[Dict[str, Any]],
                         epoch_info: Dict[str, Any],
                         incentives_data: List[Dict[str, Any]] = None,
                         previous_incentives_data: List[Dict[str, Any]] = None,
-                        participant_data: Dict[str, Any] = None) -> None:
+                        participant_data: Dict[str, Any] = None,
+                        epochs_data: Dict[str, Any] = None) -> None:
     """Generate the HTML dashboard.
 
     Args:
@@ -114,6 +115,7 @@ def generate_dashboard(locks: List[Dict[str, Any]],
         incentives_data: Pool incentives data for current epoch (optional)
         previous_incentives_data: Pool incentives data for previous epoch (optional)
         participant_data: Participant analytics data (optional)
+        epochs_data: Historical epoch data (optional)
     """
     print("Generating Dashboard...")
 
@@ -140,6 +142,11 @@ def generate_dashboard(locks: List[Dict[str, Any]],
     from lib.generators.html_leaderboards import (
         generate_leaderboards_section,
         generate_leaderboards_css
+    )
+
+    from lib.generators.html_past_epochs import (
+        generate_past_epochs_section,
+        generate_past_epochs_css
     )
 
     from lib.generators.html_search import (
@@ -212,6 +219,13 @@ def generate_dashboard(locks: List[Dict[str, Any]],
         import json
         if participant_data.get('all_participants'):
             participants_json = json.dumps(participant_data['all_participants'], default=json_serial)
+
+    # Generate past epochs HTML and CSS
+    past_epochs_html = ""
+    past_epochs_css = ""
+    if epochs_data:
+        past_epochs_html = generate_past_epochs_section(epochs_data, epoch_info['epoch_number'])
+        past_epochs_css = generate_past_epochs_css()
 
     # For now, we'll still use the original template but inject all new sections
     # Read the original vebtc.py HTML generation
@@ -308,7 +322,7 @@ def generate_dashboard(locks: List[Dict[str, Any]],
     """
 
     # Inject CSS into the <style> section
-    combined_css = epoch_css + "\n" + incentives_css + "\n" + leaderboards_css + "\n" + search_css + "\n" + tabs_css
+    combined_css = epoch_css + "\n" + incentives_css + "\n" + past_epochs_css + "\n" + leaderboards_css + "\n" + search_css + "\n" + tabs_css
     html_content = html_content.replace("</style>", combined_css + "\n    </style>")
 
     # Inject epoch banner after the header section
@@ -341,6 +355,7 @@ def generate_dashboard(locks: List[Dict[str, Any]],
             <div class="tabs-nav">
                 <button class="tab-btn active" data-tab="stats">Stats</button>
                 <button class="tab-btn" data-tab="incentives">Incentives</button>
+                <button class="tab-btn" data-tab="past-epochs">Past Epochs</button>
                 <button class="tab-btn" data-tab="leaderboards">Leaderboards</button>
             </div>
 
@@ -353,6 +368,11 @@ def generate_dashboard(locks: List[Dict[str, Any]],
                 <!-- Incentives Tab -->
                 <div class="tab-panel" id="incentives-panel">
 """ + (incentives_html if incentives_html else '<p class="empty-state">No incentive data available</p>') + """
+                </div>
+
+                <!-- Past Epochs Tab -->
+                <div class="tab-panel" id="past-epochs-panel">
+""" + (past_epochs_html if past_epochs_html else '<p class="empty-state">No historical epoch data available</p>') + """
                 </div>
 
                 <!-- Leaderboards Tab -->
@@ -416,7 +436,7 @@ def generate_dashboard(locks: List[Dict[str, Any]],
 
         // Load correct tab on page load based on URL hash
         const initialHash = window.location.hash.substring(1);
-        if (initialHash && (initialHash === 'stats' || initialHash === 'incentives' || initialHash === 'leaderboards')) {
+        if (initialHash && (initialHash === 'stats' || initialHash === 'incentives' || initialHash === 'past-epochs' || initialHash === 'leaderboards')) {
             switchToTab(initialHash);
         } else {
             // Ensure stats tab is active by default
@@ -648,6 +668,121 @@ def main():
         incentives_data = None
         previous_incentives_data = None
 
+    # 9b. Fetch and aggregate historical epoch data
+    epochs_data = {}
+    try:
+        print("\nAggregating historical epoch data...")
+        from lib.analytics.epoch_aggregator import EpochAggregator
+        from lib.analytics.epoch_tracker import get_epoch_info_by_number
+        from lib.data_store import load_extended_data
+
+        aggregator = EpochAggregator(votes_list)
+        current_epoch_num = epoch_info['epoch_number']
+
+        # Determine which epochs to fetch
+        existing_extended = load_extended_data("vebtc_data.json")
+        existing_epochs = existing_extended.get('epochs', {})
+
+        # Strategy: Only fetch last 10 epochs, reuse existing data where possible
+        epochs_to_fetch = []
+        for i in range(10):
+            epoch_num = current_epoch_num - i
+            if epoch_num >= 0:
+                epoch_key = str(epoch_num)
+
+                # Skip if already cached and not current/previous epoch
+                if epoch_key in existing_epochs and epoch_num not in [current_epoch_num, current_epoch_num - 1]:
+                    epochs_data[epoch_key] = existing_epochs[epoch_key]
+                    print(f"  Using cached data for epoch {epoch_num}")
+                else:
+                    epochs_to_fetch.append(epoch_num)
+
+        # Fetch incentives for uncached epochs
+        for epoch_num in epochs_to_fetch:
+            try:
+                print(f"  Fetching epoch {epoch_num}...")
+
+                # Get epoch timestamp
+                epoch_info_hist = get_epoch_info_by_number(epoch_num)
+                epoch_ts = epoch_info_hist['start_ts']
+
+                # Aggregate votes for this epoch
+                vote_metrics = aggregator.aggregate_votes_by_epoch(epoch_num)
+
+                # Fetch incentives for this epoch
+                pools_raw = contract_fetcher.get_all_pool_incentives(config.voter_address, epoch_ts)
+
+                epoch_incentives = []
+                for pool_raw in pools_raw:
+                    pool_name = contract_fetcher.get_pool_name(pool_raw["pool_address"])
+
+                    bribes_tokens = {}
+                    for token_addr, amount in pool_raw["bribes"]["amounts"].items():
+                        symbol = contract_fetcher.get_token_symbol(token_addr)
+                        bribes_tokens[symbol] = amount
+
+                    fees_tokens = {}
+                    for token_addr, amount in pool_raw["fees"]["amounts"].items():
+                        symbol = contract_fetcher.get_token_symbol(token_addr)
+                        fees_tokens[symbol] = amount
+
+                    pool_incentives = incentives_calculator.calculate_pool_incentives(
+                        pool_address=pool_raw["pool_address"],
+                        pool_name=pool_name,
+                        current_votes=pool_raw["voting_weight"],
+                        current_epoch_bribes=bribes_tokens,
+                        historical_fees=None
+                    )
+
+                    epoch_incentives.append({
+                        "pool_address": pool_incentives.pool_address,
+                        "pool_name": pool_incentives.pool_name,
+                        "current_votes": pool_incentives.current_votes,
+                        "bribes_usd": pool_incentives.bribes_usd,
+                        "fees_usd": pool_incentives.fees_usd,
+                        "apr_total": pool_incentives.apr_total
+                    })
+
+                # Calculate complete metrics
+                epoch_metrics = aggregator.calculate_epoch_metrics(
+                    epoch_num,
+                    vote_metrics,
+                    epoch_incentives
+                )
+
+                # Convert to dict for storage
+                epochs_data[str(epoch_num)] = {
+                    "epoch_number": epoch_metrics.epoch_number,
+                    "start_ts": epoch_metrics.start_ts,
+                    "end_ts": epoch_metrics.end_ts,
+                    "start_date": epoch_metrics.start_date,
+                    "end_date": epoch_metrics.end_date,
+                    "votes": {
+                        "total_voted": epoch_metrics.total_voted,
+                        "unique_voters": epoch_metrics.unique_voters,
+                        "vote_tx_count": epoch_metrics.vote_tx_count
+                    },
+                    "incentives": {
+                        "total_bribes_usd": epoch_metrics.total_bribes_usd,
+                        "total_fees_usd": epoch_metrics.total_fees_usd,
+                        "average_apr": epoch_metrics.average_apr,
+                        "pool_count": epoch_metrics.pool_count,
+                        "pools": epoch_metrics.pools
+                    }
+                }
+
+                print(f"  ✓ Epoch {epoch_num}: {vote_metrics['vote_tx_count']} votes, {len(epoch_incentives)} pools")
+
+            except Exception as e:
+                print(f"  Warning: Failed to fetch epoch {epoch_num}: {e}")
+                continue
+
+        print(f"Historical epochs aggregated: {len(epochs_data)} epochs")
+
+    except Exception as e:
+        print(f"Warning: Failed to aggregate epoch data: {e}")
+        epochs_data = {}
+
     # 10. Calculate participant analytics
     participant_data = None
     try:
@@ -716,18 +851,19 @@ def main():
         participant_data = None
 
     # 11. Generate dashboard
-    generate_dashboard(locks_list, votes_list, current_balance, total_voted_str, total_supply_str, epoch_info, incentives_data, previous_incentives_data, participant_data)
+    generate_dashboard(locks_list, votes_list, current_balance, total_voted_str, total_supply_str, epoch_info, incentives_data, previous_incentives_data, participant_data, epochs_data)
 
     # 12. Save extended data including incentives and parsed data for Telegram bot
     try:
         extended_data = {
-            "version": "2.0",
+            "version": "2.1",
             "locks": all_locks,  # Raw locks for backward compatibility
             "votes": all_votes,  # Raw votes for backward compatibility
             "parsed_locks": locks_list,  # Parsed locks for Telegram bot
             "parsed_votes": votes_list,  # Parsed votes for Telegram bot
             "incentives": incentives_data if incentives_data else [],
             "previous_incentives": previous_incentives_data if previous_incentives_data else [],
+            "epochs": epochs_data,  # Historical epoch data
             "last_updated": get_current_timestamp()
         }
         save_extended_data(extended_data, "vebtc_data.json")

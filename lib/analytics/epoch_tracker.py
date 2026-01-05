@@ -249,3 +249,31 @@ def get_current_epoch_info(current_timestamp: Optional[int] = None) -> Dict[str,
         "voting_time_remaining_seconds": int(epoch.voting_time_remaining.total_seconds()) if epoch.voting_time_remaining else None,
         "voting_time_remaining_formatted": tracker.format_time_remaining(epoch.voting_time_remaining) if epoch.voting_time_remaining else None
     }
+
+
+def get_epoch_info_by_number(epoch_number: int,
+                             genesis_timestamp: int = 1733961600) -> Dict[str, Any]:
+    """Get epoch information by epoch number as dictionary.
+
+    Args:
+        epoch_number: Epoch number (0-indexed)
+        genesis_timestamp: First epoch start
+
+    Returns:
+        Dictionary with epoch information
+    """
+    tracker = EpochTracker()
+    epoch = tracker.get_epoch_by_number(epoch_number, genesis_timestamp)
+
+    return {
+        "epoch_number": epoch.epoch_number,
+        "start_ts": epoch.start_ts,
+        "end_ts": epoch.end_ts,
+        "vote_start_ts": epoch.vote_start_ts,
+        "vote_end_ts": epoch.vote_end_ts,
+        "start_date": epoch.start_date.strftime("%Y-%m-%d %H:%M:%S"),
+        "end_date": epoch.end_date.strftime("%Y-%m-%d %H:%M:%S"),
+        "is_voting_open": epoch.is_voting_open,
+        "time_remaining_seconds": int(epoch.time_remaining.total_seconds()),
+        "time_remaining_formatted": tracker.format_time_remaining(epoch.time_remaining)
+    }
