@@ -11,6 +11,8 @@ jobs:
   update-dashboard:
     runs-on: ubuntu-latest
     timeout-minutes: 15
+    permissions:
+      contents: write
 
     steps:
       - name: Checkout repository
@@ -64,6 +66,9 @@ jobs:
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
 
+          # Pull latest changes to avoid conflicts
+          git pull --rebase origin main || true
+
           # Add generated files
           git add index.html vebtc_data.json
 
@@ -72,7 +77,17 @@ jobs:
             echo "No changes to commit"
           else
             git commit -m "Auto-update dashboard data [skip ci]"
-            git push
+            # Retry push up to 3 times in case of conflicts
+            for i in 1 2 3; do
+              if git push; then
+                echo "Push successful"
+                break
+              else
+                echo "Push failed, attempt $i/3"
+                sleep 2
+                git pull --rebase origin main || true
+              fi
+            done
           fi
 
       - name: Deploy to GitHub Pages
