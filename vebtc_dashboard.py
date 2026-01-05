@@ -148,11 +148,34 @@ def generate_dashboard(locks: List[Dict[str, Any]],
         generate_search_js
     )
 
-    # Calculate unique voters for epoch stats
-    unique_voters = len(set(v.get('voter') for v in votes if v.get('voter') != 'Unknown'))
+    # Calculate epoch-specific metrics
+    # Filter votes by current epoch voting window
+    epoch_votes = []
+    for v in votes:
+        vote_ts = v.get('ts')
+        if vote_ts:
+            # Handle different timestamp formats
+            if isinstance(vote_ts, str):
+                from datetime import datetime
+                dt = datetime.fromisoformat(vote_ts.replace('Z', '+00:00'))
+                vote_ts = dt.timestamp()
+            elif hasattr(vote_ts, 'timestamp'):
+                vote_ts = vote_ts.timestamp()
+            else:
+                vote_ts = float(vote_ts)
+
+            # Check if vote is within current epoch voting window
+            if epoch_info['vote_start_ts'] <= vote_ts <= epoch_info['vote_end_ts']:
+                epoch_votes.append(v)
+
+    # Calculate unique voters in current epoch only
+    unique_voters = len(set(v.get('voter') for v in epoch_votes if v.get('voter') != 'Unknown'))
+
+    # Calculate total voted in current epoch
+    epoch_total_voted = sum(v.get('voting_power', 0) for v in epoch_votes)
 
     # Generate epoch banner HTML
-    epoch_banner_html = generate_epoch_banner(epoch_info, float(total_voted.replace(',', '')), unique_voters)
+    epoch_banner_html = generate_epoch_banner(epoch_info, epoch_total_voted, unique_voters)
     epoch_css = generate_epoch_banner_css()
     epoch_js = generate_epoch_countdown_js()
 
