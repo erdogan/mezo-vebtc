@@ -1,0 +1,66 @@
+name: Update veBTC Dashboard
+
+on:
+  schedule:
+    # Run every 5 minutes
+    - cron: '*/5 * * * *'
+  # Allow manual trigger
+  workflow_dispatch:
+  # Run on push to main for testing
+  push:
+    branches: [ main ]
+
+jobs:
+  update-dashboard:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Python 3.9
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.9'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Generate dashboard and data
+        env:
+          # Add any secrets here if needed
+          PYTHONUNBUFFERED: 1
+        run: |
+          python vebtc_dashboard.py
+          echo "Dashboard generated successfully"
+
+      - name: Prepare deployment files
+        run: |
+          # Create deployment directory
+          mkdir -p deploy
+
+          # Copy dashboard HTML
+          cp index.html deploy/
+
+          # Copy data JSON for bot consumption
+          cp vebtc_data.json deploy/
+
+          # Create a simple index redirect if needed
+          echo "Dashboard updated at $(date)" > deploy/last_updated.txt
+
+          # Optional: Create a .nojekyll file to prevent GitHub from processing the site
+          touch deploy/.nojekyll
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./deploy
+          publish_branch: gh-pages
+          keep_files: false
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
+          commit_message: 'Update dashboard - ${{ github.sha }}'

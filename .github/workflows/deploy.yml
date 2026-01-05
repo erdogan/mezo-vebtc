@@ -27,13 +27,14 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run script
-        run: python vebtc.py
+      - name: Run dashboard script
+        run: python vebtc_dashboard.py
 
       - name: Commit and push changes
         run: |
           git config --local user.email "github-actions[bot]@users.noreply.github.com"
           git config --local user.name "github-actions[bot]"
           git add index.html vebtc_data.json
+          git add -f cache/ || echo "No cache to add"
           git commit -m "Auto-update data and dashboard" || echo "No changes to commit"
           git push
