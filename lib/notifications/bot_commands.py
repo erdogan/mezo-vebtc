@@ -301,15 +301,20 @@ class BotCommands:
                         timestamp = int(vote_ts)
                     vote_date = format_datetime_short(timestamp)
 
-            # Format votes for display
+            # Format votes for display (filter out zero-value votes)
             formatted_votes = []
             for vote in votes:
+                voting_power = vote.get('voting_power', 0)
+                # Skip votes with zero or negligible voting power
+                if voting_power <= 0.000001:  # Filter out essentially zero votes
+                    continue
+
                 pool_address = vote.get('pool', '')
                 # Resolve pool address to pool name
                 pool_name = self.notification_engine.get_pool_name(pool_address) if pool_address else 'Unknown'
                 formatted_votes.append({
                     'pool_name': pool_name,
-                    'voting_power': vote.get('voting_power', 0)
+                    'voting_power': voting_power
                 })
 
             message = self.templates.myvotes_message(

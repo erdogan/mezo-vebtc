@@ -373,14 +373,11 @@ View all: /pools"""
 
         return f"""*High APR Alert\\!* 🔥
 
-New pool with exceptional returns:
-
 *Pool:* {pool_name}
 *APR:* {apr_str} 🚀
 *Bribes:* {bribes_str}
 *Current Votes:* {votes_str} veBTC
 
-This could be a great opportunity\\!
 View details: /pools"""
 
     @staticmethod
