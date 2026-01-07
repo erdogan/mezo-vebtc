@@ -133,10 +133,10 @@ class MezoUsernameResolver:
         if username_with_suffix in self._reverse_cache:
             return self._reverse_cache[username_with_suffix]
 
-        # Query API
+        # Query API - use username_with_suffix to ensure .mezo suffix
         try:
             response = requests.get(
-                f"{MEZO_ACCOUNTS_ENDPOINT}/{username}",
+                f"{MEZO_ACCOUNTS_ENDPOINT}/{username_with_suffix}",
                 timeout=REQUEST_TIMEOUT
             )
 
