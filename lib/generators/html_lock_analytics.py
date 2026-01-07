@@ -24,7 +24,7 @@ def generate_lock_analytics_section(wallet_profiles: List[Any],
     <div class="lock-analytics-section">
         <h2>Lock Analytics</h2>
         <p class="section-description">
-            Wallet-level lock statistics showing lock duration patterns. Max locks are 30-day duration locks.
+            Wallet-level lock statistics showing lock duration patterns. Max locks are 22-28 day locks (tied to 4-week epoch length).
             Data includes locks created or extended since December 5, 2025.
         </p>
 
@@ -81,7 +81,7 @@ def generate_summary_cards(stats: Dict[str, Any]) -> str:
         <div class="summary-card">
             <div class="card-icon">⏱️</div>
             <div class="card-content">
-                <div class="card-label">Max Duration Locks (30d)</div>
+                <div class="card-label">Max Duration Locks (22-28d)</div>
                 <div class="card-value">{total_max_locks:,}</div>
             </div>
         </div>

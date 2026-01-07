@@ -8,11 +8,10 @@ DEPOSIT_TYPE_DEPOSIT_FOR = 1
 DEPOSIT_TYPE_INCREASE_AMOUNT = 2
 DEPOSIT_TYPE_INCREASE_UNLOCK_TIME = 3
 
-# Max lock duration (30 days in seconds)
-MAX_LOCK_DURATION = 2592000  # 30 * 24 * 60 * 60
-
-# Tolerance for detecting max locks (within 1 day)
-MAX_LOCK_TOLERANCE = 86400
+# Max lock duration range (tied to epoch length of 4 weeks = 28 days)
+# Depending on when you lock within the epoch, max lock is 22-28 days
+MAX_LOCK_MIN_DURATION = 1900800  # 22 days in seconds
+MAX_LOCK_MAX_DURATION = 2419200  # 28 days in seconds
 
 
 def get_deposit_type_name(deposit_type: int) -> str:
@@ -89,8 +88,8 @@ def parse_deposit_event(log: Dict[str, Any], default_decimals: int = 18) -> Opti
         # Calculate lock duration
         if locktime > 0 and ts > 0:
             duration = locktime - ts
-            # Check if it's a max lock (within tolerance of 30 days)
-            is_max_lock = abs(duration - MAX_LOCK_DURATION) < MAX_LOCK_TOLERANCE
+            # Check if it's a max lock (22-28 days, tied to epoch length)
+            is_max_lock = MAX_LOCK_MIN_DURATION <= duration <= MAX_LOCK_MAX_DURATION
         else:
             duration = 0
             is_max_lock = False
