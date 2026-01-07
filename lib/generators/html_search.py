@@ -15,7 +15,7 @@ def generate_search_bar() -> str:
                 type="text"
                 id="participant-search"
                 class="search-input"
-                placeholder="Search by address (0x...) or token ID (123)"
+                placeholder="Search by address (0x...), username (name.mezo), or token ID (123)"
             />
             <button id="search-button" class="search-button">Search</button>
         </div>
@@ -130,6 +130,34 @@ def generate_search_css() -> str:
         font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
         color: #2c3e50;
         font-weight: 600;
+    }
+
+    .profile-username {
+        font-size: 28px;
+        color: #27ae60;
+        font-weight: 700;
+        margin-bottom: 4px;
+    }
+
+    .profile-address-secondary {
+        font-size: 14px;
+        font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
+        color: #7f8c8d;
+    }
+
+    .username-code {
+        font-size: 13px;
+        color: #27ae60;
+        background: #e8f8f0;
+        padding: 4px 8px;
+        border-radius: 4px;
+        cursor: help;
+        transition: background 0.2s;
+        font-weight: 500;
+    }
+
+    .username-code:hover {
+        background: #d4efdf;
     }
 
     .profile-badges {
@@ -327,14 +355,28 @@ def generate_search_js() -> str:
                     showNoResults(query);
                 }
             }
-            // Invalid query format
+            // Search by username (case-insensitive partial match)
             else {
-                searchResults.innerHTML = `
-                    <div class="search-results empty">
-                        <p>Please enter a valid address (0x...) or token ID (number)</p>
-                    </div>
-                `;
-                searchResults.classList.remove('hidden');
+                const queryLower = query.toLowerCase();
+                // Remove .mezo suffix for matching if present
+                const queryNormalized = queryLower.endsWith('.mezo') ? queryLower : queryLower;
+
+                const matches = Object.entries(participantsData).filter(
+                    ([addr, profile]) => {
+                        if (!profile.mezo_id) return false;
+                        const mezoIdLower = profile.mezo_id.toLowerCase();
+                        return mezoIdLower.includes(queryNormalized) ||
+                               mezoIdLower.replace('.mezo', '').includes(queryNormalized);
+                    }
+                );
+
+                if (matches.length === 0) {
+                    showNoResults(query);
+                } else if (matches.length === 1) {
+                    showProfile(matches[0][1]);
+                } else {
+                    showMultipleResults(matches);
+                }
             }
         }
 
@@ -348,15 +390,19 @@ def generate_search_js() -> str:
         }
 
         function showMultipleResults(matches) {
-            const resultsHtml = matches.map(([addr, profile]) => `
+            const resultsHtml = matches.map(([addr, profile]) => {
+                const displayName = profile.mezo_id || addr;
+                const nameClass = profile.mezo_id ? 'username-code' : 'address-code';
+                return `
                 <div class="profile-list-item" onclick="window.searchInput.value='${addr}'; window.performSearch();" style="cursor: pointer;">
-                    <code class="address-code">${addr}</code>
+                    <code class="${nameClass}">${displayName}</code>
                     <span style="margin-left: 10px; color: #7f8c8d;">
                         ${profile.total_locked > 0 ? profile.total_locked.toFixed(4) + ' BTC' : ''}
                         ${profile.current_voting_power > 0 ? ' • ' + profile.current_voting_power.toFixed(2) + ' veBTC' : ''}
                     </span>
                 </div>
-            `).join('');
+            `;
+            }).join('');
 
             searchResults.innerHTML = `
                 <div class="profile-section-title">Found ${matches.length} matches</div>
@@ -378,9 +424,15 @@ def generate_search_js() -> str:
                 ? profile.pools_voted.map(pool => `<span class="pool-address-badge">${pool.substring(0, 10)}...</span>`).join('')
                 : '<span class="profile-list-empty">No pools voted</span>';
 
+            // Display username if available, with address below
+            const headerHtml = profile.mezo_id
+                ? `<div class="profile-username">${profile.mezo_id}</div>
+                   <div class="profile-address-secondary">${profile.address.substring(0, 10)}...${profile.address.substring(profile.address.length - 8)}</div>`
+                : `<div class="profile-address">${profile.address.substring(0, 10)}...${profile.address.substring(profile.address.length - 8)}</div>`;
+
             searchResults.innerHTML = `
                 <div class="profile-header">
-                    <div class="profile-address">${profile.address.substring(0, 10)}...${profile.address.substring(profile.address.length - 8)}</div>
+                    <div>${headerHtml}</div>
                     <div class="profile-badges">${badges.join('')}</div>
                 </div>
 

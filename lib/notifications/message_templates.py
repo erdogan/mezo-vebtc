@@ -19,7 +19,7 @@ You're now subscribed to:
 ✅ High APR pool alerts
 
 *Optional:* Link your wallet to receive personalized notifications
-Use /link \\<address\\> to get started
+Use /link \\<address or username\\> to get started
 
 Commands: /help"""
 
@@ -34,7 +34,7 @@ Commands: /help"""
 /unsubscribe \\- Stop all notifications
 
 *Wallet Linking*
-/link \\<address\\> \\- Link your wallet address
+/link \\<address or username\\> \\- Link wallet by address or mezo username
 /unlink \\- Remove wallet linking
 
 *Information*
@@ -73,10 +73,17 @@ We're sad to see you go\\! 😢
 Use /start anytime to re\\-subscribe"""
 
     @staticmethod
-    def wallet_linked_message(address: str) -> str:
+    def wallet_linked_message(address: str, mezo_id: str = None) -> str:
         """Message when wallet is linked."""
         # No escaping needed inside code blocks
         addr_short = f"{address[:6]}...{address[-4:]}"
+        if mezo_id:
+            return f"""*Wallet Linked Successfully\\!* ✅
+
+Username: `{mezo_id}`
+Address: `{addr_short}`
+
+You'll now receive personalized notifications based on your voting activity\\."""
         return f"""*Wallet Linked Successfully\\!* ✅
 
 Address: `{addr_short}`
@@ -97,11 +104,23 @@ Use /link \\<address\\> anytime to re\\-link"""
         """Message for invalid wallet address."""
         return """*Invalid wallet address* ❌
 
-Please provide a valid Ethereum address:
+Please provide a valid Ethereum address or Mezo username:
 /link 0x1234\\.\\.\\.5678
+/link username\\.mezo
 
 Example:
-/link 0x742d35Cc6634C0532925a3b844Bc9e7595f96f52"""
+/link 0x742d35Cc6634C0532925a3b844Bc9e7595f96f52
+/link satoshi"""
+
+    @staticmethod
+    def username_not_found_message(username: str) -> str:
+        """Message when username is not found."""
+        return f"""*Username not found* ❌
+
+The username `{username}` was not found on Mezo\\.
+
+Try linking with your wallet address instead:
+/link 0x1234\\.\\.\\.5678"""
 
     @staticmethod
     def wallet_required_message() -> str:

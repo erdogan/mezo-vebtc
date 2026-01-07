@@ -7,6 +7,7 @@ from telegram.constants import ParseMode
 from web3 import Web3
 
 from lib.utils.time_utils import get_current_timestamp, format_datetime_short
+from lib.utils.mezo_username import resolve_address, resolve_username
 from lib.analytics.epoch_tracker import get_current_epoch_info
 from .subscriber_manager import SubscriberManager
 from .notification_engine import NotificationEngine
@@ -117,7 +118,7 @@ class BotCommands:
             )
 
     async def link_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-        """Handle /link <address> command."""
+        """Handle /link <address or username> command."""
         try:
             chat_id = update.effective_chat.id
 
@@ -130,7 +131,7 @@ class BotCommands:
                 )
                 return
 
-            # Get wallet address from command
+            # Get wallet address or username from command
             if not context.args or len(context.args) == 0:
                 await update.message.reply_text(
                     self.templates.invalid_wallet_message(),
@@ -138,22 +139,40 @@ class BotCommands:
                 )
                 return
 
-            wallet_address = context.args[0]
+            input_value = context.args[0]
+            wallet_address = None
+            mezo_id = None
 
-            # Validate address
-            if not Web3.is_address(wallet_address):
-                await update.message.reply_text(
-                    self.templates.invalid_wallet_message(),
-                    parse_mode=ParseMode.MARKDOWN_V2
-                )
-                return
+            # Check if input is an address or username
+            if input_value.startswith('0x'):
+                # Input is a wallet address
+                if not Web3.is_address(input_value):
+                    await update.message.reply_text(
+                        self.templates.invalid_wallet_message(),
+                        parse_mode=ParseMode.MARKDOWN_V2
+                    )
+                    return
+                wallet_address = input_value
+                # Try to resolve username for display
+                mezo_id = resolve_username(wallet_address)
+            else:
+                # Input is a username - resolve to address
+                wallet_address = resolve_address(input_value)
+                if not wallet_address:
+                    await update.message.reply_text(
+                        self.templates.username_not_found_message(input_value),
+                        parse_mode=ParseMode.MARKDOWN_V2
+                    )
+                    return
+                # Get the full mezoId (with .mezo suffix)
+                mezo_id = resolve_username(wallet_address)
 
             # Link wallet
             success = self.subscriber_manager.link_wallet(chat_id, wallet_address)
 
             if success:
-                message = self.templates.wallet_linked_message(wallet_address)
-                logger.info(f"Wallet linked: {chat_id} -> {wallet_address}")
+                message = self.templates.wallet_linked_message(wallet_address, mezo_id)
+                logger.info(f"Wallet linked: {chat_id} -> {wallet_address} ({mezo_id or 'no username'})")
             else:
                 message = self.templates.error_message("Failed to link wallet. Please try again.")
 

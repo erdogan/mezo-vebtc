@@ -13,6 +13,7 @@ from lib.parsers.lock_parser import parse_locks
 from lib.parsers.vote_parser import parse_votes
 from lib.analytics.epoch_tracker import get_current_epoch_info
 from lib.utils.time_utils import get_current_timestamp
+from lib.utils.mezo_username import batch_resolve_usernames
 
 
 def parse_data(locks: List[Dict[str, Any]],
@@ -834,6 +835,17 @@ def main():
         all_participants = analyzer.get_all_participants()
         print(f"Total participants: {len(all_participants)}")
 
+        # Resolve usernames for participants
+        print("Resolving Mezo usernames...")
+        all_addresses = list(all_participants.keys())
+        username_map = batch_resolve_usernames(all_addresses)
+        print(f"Resolved {len(username_map)} usernames")
+
+        # Assign usernames to profiles
+        for addr, mezo_id in username_map.items():
+            if addr in all_participants:
+                all_participants[addr].mezo_id = mezo_id
+
         # Convert to dicts for HTML generation
         participant_data = {
             'leaderboards': {
@@ -841,6 +853,7 @@ def main():
                     {
                         'lock_rank': p.lock_rank,
                         'address': p.address,
+                        'mezo_id': p.mezo_id,
                         'total_locked': p.total_locked,
                         'num_locks': p.num_locks
                     } for p in top_lockers
@@ -849,6 +862,7 @@ def main():
                     {
                         'vote_rank': p.vote_rank,
                         'address': p.address,
+                        'mezo_id': p.mezo_id,
                         'current_voting_power': p.current_voting_power,
                         'total_votes_cast': p.total_votes_cast,
                         'pools_voted': p.pools_voted
@@ -858,6 +872,7 @@ def main():
             'all_participants': {
                 addr: {
                     'address': p.address,
+                    'mezo_id': p.mezo_id,
                     'total_locked': p.total_locked,
                     'num_locks': p.num_locks,
                     'current_voting_power': p.current_voting_power,

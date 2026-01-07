@@ -28,9 +28,14 @@ class ParticipantProfile:
     lock_rank: Optional[int] = None
     vote_rank: Optional[int] = None
 
+    # Mezo username
+    mezo_id: Optional[str] = None
+
     @property
     def display_address(self) -> str:
-        """Get shortened display address."""
+        """Get display name (username or shortened address)."""
+        if self.mezo_id:
+            return self.mezo_id
         return f"{self.address[:6]}...{self.address[-4:]}"
 
 
