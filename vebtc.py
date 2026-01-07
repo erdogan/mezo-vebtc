@@ -368,22 +368,25 @@ def generate_dashboard(locks: List[Dict[str, Any]], votes: List[Dict[str, Any]],
         <div class="header">
             <div class="header-left">
                 <h1 style="margin-bottom: 0;">veBTC Locks & Votes</h1>
-                <div style="font-size: 14px; color: #666; margin-bottom: 8px;">Last Updated: {datetime.now().strftime('%Y-%m-%d %H:%M')}</div>
-                <a href="https://t.me/MezoEarnBot" target="_blank" style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; text-decoration: none; border-radius: 4px; font-size: 13px; font-weight: 600; transition: transform 0.2s;" onmouseover="this.style.transform='translateY(-1px)'" onmouseout="this.style.transform='translateY(0)'">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/>
-                    </svg>
-                    Get Voting Alerts on Telegram
-                </a>
+                <div style="font-size: 14px; color: #666;">Last Updated: {datetime.now().strftime('%Y-%m-%d %H:%M')}</div>
             </div>
             <div class="stat-box" style="min-width: 150px;">
                  <div class="stat-value">{current_balance} BTC</div>
                  <div class="stat-label">Total Locked (On-Chain)</div>
             </div>
-            <div class="stat-box" style="min-width: 180px;">
+            <div class="stat-box" style="min-width: 150px;">
                  <div class="stat-value">{total_voted} veBTC</div>
                  <div class="stat-label">Total Voted (Gauges)</div>
             </div>
+            <a href="https://t.me/MezoEarnBot" target="_blank" class="stat-box telegram-btn" style="min-width: 130px; text-decoration: none; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 4px 12px rgba(102,126,234,0.4)'" onmouseout="this.style.transform=''; this.style.boxShadow=''">
+                <div class="stat-value" style="color: white; font-size: 20px; display: flex; align-items: center; justify-content: center; gap: 8px;">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221l-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.446 1.394c-.14.18-.357.295-.6.295-.002 0-.003 0-.005 0l.213-3.054 5.56-5.022c.24-.213-.054-.334-.373-.121l-6.869 4.326-2.96-.924c-.64-.203-.658-.64.135-.954l11.566-4.458c.538-.196 1.006.128.832.941z"/>
+                    </svg>
+                    Alerts
+                </div>
+                <div class="stat-label" style="color: rgba(255,255,255,0.85);">Get Notified</div>
+            </a>
         </div>
 
         <!-- Controls -->
