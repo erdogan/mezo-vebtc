@@ -72,9 +72,11 @@ class LockAnalyzer:
             if not sender:
                 continue
 
+            # Normalize address to lowercase for consistent matching
+            sender_lower = sender.lower()
             amount = lock.get('amount', 0)
-            wallet_locks[sender]['total_locked'] += amount
-            wallet_locks[sender]['lock_events'].append(lock)
+            wallet_locks[sender_lower]['total_locked'] += amount
+            wallet_locks[sender_lower]['lock_events'].append(lock)
 
             # Try to extract token_id if available
             # Note: Lock transfer events may not have token_id directly
@@ -87,15 +89,14 @@ class LockAnalyzer:
             lock_events = data['lock_events']
             lock_count = len(lock_events)
 
-            # Find CREATE_LOCK and INCREASE_UNLOCK_TIME deposits matching this wallet
-            # Both can create max-duration locks
+            # Find all deposit types for this wallet
+            # Types: 0=CREATE_LOCK, 1=DEPOSIT_FOR, 2=INCREASE_AMOUNT, 3=INCREASE_UNLOCK_TIME
+            # All types can show lock duration info
             matching_locks = []
             for deposit in self.deposits:
-                deposit_type = deposit.get('deposit_type')
-                if deposit_type in [0, 3]:  # CREATE_LOCK or INCREASE_UNLOCK_TIME
-                    provider = deposit.get('provider', '').lower()
-                    if provider == address.lower():
-                        matching_locks.append(deposit)
+                provider = deposit.get('provider', '').lower()
+                if provider == address.lower():
+                    matching_locks.append(deposit)
 
             # Count max locks from matching events
             max_lock_count = sum(1 for d in matching_locks if d.get('is_max_lock'))
@@ -104,17 +105,21 @@ class LockAnalyzer:
             # Build token IDs list
             token_ids = set(d.get('token_id') for d in matching_locks if d.get('token_id'))
 
+            # Use original case from first lock event for display
+            original_address = data['lock_events'][0].get('sender') if data['lock_events'] else address
+
             profile = WalletLockProfile(
-                address=address,
+                address=original_address,  # Use original case for display
                 total_btc_locked=data['total_locked'],
                 lock_count=lock_count,
                 max_lock_count=max_lock_count,
                 max_lock_percentage=max_lock_pct,
-                locks=matching_locks,  # Store CREATE_LOCK and INCREASE_UNLOCK_TIME events with duration info
+                locks=matching_locks,  # All deposit events with duration info
                 unique_token_ids=sorted(list(token_ids))
             )
 
-            profiles[address] = profile
+            # Store with lowercase key for consistent lookups
+            profiles[address.lower()] = profile
 
         self._profiles_cache = profiles
         return profiles
