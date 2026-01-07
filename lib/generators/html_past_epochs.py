@@ -188,7 +188,7 @@ def generate_past_epochs_css() -> str:
 
     .epoch-card:hover {
         box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        border-color: #667eea;
+        border-color: #FF004D;
     }
 
     .epoch-header {

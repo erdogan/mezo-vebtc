@@ -43,6 +43,8 @@ class EpochTracker:
 
     WEEK_SECONDS = 604800  # 7 days
     VOTE_BUFFER_SECONDS = 3600  # 1 hour
+    GENESIS_TIMESTAMP = 1765479600  # Dec 11, 2025 19:00 UTC (Epoch 1 start)
+    EPOCH_OFFSET = 68400  # 19 hours - offset from Unix week boundary to epoch flip time
 
     def __init__(self, current_timestamp: Optional[int] = None):
         """Initialize epoch tracker.
@@ -55,13 +57,18 @@ class EpochTracker:
     def epoch_start(self, timestamp: int) -> int:
         """Calculate epoch start timestamp.
 
+        Epochs flip at 19:00 UTC every Thursday, not 00:00 UTC.
+
         Args:
             timestamp: Unix timestamp
 
         Returns:
-            Epoch start timestamp
+            Epoch start timestamp (19:00 UTC on Thursday)
         """
-        return timestamp - (timestamp % self.WEEK_SECONDS)
+        # Shift timestamp back by the offset, find week boundary, then shift forward
+        adjusted = timestamp - self.EPOCH_OFFSET
+        week_start = adjusted - (adjusted % self.WEEK_SECONDS)
+        return week_start + self.EPOCH_OFFSET
 
     def epoch_next(self, timestamp: int) -> int:
         """Calculate next epoch start timestamp.
@@ -96,18 +103,18 @@ class EpochTracker:
         """
         return self.epoch_next(timestamp) - self.VOTE_BUFFER_SECONDS
 
-    def get_epoch_number(self, timestamp: int, genesis_timestamp: int = 1733961600) -> int:
+    def get_epoch_number(self, timestamp: int, genesis_timestamp: int = 1765479600) -> int:
         """Calculate epoch number since genesis.
 
         Args:
             timestamp: Unix timestamp
-            genesis_timestamp: First epoch start (default: Dec 11, 2024 19:00 UTC)
+            genesis_timestamp: First epoch start (default: Dec 11, 2025 19:00 UTC)
 
         Returns:
-            Epoch number (0-indexed)
+            Epoch number (1-indexed, Epoch 1 started Dec 11, 2025)
         """
         epoch_start_ts = self.epoch_start(timestamp)
-        return (epoch_start_ts - genesis_timestamp) // self.WEEK_SECONDS
+        return ((epoch_start_ts - genesis_timestamp) // self.WEEK_SECONDS) + 1
 
     def is_voting_open(self, timestamp: Optional[int] = None) -> bool:
         """Check if voting window is currently open.
@@ -162,17 +169,17 @@ class EpochTracker:
             current_ts=ts
         )
 
-    def get_epoch_by_number(self, epoch_number: int, genesis_timestamp: int = 1733961600) -> EpochInfo:
+    def get_epoch_by_number(self, epoch_number: int, genesis_timestamp: int = 1765479600) -> EpochInfo:
         """Get information about a specific epoch by number.
 
         Args:
-            epoch_number: Epoch number (0-indexed)
-            genesis_timestamp: First epoch start (default: Dec 11, 2024 19:00 UTC)
+            epoch_number: Epoch number (1-indexed, Epoch 1 = Dec 11, 2025)
+            genesis_timestamp: First epoch start (default: Dec 11, 2025 19:00 UTC)
 
         Returns:
             EpochInfo object
         """
-        start_ts = genesis_timestamp + (epoch_number * self.WEEK_SECONDS)
+        start_ts = genesis_timestamp + ((epoch_number - 1) * self.WEEK_SECONDS)
         return self.get_current_epoch(timestamp=start_ts)
 
     def format_time_remaining(self, td: timedelta) -> str:
@@ -252,12 +259,12 @@ def get_current_epoch_info(current_timestamp: Optional[int] = None) -> Dict[str,
 
 
 def get_epoch_info_by_number(epoch_number: int,
-                             genesis_timestamp: int = 1733961600) -> Dict[str, Any]:
+                             genesis_timestamp: int = 1765479600) -> Dict[str, Any]:
     """Get epoch information by epoch number as dictionary.
 
     Args:
-        epoch_number: Epoch number (0-indexed)
-        genesis_timestamp: First epoch start
+        epoch_number: Epoch number (1-indexed, Epoch 1 = Dec 11, 2025)
+        genesis_timestamp: First epoch start (Dec 11, 2025 19:00 UTC)
 
     Returns:
         Dictionary with epoch information

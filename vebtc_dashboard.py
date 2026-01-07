@@ -266,13 +266,13 @@ def generate_dashboard(locks: List[Dict[str, Any]],
     }
 
     .tab-btn:hover {
-        color: #667eea;
-        background: rgba(102, 126, 234, 0.05);
+        color: #FF004D;
+        background: rgba(230, 0, 74, 0.05);
     }
 
     .tab-btn.active {
-        color: #667eea;
-        border-bottom-color: #667eea;
+        color: #FF004D;
+        border-bottom-color: #FF004D;
     }
 
     .tabs-content {
@@ -315,8 +315,8 @@ def generate_dashboard(locks: List[Dict[str, Any]],
 
         .tab-btn.active {
             border-bottom-color: #e1e8ed;
-            border-left-color: #667eea;
-            background: rgba(102, 126, 234, 0.05);
+            border-left-color: #FF004D;
+            background: rgba(230, 0, 74, 0.05);
         }
     }
     """

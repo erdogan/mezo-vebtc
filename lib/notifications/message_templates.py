@@ -34,7 +34,8 @@ Commands: /help"""
 /unsubscribe \\- Stop all notifications
 
 *Wallet Linking*
-/link \\<address\\> \\- Link your wallet address
+/link \\<address\\> \\- Link wallet address
+/link \\<name\\.mezo\\> \\- Link via Mezo ID
 /unlink \\- Remove wallet linking
 
 *Information*
@@ -73,13 +74,14 @@ We're sad to see you go\\! 😢
 Use /start anytime to re\\-subscribe"""
 
     @staticmethod
-    def wallet_linked_message(address: str) -> str:
+    def wallet_linked_message(address: str, mezo_id: str = None) -> str:
         """Message when wallet is linked."""
         # No escaping needed inside code blocks
         addr_short = f"{address[:6]}...{address[-4:]}"
+        mezo_line = f"\nMezo ID: `{mezo_id}`" if mezo_id else ""
         return f"""*Wallet Linked Successfully\\!* ✅
 
-Address: `{addr_short}`
+Address: `{addr_short}`{mezo_line}
 
 You'll now receive personalized notifications based on your voting activity\\."""
 
@@ -94,13 +96,27 @@ Use /link \\<address\\> anytime to re\\-link"""
 
     @staticmethod
     def invalid_wallet_message() -> str:
-        """Message for invalid wallet address."""
-        return """*Invalid wallet address* ❌
+        """Message for invalid wallet address or Mezo ID."""
+        return """*Invalid input* ❌
 
-Please provide a valid Ethereum address:
-/link 0x1234\\.\\.\\.5678
+Please provide a valid wallet address or Mezo ID:
 
-Example:
+*Wallet address:*
+/link 0x742d35Cc6634C0532925a3b844Bc9e7595f96f52
+
+*Mezo ID:*
+/link yourname\\.mezo"""
+
+    @staticmethod
+    def mezo_id_error_message(error: str) -> str:
+        """Message for Mezo ID resolution errors."""
+        # Escape special characters for Markdown V2
+        error_escaped = error.replace('.', '\\.').replace('-', '\\-').replace('(', '\\(').replace(')', '\\)')
+        return f"""*Mezo ID Error* ❌
+
+{error_escaped}
+
+You can also link directly with your wallet address:
 /link 0x742d35Cc6634C0532925a3b844Bc9e7595f96f52"""
 
     @staticmethod

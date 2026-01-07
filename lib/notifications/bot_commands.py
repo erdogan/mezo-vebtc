@@ -7,6 +7,7 @@ from telegram.constants import ParseMode
 from web3 import Web3
 
 from lib.utils.time_utils import get_current_timestamp, format_datetime_short
+from lib.utils.mezo_id import is_mezo_id, resolve_mezo_id
 from lib.analytics.epoch_tracker import get_current_epoch_info
 from .subscriber_manager import SubscriberManager
 from .notification_engine import NotificationEngine
@@ -117,7 +118,7 @@ class BotCommands:
             )
 
     async def link_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
-        """Handle /link <address> command."""
+        """Handle /link <address|mezo_id> command."""
         try:
             chat_id = update.effective_chat.id
 
@@ -125,12 +126,12 @@ class BotCommands:
             subscriber = self.subscriber_manager.get_subscriber(chat_id)
             if not subscriber:
                 await update.message.reply_text(
-                    "Please use /start first to subscribe.",
+                    "Please use /start first to subscribe\\.",
                     parse_mode=ParseMode.MARKDOWN_V2
                 )
                 return
 
-            # Get wallet address from command
+            # Get wallet address or Mezo ID from command
             if not context.args or len(context.args) == 0:
                 await update.message.reply_text(
                     self.templates.invalid_wallet_message(),
@@ -138,10 +139,27 @@ class BotCommands:
                 )
                 return
 
-            wallet_address = context.args[0]
+            input_value = context.args[0]
+            wallet_address = None
+            mezo_id = None
 
-            # Validate address
-            if not Web3.is_address(wallet_address):
+            # Check if input is a Mezo ID
+            if is_mezo_id(input_value):
+                mezo_id = input_value.lower()
+                wallet_address, error = resolve_mezo_id(mezo_id)
+
+                if error:
+                    await update.message.reply_text(
+                        self.templates.mezo_id_error_message(error),
+                        parse_mode=ParseMode.MARKDOWN_V2
+                    )
+                    return
+
+            # Otherwise treat as wallet address
+            elif Web3.is_address(input_value):
+                wallet_address = input_value
+
+            else:
                 await update.message.reply_text(
                     self.templates.invalid_wallet_message(),
                     parse_mode=ParseMode.MARKDOWN_V2
@@ -152,8 +170,8 @@ class BotCommands:
             success = self.subscriber_manager.link_wallet(chat_id, wallet_address)
 
             if success:
-                message = self.templates.wallet_linked_message(wallet_address)
-                logger.info(f"Wallet linked: {chat_id} -> {wallet_address}")
+                message = self.templates.wallet_linked_message(wallet_address, mezo_id)
+                logger.info(f"Wallet linked: {chat_id} -> {wallet_address}" + (f" (via {mezo_id})" if mezo_id else ""))
             else:
                 message = self.templates.error_message("Failed to link wallet. Please try again.")
 

@@ -53,8 +53,8 @@ def generate_search_css() -> str:
     }
 
     .search-container:focus-within {
-        border-color: #667eea;
-        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+        border-color: #FF004D;
+        box-shadow: 0 4px 12px rgba(230, 0, 74, 0.15);
     }
 
     .search-icon {
@@ -77,7 +77,7 @@ def generate_search_css() -> str:
     }
 
     .search-button {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: #FF004D;
         color: white;
         border: none;
         padding: 10px 24px;
@@ -90,7 +90,7 @@ def generate_search_css() -> str:
 
     .search-button:hover {
         transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        box-shadow: 0 4px 12px rgba(230, 0, 74, 0.3);
     }
 
     .search-button:active {
@@ -230,7 +230,7 @@ def generate_search_css() -> str:
 
     .token-id-badge {
         display: inline-block;
-        background: #667eea;
+        background: #FF004D;
         color: white;
         padding: 4px 10px;
         border-radius: 12px;

@@ -249,7 +249,7 @@ def generate_incentives_css() -> str:
     }
 
     .summary-card {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: #FF004D;
         color: white;
         padding: 20px;
         border-radius: 12px;
@@ -311,7 +311,7 @@ def generate_incentives_css() -> str:
 
     .pool-item:hover {
         box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-        border-color: #667eea;
+        border-color: #FF004D;
     }
 
     .pool-header {
@@ -365,7 +365,7 @@ def generate_incentives_css() -> str:
     }
 
     .copy-address-btn:hover {
-        color: #667eea;
+        color: #FF004D;
     }
 
     .copy-address-btn:active {
@@ -374,7 +374,7 @@ def generate_incentives_css() -> str:
 
     .usd-per-vote {
         font-size: 14px;
-        color: #667eea;
+        color: #FF004D;
         font-weight: 600;
         font-family: 'SF Mono', 'Monaco', 'Consolas', monospace;
         cursor: help;
@@ -543,7 +543,7 @@ def generate_incentives_js() -> str:
             buttons.forEach(btn => {
                 if (btn.getAttribute('onclick').includes(address)) {
                     const originalColor = btn.style.color;
-                    btn.style.color = '#667eea';
+                    btn.style.color = '#FF004D';
                     setTimeout(() => {
                         btn.style.color = originalColor;
                     }, 300);

@@ -28,7 +28,7 @@ def generate_epoch_banner(epoch_info: Dict[str, Any], total_votes: float, unique
     <div class="epoch-banner">
         <div class="epoch-current">
             <h2>Epoch {epoch_num}</h2>
-            <div class="epoch-dates">{start_date} - {end_date}</div>
+            <div class="epoch-banner-dates">{start_date} - {end_date}</div>
         </div>
         <div class="epoch-timer">
             <div class="timer-label">Time Remaining</div>
@@ -67,7 +67,7 @@ def generate_epoch_banner_css() -> str:
         display: flex;
         justify-content: space-between;
         align-items: center;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        background: #FF004D;
         color: white;
         padding: 30px 40px;
         border-radius: 12px;
@@ -84,9 +84,9 @@ def generate_epoch_banner_css() -> str:
         color: white;
     }
 
-    .epoch-dates {
+    .epoch-banner-dates {
         font-size: 14px;
-        opacity: 0.9;
+        color: white;
         font-weight: 500;
     }
 

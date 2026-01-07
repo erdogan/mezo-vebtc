@@ -271,8 +271,8 @@ def generate_leaderboards_css() -> str:
 
     .address-code {
         font-size: 13px;
-        color: #667eea;
-        background: #f0f3ff;
+        color: #FF004D;
+        background: #fff0f4;
         padding: 4px 8px;
         border-radius: 4px;
         cursor: help;
@@ -280,7 +280,7 @@ def generate_leaderboards_css() -> str:
     }
 
     .address-code:hover {
-        background: #e0e7ff;
+        background: #ffe0e9;
     }
 
     .number-cell {
