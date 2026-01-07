@@ -87,21 +87,22 @@ class LockAnalyzer:
             lock_events = data['lock_events']
             lock_count = len(lock_events)
 
-            # Try to find CREATE_LOCK deposits matching this wallet's locks
-            # by matching sender addresses in deposits
-            matching_creates = []
+            # Find CREATE_LOCK and INCREASE_UNLOCK_TIME deposits matching this wallet
+            # Both can create max-duration locks
+            matching_locks = []
             for deposit in self.deposits:
-                if deposit.get('deposit_type') == 0:  # CREATE_LOCK
+                deposit_type = deposit.get('deposit_type')
+                if deposit_type in [0, 3]:  # CREATE_LOCK or INCREASE_UNLOCK_TIME
                     provider = deposit.get('provider', '').lower()
                     if provider == address.lower():
-                        matching_creates.append(deposit)
+                        matching_locks.append(deposit)
 
-            # Count max locks from matching CREATE_LOCK events
-            max_lock_count = sum(1 for d in matching_creates if d.get('is_max_lock'))
-            max_lock_pct = (max_lock_count / len(matching_creates) * 100) if matching_creates else 0
+            # Count max locks from matching events
+            max_lock_count = sum(1 for d in matching_locks if d.get('is_max_lock'))
+            max_lock_pct = (max_lock_count / len(matching_locks) * 100) if matching_locks else 0
 
             # Build token IDs list
-            token_ids = set(d.get('token_id') for d in matching_creates if d.get('token_id'))
+            token_ids = set(d.get('token_id') for d in matching_locks if d.get('token_id'))
 
             profile = WalletLockProfile(
                 address=address,
@@ -109,7 +110,7 @@ class LockAnalyzer:
                 lock_count=lock_count,
                 max_lock_count=max_lock_count,
                 max_lock_percentage=max_lock_pct,
-                locks=matching_creates,  # Store CREATE_LOCK events with duration info
+                locks=matching_locks,  # Store CREATE_LOCK and INCREASE_UNLOCK_TIME events with duration info
                 unique_token_ids=sorted(list(token_ids))
             )
 
