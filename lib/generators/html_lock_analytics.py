@@ -24,13 +24,9 @@ def generate_lock_analytics_section(wallet_profiles: List[Any],
     <div class="lock-analytics-section">
         <h2>Lock Analytics</h2>
         <p class="section-description">
-            Wallet-level lock statistics showing duration patterns and max re-lock usage (30-day locks)
+            Wallet-level lock statistics showing lock duration patterns. Max locks are 30-day duration locks.
+            Data includes locks created or extended since December 5, 2025.
         </p>
-        <div class="info-banner">
-            <strong>ℹ️ Data Availability:</strong> Lock analytics requires Deposit event data with lock duration info.
-            Currently showing wallets that created new locks recently. Historical locks (created before API indexing)
-            are not included. As wallets create new locks or extend existing ones, they will appear here.
-        </div>
 
         {summary_html}
 

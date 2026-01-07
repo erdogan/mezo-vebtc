@@ -12,7 +12,7 @@ class WalletLockProfile:
     lock_count: int
     max_lock_count: int  # Number of max-duration locks
     max_lock_percentage: float  # % of locks at max duration
-    locks: List[Dict[str, Any]]  # Individual lock details
+    locks: List[Dict[str, Any]]  # Individual lock details with duration info
     unique_token_ids: List[int]
 
     @property
@@ -24,13 +24,15 @@ class WalletLockProfile:
 class LockAnalyzer:
     """Analyze lock data to produce wallet-level statistics."""
 
-    def __init__(self, deposits: List[Dict[str, Any]]):
-        """Initialize with parsed deposit data.
+    def __init__(self, deposits: List[Dict[str, Any]], locks: List[Dict[str, Any]] = None):
+        """Initialize with parsed deposit and lock data.
 
         Args:
-            deposits: List of parsed deposit events
+            deposits: List of parsed deposit events (for duration info)
+            locks: List of parsed lock (NFT transfer) events (for ownership)
         """
         self.deposits = deposits
+        self.locks = locks or []
         self._profiles_cache = None
 
     def get_wallet_profiles(self) -> Dict[str, WalletLockProfile]:
@@ -42,21 +44,9 @@ class LockAnalyzer:
         if self._profiles_cache is not None:
             return self._profiles_cache
 
-        # Step 1: Build token_id -> owner mapping from CREATE_LOCK events
-        token_owners = {}
-        for deposit in self.deposits:
-            if deposit.get('deposit_type') == 0:  # CREATE_LOCK
-                token_id = deposit.get('token_id')
-                provider = deposit.get('provider')
-                if token_id and provider and provider != 'unknown':
-                    token_owners[token_id] = provider
-
-        # Step 2: Aggregate all deposits by token_id
-        token_data = defaultdict(lambda: {
-            'total_locked': 0.0,
-            'deposits': [],
-            'create_lock': None
-        })
+        # Step 1: Build token_id -> deposit info mapping
+        token_deposits = defaultdict(list)
+        token_create_lock = {}
 
         for deposit in self.deposits:
             token_id = deposit.get('token_id')
@@ -64,49 +54,54 @@ class LockAnalyzer:
                 continue
 
             deposit_type = deposit.get('deposit_type')
-            value = deposit.get('value', 0)
+            token_deposits[token_id].append(deposit)
 
-            # Track all deposits for this token
-            # CREATE_LOCK (0): Initial lock creation
-            # DEPOSIT_FOR (1): Someone deposits for this token
-            # INCREASE_AMOUNT (2): Owner increases amount
-            # INCREASE_UNLOCK_TIME (3): Owner extends lock
-            token_data[token_id]['deposits'].append(deposit)
-            token_data[token_id]['total_locked'] += value
-
-            # Store CREATE_LOCK separately for lock duration info
+            # Track CREATE_LOCK events for duration info
             if deposit_type == 0:
-                token_data[token_id]['create_lock'] = deposit
+                token_create_lock[token_id] = deposit
 
-        # Step 3: Aggregate tokens by owner wallet
-        wallet_data = defaultdict(lambda: {
+        # Step 2: Build wallet -> locks mapping from NFT transfer data
+        wallet_locks = defaultdict(lambda: {
             'total_locked': 0.0,
-            'locks': [],  # CREATE_LOCK events only
-            'token_ids': set(),
-            'all_deposits': []  # All deposit events for this wallet's tokens
+            'lock_events': [],  # Lock transfer events
+            'token_ids': set()
         })
 
-        for token_id, data in token_data.items():
-            owner = token_owners.get(token_id)
-            if not owner:
+        for lock in self.locks:
+            sender = lock.get('sender')
+            if not sender:
                 continue
 
-            wallet_data[owner]['total_locked'] += data['total_locked']
-            wallet_data[owner]['token_ids'].add(token_id)
-            wallet_data[owner]['all_deposits'].extend(data['deposits'])
+            amount = lock.get('amount', 0)
+            wallet_locks[sender]['total_locked'] += amount
+            wallet_locks[sender]['lock_events'].append(lock)
 
-            # Add CREATE_LOCK event if exists
-            if data['create_lock']:
-                wallet_data[owner]['locks'].append(data['create_lock'])
+            # Try to extract token_id if available
+            # Note: Lock transfer events may not have token_id directly
+            # We'll need to match by amount/timestamp if needed
 
-        # Build profiles
+        # Step 3: Build profiles
         profiles = {}
 
-        for address, data in wallet_data.items():
-            locks = data['locks']
-            lock_count = len(locks)
-            max_lock_count = sum(1 for lock in locks if lock.get('is_max_lock'))
-            max_lock_pct = (max_lock_count / lock_count * 100) if lock_count > 0 else 0
+        for address, data in wallet_locks.items():
+            lock_events = data['lock_events']
+            lock_count = len(lock_events)
+
+            # Try to find CREATE_LOCK deposits matching this wallet's locks
+            # by matching sender addresses in deposits
+            matching_creates = []
+            for deposit in self.deposits:
+                if deposit.get('deposit_type') == 0:  # CREATE_LOCK
+                    provider = deposit.get('provider', '').lower()
+                    if provider == address.lower():
+                        matching_creates.append(deposit)
+
+            # Count max locks from matching CREATE_LOCK events
+            max_lock_count = sum(1 for d in matching_creates if d.get('is_max_lock'))
+            max_lock_pct = (max_lock_count / len(matching_creates) * 100) if matching_creates else 0
+
+            # Build token IDs list
+            token_ids = set(d.get('token_id') for d in matching_creates if d.get('token_id'))
 
             profile = WalletLockProfile(
                 address=address,
@@ -114,8 +109,8 @@ class LockAnalyzer:
                 lock_count=lock_count,
                 max_lock_count=max_lock_count,
                 max_lock_percentage=max_lock_pct,
-                locks=sorted(locks, key=lambda x: x.get('timestamp', 0), reverse=True),
-                unique_token_ids=sorted(list(data['token_ids']))
+                locks=matching_creates,  # Store CREATE_LOCK events with duration info
+                unique_token_ids=sorted(list(token_ids))
             )
 
             profiles[address] = profile

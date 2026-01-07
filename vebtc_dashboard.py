@@ -903,10 +903,11 @@ def main():
         print("\nCalculating lock analytics...")
         from lib.analytics.lock_analytics import LockAnalyzer
 
-        analyzer = LockAnalyzer(deposits_list)
+        # Pass both deposits (for duration info) and locks (for ownership)
+        analyzer = LockAnalyzer(deposits_list, locks_list)
 
-        # Get wallet profiles sorted by max locks
-        top_profiles = analyzer.get_top_by_max_locks(limit=50)
+        # Get wallet profiles sorted by lock count (more useful when no max locks exist)
+        top_profiles = analyzer.get_top_by_lock_count(limit=200)
 
         # Get statistics
         stats = analyzer.get_statistics()
@@ -922,6 +923,8 @@ def main():
 
     except Exception as e:
         print(f"Warning: Failed to calculate lock analytics: {e}")
+        import traceback
+        traceback.print_exc()
         print("Dashboard will be generated without lock analytics features")
         lock_analytics_data = None
 
