@@ -15,7 +15,7 @@ def generate_search_bar() -> str:
                 type="text"
                 id="participant-search"
                 class="search-input"
-                placeholder="Search by address (0x...), username (name.mezo), or token ID (123)"
+                placeholder="Search by address (0x...) or token ID (123)"
             />
             <button id="search-button" class="search-button">Search</button>
         </div>
@@ -355,28 +355,9 @@ def generate_search_js() -> str:
                     showNoResults(query);
                 }
             }
-            // Search by username (case-insensitive partial match)
+            // Invalid search format
             else {
-                const queryLower = query.toLowerCase();
-                // Remove .mezo suffix for matching if present
-                const queryNormalized = queryLower.endsWith('.mezo') ? queryLower : queryLower;
-
-                const matches = Object.entries(participantsData).filter(
-                    ([addr, profile]) => {
-                        if (!profile.mezo_id) return false;
-                        const mezoIdLower = profile.mezo_id.toLowerCase();
-                        return mezoIdLower.includes(queryNormalized) ||
-                               mezoIdLower.replace('.mezo', '').includes(queryNormalized);
-                    }
-                );
-
-                if (matches.length === 0) {
-                    showNoResults(query);
-                } else if (matches.length === 1) {
-                    showProfile(matches[0][1]);
-                } else {
-                    showMultipleResults(matches);
-                }
+                showNoResults(query);
             }
         }
 
@@ -391,11 +372,10 @@ def generate_search_js() -> str:
 
         function showMultipleResults(matches) {
             const resultsHtml = matches.map(([addr, profile]) => {
-                const displayName = profile.mezo_id || addr;
-                const nameClass = profile.mezo_id ? 'username-code' : 'address-code';
+                const displayAddr = addr.substring(0, 6) + '...' + addr.substring(addr.length - 4);
                 return `
                 <div class="profile-list-item" onclick="window.searchInput.value='${addr}'; window.performSearch();" style="cursor: pointer;">
-                    <code class="${nameClass}">${displayName}</code>
+                    <code class="address-code">${displayAddr}</code>
                     <span style="margin-left: 10px; color: #7f8c8d;">
                         ${profile.total_locked > 0 ? profile.total_locked.toFixed(4) + ' BTC' : ''}
                         ${profile.current_voting_power > 0 ? ' • ' + profile.current_voting_power.toFixed(2) + ' veBTC' : ''}
@@ -424,11 +404,8 @@ def generate_search_js() -> str:
                 ? profile.pools_voted.map(pool => `<span class="pool-address-badge">${pool.substring(0, 10)}...</span>`).join('')
                 : '<span class="profile-list-empty">No pools voted</span>';
 
-            // Display username if available, with address below
-            const headerHtml = profile.mezo_id
-                ? `<div class="profile-username">${profile.mezo_id}</div>
-                   <div class="profile-address-secondary">${profile.address.substring(0, 10)}...${profile.address.substring(profile.address.length - 8)}</div>`
-                : `<div class="profile-address">${profile.address.substring(0, 10)}...${profile.address.substring(profile.address.length - 8)}</div>`;
+            // Display truncated address
+            const headerHtml = `<div class="profile-address">${profile.address.substring(0, 10)}...${profile.address.substring(profile.address.length - 8)}</div>`;
 
             searchResults.innerHTML = `
                 <div class="profile-header">

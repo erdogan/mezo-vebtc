@@ -59,9 +59,7 @@ def generate_lockers_table(lockers: List[Dict[str, Any]]) -> str:
     for locker in lockers:
         rank = locker.get('lock_rank', '?')
         address = locker.get('address', 'Unknown')
-        mezo_id = locker.get('mezo_id')
-        # Use username if available, otherwise truncated address
-        display_name = mezo_id if mezo_id else f"{address[:6]}...{address[-4:]}"
+        display_addr = f"{address[:6]}...{address[-4:]}"
         total_locked = locker.get('total_locked', 0)
         num_locks = locker.get('num_locks', 0)
 
@@ -74,14 +72,11 @@ def generate_lockers_table(lockers: List[Dict[str, Any]]) -> str:
         elif rank == 3:
             rank_display = "🥉"
 
-        # Add username class for styling
-        name_class = "username-code" if mezo_id else "address-code"
-
         rows_html += f"""
         <tr data-address="{address}">
             <td class="rank-cell">{rank_display}</td>
             <td class="address-cell">
-                <code class="{name_class}" title="{address}">{display_name}</code>
+                <code class="address-code" title="{address}">{display_addr}</code>
             </td>
             <td class="number-cell">{total_locked:.4f} BTC</td>
             <td class="count-cell">{num_locks} txs</td>
@@ -125,9 +120,7 @@ def generate_voters_table(voters: List[Dict[str, Any]]) -> str:
     for voter in voters:
         rank = voter.get('vote_rank', '?')
         address = voter.get('address', 'Unknown')
-        mezo_id = voter.get('mezo_id')
-        # Use username if available, otherwise truncated address
-        display_name = mezo_id if mezo_id else f"{address[:6]}...{address[-4:]}"
+        display_addr = f"{address[:6]}...{address[-4:]}"
         voting_power = voter.get('current_voting_power', 0)
         votes_cast = voter.get('total_votes_cast', 0)
         pools_count = len(voter.get('pools_voted', []))
@@ -141,14 +134,11 @@ def generate_voters_table(voters: List[Dict[str, Any]]) -> str:
         elif rank == 3:
             rank_display = "🥉"
 
-        # Add username class for styling
-        name_class = "username-code" if mezo_id else "address-code"
-
         rows_html += f"""
         <tr data-address="{address}">
             <td class="rank-cell">{rank_display}</td>
             <td class="address-cell">
-                <code class="{name_class}" title="{address}">{display_name}</code>
+                <code class="address-code" title="{address}">{display_addr}</code>
             </td>
             <td class="number-cell">{voting_power:.4f} veBTC</td>
             <td class="count-cell">{votes_cast} votes</td>
