@@ -102,7 +102,8 @@ def generate_dashboard(locks: List[Dict[str, Any]],
                         incentives_data: List[Dict[str, Any]] = None,
                         previous_incentives_data: List[Dict[str, Any]] = None,
                         participant_data: Dict[str, Any] = None,
-                        epochs_data: Dict[str, Any] = None) -> None:
+                        epochs_data: Dict[str, Any] = None,
+                        lock_analytics_data: Dict[str, Any] = None) -> None:
     """Generate the HTML dashboard.
 
     Args:
@@ -116,6 +117,7 @@ def generate_dashboard(locks: List[Dict[str, Any]],
         previous_incentives_data: Pool incentives data for previous epoch (optional)
         participant_data: Participant analytics data (optional)
         epochs_data: Historical epoch data (optional)
+        lock_analytics_data: Lock analytics data (optional)
     """
     print("Generating Dashboard...")
 
@@ -153,6 +155,12 @@ def generate_dashboard(locks: List[Dict[str, Any]],
         generate_search_bar,
         generate_search_css,
         generate_search_js
+    )
+
+    from lib.generators.html_lock_analytics import (
+        generate_lock_analytics_section,
+        generate_lock_analytics_css,
+        generate_lock_analytics_js
     )
 
     # Calculate epoch-specific metrics
@@ -226,6 +234,17 @@ def generate_dashboard(locks: List[Dict[str, Any]],
     if epochs_data:
         past_epochs_html = generate_past_epochs_section(epochs_data, epoch_info['epoch_number'])
         past_epochs_css = generate_past_epochs_css()
+
+    # Generate lock analytics HTML, CSS, and JS
+    lock_analytics_html = ""
+    lock_analytics_css = ""
+    lock_analytics_js = ""
+    if lock_analytics_data:
+        profiles = lock_analytics_data.get('profiles', [])
+        statistics = lock_analytics_data.get('statistics', {})
+        lock_analytics_html = generate_lock_analytics_section(profiles, statistics)
+        lock_analytics_css = generate_lock_analytics_css()
+        lock_analytics_js = generate_lock_analytics_js()
 
     # For now, we'll still use the original template but inject all new sections
     # Read the original vebtc.py HTML generation
@@ -322,7 +341,7 @@ def generate_dashboard(locks: List[Dict[str, Any]],
     """
 
     # Inject CSS into the <style> section
-    combined_css = epoch_css + "\n" + incentives_css + "\n" + past_epochs_css + "\n" + leaderboards_css + "\n" + search_css + "\n" + tabs_css
+    combined_css = epoch_css + "\n" + incentives_css + "\n" + past_epochs_css + "\n" + lock_analytics_css + "\n" + leaderboards_css + "\n" + search_css + "\n" + tabs_css
     html_content = html_content.replace("</style>", combined_css + "\n    </style>")
 
     # Inject epoch banner after the header section
@@ -357,6 +376,7 @@ def generate_dashboard(locks: List[Dict[str, Any]],
                 <button class="tab-btn" data-tab="incentives">Incentives</button>
                 <button class="tab-btn" data-tab="past-epochs">Past Epochs</button>
                 <button class="tab-btn" data-tab="leaderboards">Leaderboards</button>
+                <button class="tab-btn" data-tab="lock-analytics">Lock Analytics</button>
             </div>
 
             <div class="tabs-content">
@@ -378,6 +398,11 @@ def generate_dashboard(locks: List[Dict[str, Any]],
                 <!-- Leaderboards Tab -->
                 <div class="tab-panel" id="leaderboards-panel">
 """ + (leaderboards_html if leaderboards_html else '<p class="empty-state">No leaderboard data available</p>') + """
+                </div>
+
+                <!-- Lock Analytics Tab -->
+                <div class="tab-panel" id="lock-analytics-panel">
+""" + (lock_analytics_html if lock_analytics_html else '<p class="empty-state">No lock analytics data available</p>') + """
                 </div>
             </div>
         </div>
@@ -436,7 +461,7 @@ def generate_dashboard(locks: List[Dict[str, Any]],
 
         // Load correct tab on page load based on URL hash
         const initialHash = window.location.hash.substring(1);
-        if (initialHash && (initialHash === 'stats' || initialHash === 'incentives' || initialHash === 'past-epochs' || initialHash === 'leaderboards')) {
+        if (initialHash && (initialHash === 'stats' || initialHash === 'incentives' || initialHash === 'past-epochs' || initialHash === 'leaderboards' || initialHash === 'lock-analytics')) {
             switchToTab(initialHash);
         } else {
             // Ensure stats tab is active by default
@@ -448,9 +473,9 @@ def generate_dashboard(locks: List[Dict[str, Any]],
     # Inject participants data and JavaScript before </script>
     if participants_json != "{}":
         participants_script = f"\n    // Participants data for search\n    window.PARTICIPANTS_DATA = {participants_json};\n"
-        html_content = html_content.replace("    </script>", participants_script + "\n" + epoch_js + "\n" + incentives_js + "\n" + search_js + "\n" + tabs_js + "\n    </script>")
+        html_content = html_content.replace("    </script>", participants_script + "\n" + epoch_js + "\n" + incentives_js + "\n" + search_js + "\n" + lock_analytics_js + "\n" + tabs_js + "\n    </script>")
     else:
-        html_content = html_content.replace("    </script>", "\n" + epoch_js + "\n" + incentives_js + "\n" + tabs_js + "\n    </script>")
+        html_content = html_content.replace("    </script>", "\n" + epoch_js + "\n" + incentives_js + "\n" + lock_analytics_js + "\n" + tabs_js + "\n    </script>")
 
     # Write back the modified HTML
     with open("index.html", "w") as f:
@@ -484,6 +509,21 @@ def main():
         type_label="votes"
     )
 
+    # 2b. Fetch deposit event logs
+    from lib.fetchers.deposit_fetcher import fetch_deposit_logs
+    from lib.data_store import load_extended_data
+
+    existing_extended = load_extended_data("vebtc_data.json")
+    existing_deposits = existing_extended.get('deposits', [])
+
+    new_deposits = fetch_deposit_logs(
+        vebtc_address=config.vebtc_address,
+        existing_deposits=existing_deposits,
+        explorer_api_base=config.get('network.explorer_api')
+    )
+
+    all_deposits = new_deposits + existing_deposits
+
     # 3. Fetch current balance
     address_details_url = f"{config.get('network.explorer_api')}/addresses/{config.vebtc_address}"
     current_balance = fetch_current_balance(address_details_url)
@@ -505,6 +545,11 @@ def main():
 
     locks_list = json.loads(raw_locks_df.to_json(orient='records', date_format='iso'))
     votes_list = json.loads(raw_votes_df.to_json(orient='records', date_format='iso'))
+
+    # 6b. Parse deposit events
+    from lib.parsers.deposit_parser import parse_deposits
+
+    deposits_list = parse_deposits(all_deposits, default_decimals=18)
 
     # 7. Calculate totals
     # A. Total Voted: sum of latest totalWeight for each unique pool (gauge)
@@ -837,17 +882,47 @@ def main():
         print("Dashboard will be generated without participant features")
         participant_data = None
 
+    # 10b. Calculate lock analytics
+    lock_analytics_data = None
+    try:
+        print("\nCalculating lock analytics...")
+        from lib.analytics.lock_analytics import LockAnalyzer
+
+        analyzer = LockAnalyzer(deposits_list)
+
+        # Get wallet profiles sorted by max locks
+        top_profiles = analyzer.get_top_by_max_locks(limit=50)
+
+        # Get statistics
+        stats = analyzer.get_statistics()
+        print(f"  - {stats['total_wallets']} wallets")
+        print(f"  - {stats['total_locks']} locks")
+        print(f"  - {stats['total_max_locks']} max-duration locks")
+        print(f"  - {stats['max_lock_rate']:.1f}% max lock rate")
+
+        lock_analytics_data = {
+            'profiles': top_profiles,
+            'statistics': stats
+        }
+
+    except Exception as e:
+        print(f"Warning: Failed to calculate lock analytics: {e}")
+        print("Dashboard will be generated without lock analytics features")
+        lock_analytics_data = None
+
     # 11. Generate dashboard
-    generate_dashboard(locks_list, votes_list, current_balance, total_voted_str, total_supply_str, epoch_info, incentives_data, previous_incentives_data, participant_data, epochs_data)
+    generate_dashboard(locks_list, votes_list, current_balance, total_voted_str, total_supply_str, epoch_info, incentives_data, previous_incentives_data, participant_data, epochs_data, lock_analytics_data)
 
     # 12. Save extended data including incentives and parsed data for Telegram bot
     try:
         extended_data = {
-            "version": "2.1",
+            "version": "2.2",
             "locks": all_locks,  # Raw locks for backward compatibility
             "votes": all_votes,  # Raw votes for backward compatibility
+            "deposits": all_deposits,  # Raw deposit event logs
             "parsed_locks": locks_list,  # Parsed locks for Telegram bot
             "parsed_votes": votes_list,  # Parsed votes for Telegram bot
+            "parsed_deposits": deposits_list,  # Parsed deposit events
             "incentives": incentives_data if incentives_data else [],
             "previous_incentives": previous_incentives_data if previous_incentives_data else [],
             "epochs": epochs_data,  # Historical epoch data
