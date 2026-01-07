@@ -42,29 +42,62 @@ class LockAnalyzer:
         if self._profiles_cache is not None:
             return self._profiles_cache
 
-        # Aggregate by wallet
-        wallet_data = defaultdict(lambda: {
+        # Step 1: Build token_id -> owner mapping from CREATE_LOCK events
+        token_owners = {}
+        for deposit in self.deposits:
+            if deposit.get('deposit_type') == 0:  # CREATE_LOCK
+                token_id = deposit.get('token_id')
+                provider = deposit.get('provider')
+                if token_id and provider and provider != 'unknown':
+                    token_owners[token_id] = provider
+
+        # Step 2: Aggregate all deposits by token_id
+        token_data = defaultdict(lambda: {
             'total_locked': 0.0,
-            'locks': [],
-            'token_ids': set()
+            'deposits': [],
+            'create_lock': None
         })
 
         for deposit in self.deposits:
-            # Only include CREATE_LOCK deposits for analytics
-            if deposit.get('deposit_type') != 0:
-                continue
-
-            provider = deposit.get('provider')
-            if not provider or provider == 'unknown':
-                continue
-
-            value = deposit.get('value', 0)
-            wallet_data[provider]['total_locked'] += value
-            wallet_data[provider]['locks'].append(deposit)
-
             token_id = deposit.get('token_id')
-            if token_id:
-                wallet_data[provider]['token_ids'].add(token_id)
+            if not token_id:
+                continue
+
+            deposit_type = deposit.get('deposit_type')
+            value = deposit.get('value', 0)
+
+            # Track all deposits for this token
+            # CREATE_LOCK (0): Initial lock creation
+            # DEPOSIT_FOR (1): Someone deposits for this token
+            # INCREASE_AMOUNT (2): Owner increases amount
+            # INCREASE_UNLOCK_TIME (3): Owner extends lock
+            token_data[token_id]['deposits'].append(deposit)
+            token_data[token_id]['total_locked'] += value
+
+            # Store CREATE_LOCK separately for lock duration info
+            if deposit_type == 0:
+                token_data[token_id]['create_lock'] = deposit
+
+        # Step 3: Aggregate tokens by owner wallet
+        wallet_data = defaultdict(lambda: {
+            'total_locked': 0.0,
+            'locks': [],  # CREATE_LOCK events only
+            'token_ids': set(),
+            'all_deposits': []  # All deposit events for this wallet's tokens
+        })
+
+        for token_id, data in token_data.items():
+            owner = token_owners.get(token_id)
+            if not owner:
+                continue
+
+            wallet_data[owner]['total_locked'] += data['total_locked']
+            wallet_data[owner]['token_ids'].add(token_id)
+            wallet_data[owner]['all_deposits'].extend(data['deposits'])
+
+            # Add CREATE_LOCK event if exists
+            if data['create_lock']:
+                wallet_data[owner]['locks'].append(data['create_lock'])
 
         # Build profiles
         profiles = {}
