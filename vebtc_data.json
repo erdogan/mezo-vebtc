@@ -2,6 +2,66 @@
   "version": "2.2",
   "locks": [
     {
+      "block_hash": "0xe2bd19f884be7a0e35b91cb6ed8f683063d5fb342283ebcd29317a46336492f2",
+      "block_number": 5938187,
+      "from": {
+        "ens_domain_name": null,
+        "hash": "0xA999D0213a54f4682a7ae3733476b54624425159",
+        "implementations": [],
+        "is_contract": false,
+        "is_scam": false,
+        "is_verified": false,
+        "metadata": null,
+        "name": null,
+        "private_tags": [],
+        "proxy_type": null,
+        "public_tags": [],
+        "watchlist_names": []
+      },
+      "log_index": 1,
+      "method": "createLock",
+      "timestamp": "2026-01-08T19:24:55.000000Z",
+      "to": {
+        "ens_domain_name": null,
+        "hash": "0x3D4b1b884A7a1E59fE8589a3296EC8f8cBB6f279",
+        "implementations": [
+          {
+            "address": "0xdF217EFD8f3ecb5E837aedF203C28c1f06854017",
+            "name": "VeBTC"
+          }
+        ],
+        "is_contract": true,
+        "is_scam": false,
+        "is_verified": true,
+        "metadata": null,
+        "name": "TransparentUpgradeableProxy",
+        "private_tags": [],
+        "proxy_type": "eip1967",
+        "public_tags": [],
+        "watchlist_names": []
+      },
+      "token": {
+        "address": "0x7b7C000000000000000000000000000000000000",
+        "circulating_market_cap": null,
+        "decimals": "18",
+        "exchange_rate": null,
+        "holders": "13342",
+        "icon_url": "https://storage.googleapis.com/mezo-production-explorer-logos-bucket/btc-token.png",
+        "name": "BTC",
+        "symbol": "BTC",
+        "total_supply": "567543849270644451357",
+        "type": "ERC-20",
+        "volume_24h": null
+      },
+      "total": {
+        "decimals": "18",
+        "value": "40000000000000"
+      },
+      "transaction_hash": "0x650a71fb92a8940ff5b12bb50e97f1f361e6c673dd1d73465a10565bb1ece275",
+      "tx_hash": "0x650a71fb92a8940ff5b12bb50e97f1f361e6c673dd1d73465a10565bb1ece275",
+      "type": "token_transfer"
+    },
+    {
       "block_hash": "0xedb30bfcf536f4ca9d58590437b74b62154ceec6a7eaa89395ec28daffbc96e1",
       "block_number": 5937998,
       "from": {
@@ -70203,6 +70263,270 @@
     }
   ],
   "votes": [
+    {
+      "address": {
+        "ens_domain_name": null,
+        "hash": "0x48233cCC97B87Ba93bCA212cbEe48e3210211f03",
+        "implementations": [],
+        "is_contract": false,
+        "is_verified": null,
+        "metadata": null,
+        "name": null,
+        "private_tags": [],
+        "proxy_type": null,
+        "public_tags": [],
+        "watchlist_names": []
+      },
+      "block_hash": "0x0a5f2ea582b521e1cc71d6ccefc08fb4c248289d853103d4cd18ce4a3d06c81f",
+      "block_number": 5938208,
+      "data": "0x000000000000000000000000000000000000000000000000000024a6857c3cd5000000000000000000000000000000000000000000000001f57cd171601feb0c00000000000000000000000000000000000000000000000000000000696004d2",
+      "decoded": {
+        "method_call": "Abstained(address indexed voter, address indexed pool, uint256 indexed tokenId, uint256 weight, uint256 totalWeight, uint256 timestamp)",
+        "method_id": "adab6309",
+        "parameters": [
+          {
+            "indexed": true,
+            "name": "voter",
+            "type": "address",
+            "value": "0xA999D0213a54f4682a7ae3733476b54624425159"
+          },
+          {
+            "indexed": true,
+            "name": "pool",
+            "type": "address",
+            "value": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb"
+          },
+          {
+            "indexed": true,
+            "name": "tokenId",
+            "type": "uint256",
+            "value": "117"
+          },
+          {
+            "indexed": false,
+            "name": "weight",
+            "type": "uint256",
+            "value": "40297622682837"
+          },
+          {
+            "indexed": false,
+            "name": "totalWeight",
+            "type": "uint256",
+            "value": "36135987794988231436"
+          },
+          {
+            "indexed": false,
+            "name": "timestamp",
+            "type": "uint256",
+            "value": "1767900370"
+          }
+        ]
+      },
+      "index": 2,
+      "smart_contract": {
+        "ens_domain_name": null,
+        "hash": "0x48233cCC97B87Ba93bCA212cbEe48e3210211f03",
+        "implementations": [
+          {
+            "address": "0x2da3F3a20Cb05a756e7d3fE7083FB195Dc95C73c",
+            "name": "Voter"
+          }
+        ],
+        "is_contract": true,
+        "is_scam": false,
+        "is_verified": false,
+        "metadata": null,
+        "name": null,
+        "private_tags": [],
+        "proxy_type": "eip1967",
+        "public_tags": [],
+        "watchlist_names": []
+      },
+      "topics": [
+        "0xadab630928b1d46214641293704a312ee7ad87e03ae14a7fd95e7308b93998df",
+        "0x000000000000000000000000a999d0213a54f4682a7ae3733476b54624425159",
+        "0x00000000000000000000000052e604c44417233b6ccedddc0d640a405caacefb",
+        "0x0000000000000000000000000000000000000000000000000000000000000075"
+      ],
+      "transaction_hash": "0x696b7fcd360d63f78fc452c5d43f2bf15058929db18ca77b5b400f27da15b850",
+      "tx_hash": "0x696b7fcd360d63f78fc452c5d43f2bf15058929db18ca77b5b400f27da15b850"
+    },
+    {
+      "address": {
+        "ens_domain_name": null,
+        "hash": "0x48233cCC97B87Ba93bCA212cbEe48e3210211f03",
+        "implementations": [],
+        "is_contract": false,
+        "is_verified": null,
+        "metadata": null,
+        "name": null,
+        "private_tags": [],
+        "proxy_type": null,
+        "public_tags": [],
+        "watchlist_names": []
+      },
+      "block_hash": "0x4814829f35c447b898b11a2b718a68d0da72b49491e48f56912043e307d7669f",
+      "block_number": 5938151,
+      "data": "0x000000000000000000000000000000000000000000000000000bd7ce3307ca6d00000000000000000000000000000000000000000000000001899d85a1fa3ad30000000000000000000000000000000000000000000000000000000069600407",
+      "decoded": {
+        "method_call": "Voted(address indexed voter, address indexed pool, uint256 indexed tokenId, uint256 weight, uint256 totalWeight, uint256 timestamp)",
+        "method_id": "452d440e",
+        "parameters": [
+          {
+            "indexed": true,
+            "name": "voter",
+            "type": "address",
+            "value": "0x8Df2F71eC1948Eb7c497ffb51F1522F5B06A7A07"
+          },
+          {
+            "indexed": true,
+            "name": "pool",
+            "type": "address",
+            "value": "0xb4D498029af77680cD1eF828b967f010d06C51CC"
+          },
+          {
+            "indexed": true,
+            "name": "tokenId",
+            "type": "uint256",
+            "value": "88"
+          },
+          {
+            "indexed": false,
+            "name": "weight",
+            "type": "uint256",
+            "value": "3333505363200621"
+          },
+          {
+            "indexed": false,
+            "name": "totalWeight",
+            "type": "uint256",
+            "value": "110792863121029843"
+          },
+          {
+            "indexed": false,
+            "name": "timestamp",
+            "type": "uint256",
+            "value": "1767900167"
+          }
+        ]
+      },
+      "index": 5,
+      "smart_contract": {
+        "ens_domain_name": null,
+        "hash": "0x48233cCC97B87Ba93bCA212cbEe48e3210211f03",
+        "implementations": [
+          {
+            "address": "0x2da3F3a20Cb05a756e7d3fE7083FB195Dc95C73c",
+            "name": "Voter"
+          }
+        ],
+        "is_contract": true,
+        "is_scam": false,
+        "is_verified": false,
+        "metadata": null,
+        "name": null,
+        "private_tags": [],
+        "proxy_type": "eip1967",
+        "public_tags": [],
+        "watchlist_names": []
+      },
+      "topics": [
+        "0x452d440efc30dfa14a0ef803ccb55936af860ec6a6960ed27f129bef913f296a",
+        "0x0000000000000000000000008df2f71ec1948eb7c497ffb51f1522f5b06a7a07",
+        "0x000000000000000000000000b4d498029af77680cd1ef828b967f010d06c51cc",
+        "0x0000000000000000000000000000000000000000000000000000000000000058"
+      ],
+      "transaction_hash": "0xaf02230e9b0d32889dc47c611ad859a612942bc8d04fd12a1353d7b90a7fe9e2",
+      "tx_hash": "0xaf02230e9b0d32889dc47c611ad859a612942bc8d04fd12a1353d7b90a7fe9e2"
+    },
+    {
+      "address": {
+        "ens_domain_name": null,
+        "hash": "0x48233cCC97B87Ba93bCA212cbEe48e3210211f03",
+        "implementations": [],
+        "is_contract": false,
+        "is_verified": null,
+        "metadata": null,
+        "name": null,
+        "private_tags": [],
+        "proxy_type": null,
+        "public_tags": [],
+        "watchlist_names": []
+      },
+      "block_hash": "0x4814829f35c447b898b11a2b718a68d0da72b49491e48f56912043e307d7669f",
+      "block_number": 5938151,
+      "data": "0x000000000000000000000000000000000000000000000000000b821c1c161eb0000000000000000000000000000000000000000000000000017dc5b76ef270660000000000000000000000000000000000000000000000000000000069600407",
+      "decoded": {
+        "method_call": "Abstained(address indexed voter, address indexed pool, uint256 indexed tokenId, uint256 weight, uint256 totalWeight, uint256 timestamp)",
+        "method_id": "adab6309",
+        "parameters": [
+          {
+            "indexed": true,
+            "name": "voter",
+            "type": "address",
+            "value": "0x8Df2F71eC1948Eb7c497ffb51F1522F5B06A7A07"
+          },
+          {
+            "indexed": true,
+            "name": "pool",
+            "type": "address",
+            "value": "0xb4D498029af77680cD1eF828b967f010d06C51CC"
+          },
+          {
+            "indexed": true,
+            "name": "tokenId",
+            "type": "uint256",
+            "value": "88"
+          },
+          {
+            "indexed": false,
+            "name": "weight",
+            "type": "uint256",
+            "value": "3239281985724080"
+          },
+          {
+            "indexed": false,
+            "name": "totalWeight",
+            "type": "uint256",
+            "value": "107459357757829222"
+          },
+          {
+            "indexed": false,
+            "name": "timestamp",
+            "type": "uint256",
+            "value": "1767900167"
+          }
+        ]
+      },
+      "index": 2,
+      "smart_contract": {
+        "ens_domain_name": null,
+        "hash": "0x48233cCC97B87Ba93bCA212cbEe48e3210211f03",
+        "implementations": [
+          {
+            "address": "0x2da3F3a20Cb05a756e7d3fE7083FB195Dc95C73c",
+            "name": "Voter"
+          }
+        ],
+        "is_contract": true,
+        "is_scam": false,
+        "is_verified": false,
+        "metadata": null,
+        "name": null,
+        "private_tags": [],
+        "proxy_type": "eip1967",
+        "public_tags": [],
+        "watchlist_names": []
+      },
+      "topics": [
+        "0xadab630928b1d46214641293704a312ee7ad87e03ae14a7fd95e7308b93998df",
+        "0x0000000000000000000000008df2f71ec1948eb7c497ffb51f1522f5b06a7a07",
+        "0x000000000000000000000000b4d498029af77680cd1ef828b967f010d06c51cc",
+        "0x0000000000000000000000000000000000000000000000000000000000000058"
+      ],
+      "transaction_hash": "0xaf02230e9b0d32889dc47c611ad859a612942bc8d04fd12a1353d7b90a7fe9e2",
+      "tx_hash": "0xaf02230e9b0d32889dc47c611ad859a612942bc8d04fd12a1353d7b90a7fe9e2"
+    },
     {
       "address": {
         "ens_domain_name": null,
@@ -334930,6 +335254,94 @@
         "public_tags": [],
         "watchlist_names": []
       },
+      "block_hash": "0xe2bd19f884be7a0e35b91cb6ed8f683063d5fb342283ebcd29317a46336492f2",
+      "block_number": 5938187,
+      "data": "0x0000000000000000000000000000000000000000000000000000246139ca8000000000000000000000000000000000000000000000000000000000006983dd800000000000000000000000000000000000000000000000000000000069600487",
+      "decoded": {
+        "method_call": "Deposit(address indexed provider, uint256 indexed tokenId, uint8 indexed depositType, uint256 value, uint256 locktime, uint256 ts)",
+        "method_id": "8835c22a",
+        "parameters": [
+          {
+            "indexed": true,
+            "name": "provider",
+            "type": "address",
+            "value": "0xA999D0213a54f4682a7ae3733476b54624425159"
+          },
+          {
+            "indexed": true,
+            "name": "tokenId",
+            "type": "uint256",
+            "value": "946"
+          },
+          {
+            "indexed": true,
+            "name": "depositType",
+            "type": "uint8",
+            "value": "1"
+          },
+          {
+            "indexed": false,
+            "name": "value",
+            "type": "uint256",
+            "value": "40000000000000"
+          },
+          {
+            "indexed": false,
+            "name": "locktime",
+            "type": "uint256",
+            "value": "1770249600"
+          },
+          {
+            "indexed": false,
+            "name": "ts",
+            "type": "uint256",
+            "value": "1767900295"
+          }
+        ]
+      },
+      "index": 2,
+      "smart_contract": {
+        "ens_domain_name": null,
+        "hash": "0x3D4b1b884A7a1E59fE8589a3296EC8f8cBB6f279",
+        "implementations": [
+          {
+            "address": "0xdF217EFD8f3ecb5E837aedF203C28c1f06854017",
+            "name": "VeBTC"
+          }
+        ],
+        "is_contract": true,
+        "is_scam": false,
+        "is_verified": false,
+        "metadata": null,
+        "name": null,
+        "private_tags": [],
+        "proxy_type": "eip1967",
+        "public_tags": [],
+        "watchlist_names": []
+      },
+      "topics": [
+        "0x8835c22a0c751188de86681e15904223c054bedd5c68ec8858945b7831290273",
+        "0x000000000000000000000000a999d0213a54f4682a7ae3733476b54624425159",
+        "0x00000000000000000000000000000000000000000000000000000000000003b2",
+        "0x0000000000000000000000000000000000000000000000000000000000000001"
+      ],
+      "transaction_hash": "0x650a71fb92a8940ff5b12bb50e97f1f361e6c673dd1d73465a10565bb1ece275",
+      "tx_hash": "0x650a71fb92a8940ff5b12bb50e97f1f361e6c673dd1d73465a10565bb1ece275"
+    },
+    {
+      "address": {
+        "ens_domain_name": null,
+        "hash": "0x3D4b1b884A7a1E59fE8589a3296EC8f8cBB6f279",
+        "implementations": [],
+        "is_contract": false,
+        "is_verified": null,
+        "metadata": null,
+        "name": null,
+        "private_tags": [],
+        "proxy_type": null,
+        "public_tags": [],
+        "watchlist_names": []
+      },
       "block_hash": "0xa7cb89afa1786236382ff9c90e88c8a065e7ed6bdab9246584c36f4ec053b62c",
       "block_number": 5937929,
       "data": "0x00000000000000000000000000000000000000000000000000006d23ad5f8000000000000000000000000000000000000000000000000000000000006983dd8000000000000000000000000000000000000000000000000000000000696000ed",
@@ -432701,6 +433113,15 @@
   "parsed_locks": [
     {
       "date": "2026-01-08T00:00:00.000",
+      "ts": "2026-01-08T19:24:55.000",
+      "amount": 4e-05,
+      "type": "lock",
+      "sender": "0xA999D0213a54f4682a7ae3733476b54624425159",
+      "cat": "< 0.001",
+      "order": 1
+    },
+    {
+      "date": "2026-01-08T00:00:00.000",
       "ts": "2026-01-08T19:09:33.000",
       "amount": 0.00012,
       "type": "lock",
@@ -442540,6 +442961,15 @@
   "parsed_votes": [
     {
       "date": "2026-01-08T00:00:00.000",
+      "ts": "2026-01-08T19:22:47.000",
+      "voting_power": 0.0033335054,
+      "total_weight": 0.1107928631,
+      "voter": "0x8Df2F71eC1948Eb7c497ffb51F1522F5B06A7A07",
+      "pool": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
+      "type": "vote"
+    },
+    {
+      "date": "2026-01-08T00:00:00.000",
       "ts": "2026-01-08T19:11:30.000",
       "voting_power": 0.0001165729,
       "total_weight": 20.4869591783,
@@ -442569,18 +442999,18 @@
       "date": "2026-01-08T00:00:00.000",
       "ts": "2026-01-08T18:00:29.000",
       "voting_power": 0.001165,
-      "total_weight": 0.5754378357,
+      "total_weight": 36.1366150632,
       "voter": "0xcdA40cb8773DAF66A862cdB086ef82B50F1C29eD",
-      "pool": "0x2a1ab0224a7a608d3A992Cb15594a2934F74f4C0",
+      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
       "type": "vote"
     },
     {
       "date": "2026-01-08T00:00:00.000",
       "ts": "2026-01-08T18:00:29.000",
       "voting_power": 0.001165,
-      "total_weight": 36.1366150632,
+      "total_weight": 0.5754378357,
       "voter": "0xcdA40cb8773DAF66A862cdB086ef82B50F1C29eD",
-      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
+      "pool": "0x2a1ab0224a7a608d3A992Cb15594a2934F74f4C0",
       "type": "vote"
     },
     {
@@ -442676,15 +443106,6 @@
     {
       "date": "2026-01-08T00:00:00.000",
       "ts": "2026-01-08T16:54:44.000",
-      "voting_power": 0.0496,
-      "total_weight": 36.1359285361,
-      "voter": "0x83DB892a6688B966122Be219fa873BF24D7db79F",
-      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
-      "type": "vote"
-    },
-    {
-      "date": "2026-01-08T00:00:00.000",
-      "ts": "2026-01-08T16:54:44.000",
       "voting_power": 0.0062,
       "total_weight": 0.5332625206,
       "voter": "0x83DB892a6688B966122Be219fa873BF24D7db79F",
@@ -442698,6 +443119,15 @@
       "total_weight": 20.1311135884,
       "voter": "0x83DB892a6688B966122Be219fa873BF24D7db79F",
       "pool": "0x6688F868E9c81Ee671867E77fBC618BBEA2e9782",
+      "type": "vote"
+    },
+    {
+      "date": "2026-01-08T00:00:00.000",
+      "ts": "2026-01-08T16:54:44.000",
+      "voting_power": 0.0496,
+      "total_weight": 36.1359285361,
+      "voter": "0x83DB892a6688B966122Be219fa873BF24D7db79F",
+      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
       "type": "vote"
     },
     {
@@ -442757,10 +443187,10 @@
     {
       "date": "2026-01-08T00:00:00.000",
       "ts": "2026-01-08T15:05:46.000",
-      "voting_power": 0.0030993014,
-      "total_weight": 0.4908386562,
+      "voting_power": 0.0023244761,
+      "total_weight": 20.1428906092,
       "voter": "0x1389756489d396068Cf1ada8Eb73964Cd8eB51c0",
-      "pool": "0x2a1ab0224a7a608d3A992Cb15594a2934F74f4C0",
+      "pool": "0x6688F868E9c81Ee671867E77fBC618BBEA2e9782",
       "type": "vote"
     },
     {
@@ -442775,10 +443205,10 @@
     {
       "date": "2026-01-08T00:00:00.000",
       "ts": "2026-01-08T15:05:46.000",
-      "voting_power": 0.0023244761,
-      "total_weight": 20.1428906092,
+      "voting_power": 0.0030993014,
+      "total_weight": 0.4908386562,
       "voter": "0x1389756489d396068Cf1ada8Eb73964Cd8eB51c0",
-      "pool": "0x6688F868E9c81Ee671867E77fBC618BBEA2e9782",
+      "pool": "0x2a1ab0224a7a608d3A992Cb15594a2934F74f4C0",
       "type": "vote"
     },
     {
@@ -442838,19 +443268,19 @@
     {
       "date": "2026-01-08T00:00:00.000",
       "ts": "2026-01-08T13:21:40.000",
-      "voting_power": 0.0002940352,
-      "total_weight": 0.485130453,
+      "voting_power": 0.0001960235,
+      "total_weight": 36.4018430497,
       "voter": "0xa1746Dd77c660322D98fFe7c887B5EB5E23CDbFd",
-      "pool": "0x2a1ab0224a7a608d3A992Cb15594a2934F74f4C0",
+      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
       "type": "vote"
     },
     {
       "date": "2026-01-08T00:00:00.000",
       "ts": "2026-01-08T13:21:40.000",
-      "voting_power": 0.0001960235,
-      "total_weight": 36.4018430497,
+      "voting_power": 0.0002940352,
+      "total_weight": 0.485130453,
       "voter": "0xa1746Dd77c660322D98fFe7c887B5EB5E23CDbFd",
-      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
+      "pool": "0x2a1ab0224a7a608d3A992Cb15594a2934F74f4C0",
       "type": "vote"
     },
     {
@@ -442910,15 +443340,6 @@
     {
       "date": "2026-01-08T00:00:00.000",
       "ts": "2026-01-08T11:10:20.000",
-      "voting_power": 0.0295,
-      "total_weight": 8.2974137,
-      "voter": "0x011074cA9EEff0836a68b170E46c4d20F8CAc727",
-      "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
-      "type": "vote"
-    },
-    {
-      "date": "2026-01-08T00:00:00.000",
-      "ts": "2026-01-08T11:10:20.000",
       "voting_power": 0.0885,
       "total_weight": 20.1405661331,
       "voter": "0x011074cA9EEff0836a68b170E46c4d20F8CAc727",
@@ -442941,6 +443362,15 @@
       "total_weight": 0.4848364178,
       "voter": "0x011074cA9EEff0836a68b170E46c4d20F8CAc727",
       "pool": "0x2a1ab0224a7a608d3A992Cb15594a2934F74f4C0",
+      "type": "vote"
+    },
+    {
+      "date": "2026-01-08T00:00:00.000",
+      "ts": "2026-01-08T11:10:20.000",
+      "voting_power": 0.0295,
+      "total_weight": 8.2974137,
+      "voter": "0x011074cA9EEff0836a68b170E46c4d20F8CAc727",
+      "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
       "type": "vote"
     },
     {
@@ -442991,19 +443421,19 @@
     {
       "date": "2026-01-08T00:00:00.000",
       "ts": "2026-01-08T10:20:21.000",
-      "voting_power": 3.5e-06,
-      "total_weight": 35.5456303179,
+      "voting_power": 3e-06,
+      "total_weight": 0.2268697268,
       "voter": "0x23C6eBa3d7682570875506B6e6A95867Ec26846e",
-      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
+      "pool": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
       "type": "vote"
     },
     {
       "date": "2026-01-08T00:00:00.000",
       "ts": "2026-01-08T10:20:21.000",
-      "voting_power": 3e-06,
-      "total_weight": 0.2268697268,
+      "voting_power": 3.5e-06,
+      "total_weight": 35.5456303179,
       "voter": "0x23C6eBa3d7682570875506B6e6A95867Ec26846e",
-      "pool": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
+      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
       "type": "vote"
     },
     {
@@ -443136,18 +443566,18 @@
       "date": "2026-01-08T00:00:00.000",
       "ts": "2026-01-08T06:35:06.000",
       "voting_power": 1.2255e-05,
-      "total_weight": 35.5495628092,
+      "total_weight": 0.0338261151,
       "voter": "0xc6c827D294A8102C2feE976D340bD454758073c4",
-      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
+      "pool": "0x5Cd2A025C001E07Ae354A4C22C3009908De1aC59",
       "type": "vote"
     },
     {
       "date": "2026-01-08T00:00:00.000",
       "ts": "2026-01-08T06:35:06.000",
       "voting_power": 1.2255e-05,
-      "total_weight": 0.0338261151,
+      "total_weight": 35.5495628092,
       "voter": "0xc6c827D294A8102C2feE976D340bD454758073c4",
-      "pool": "0x5Cd2A025C001E07Ae354A4C22C3009908De1aC59",
+      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
       "type": "vote"
     },
     {
@@ -443451,18 +443881,18 @@
       "date": "2026-01-08T00:00:00.000",
       "ts": "2026-01-08T01:55:42.000",
       "voting_power": 0.0182525828,
-      "total_weight": 35.5279587288,
+      "total_weight": 5.9206432978,
       "voter": "0x20e5D62870A9bF23fB23f1890137ffE915BDB509",
-      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
+      "pool": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
       "type": "vote"
     },
     {
       "date": "2026-01-08T00:00:00.000",
       "ts": "2026-01-08T01:55:42.000",
       "voting_power": 0.0182525828,
-      "total_weight": 5.9206432978,
+      "total_weight": 35.5279587288,
       "voter": "0x20e5D62870A9bF23fB23f1890137ffE915BDB509",
-      "pool": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
+      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
       "type": "vote"
     },
     {
@@ -443513,15 +443943,6 @@
     {
       "date": "2026-01-07T00:00:00.000",
       "ts": "2026-01-07T19:11:11.000",
-      "voting_power": 5.7862e-06,
-      "total_weight": 0.0021310061,
-      "voter": "0x89329B368589E40613aA6acdf9988F55E0f99D81",
-      "pool": "0x329D64572F8922c3Fe90D23A3C74a360d8eA6235",
-      "type": "vote"
-    },
-    {
-      "date": "2026-01-07T00:00:00.000",
-      "ts": "2026-01-07T19:11:11.000",
       "voting_power": 4.5004e-06,
       "total_weight": 0.2951507998,
       "voter": "0x89329B368589E40613aA6acdf9988F55E0f99D81",
@@ -443535,6 +443956,15 @@
       "total_weight": 19.7112701066,
       "voter": "0x89329B368589E40613aA6acdf9988F55E0f99D81",
       "pool": "0x6688F868E9c81Ee671867E77fBC618BBEA2e9782",
+      "type": "vote"
+    },
+    {
+      "date": "2026-01-07T00:00:00.000",
+      "ts": "2026-01-07T19:11:11.000",
+      "voting_power": 5.7862e-06,
+      "total_weight": 0.0021310061,
+      "voter": "0x89329B368589E40613aA6acdf9988F55E0f99D81",
+      "pool": "0x329D64572F8922c3Fe90D23A3C74a360d8eA6235",
       "type": "vote"
     },
     {
@@ -443729,19 +444159,19 @@
     {
       "date": "2026-01-06T00:00:00.000",
       "ts": "2026-01-06T22:23:05.000",
-      "voting_power": 1.225,
-      "total_weight": 35.2739868926,
+      "voting_power": 1.275,
+      "total_weight": 20.6013432591,
       "voter": "0xC6f0F6E69b07Db21aE188F10ba4d71De234c14cC",
-      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
+      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
       "type": "vote"
     },
     {
       "date": "2026-01-06T00:00:00.000",
       "ts": "2026-01-06T22:23:05.000",
-      "voting_power": 1.275,
-      "total_weight": 20.6013432591,
+      "voting_power": 1.225,
+      "total_weight": 35.2739868926,
       "voter": "0xC6f0F6E69b07Db21aE188F10ba4d71De234c14cC",
-      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
+      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
       "type": "vote"
     },
     {
@@ -444035,15 +444465,6 @@
     {
       "date": "2026-01-05T00:00:00.000",
       "ts": "2026-01-05T19:44:03.000",
-      "voting_power": 2.32246e-05,
-      "total_weight": 34.0265762424,
-      "voter": "0x8C9a169f0A4E3daA2E8d885F1F170dda11DB771B",
-      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
-      "type": "vote"
-    },
-    {
-      "date": "2026-01-05T00:00:00.000",
-      "ts": "2026-01-05T19:44:03.000",
       "voting_power": 4.64492e-05,
       "total_weight": 19.320146352,
       "voter": "0x8C9a169f0A4E3daA2E8d885F1F170dda11DB771B",
@@ -444057,6 +444478,15 @@
       "total_weight": 5.8067360024,
       "voter": "0x8C9a169f0A4E3daA2E8d885F1F170dda11DB771B",
       "pool": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
+      "type": "vote"
+    },
+    {
+      "date": "2026-01-05T00:00:00.000",
+      "ts": "2026-01-05T19:44:03.000",
+      "voting_power": 2.32246e-05,
+      "total_weight": 34.0265762424,
+      "voter": "0x8C9a169f0A4E3daA2E8d885F1F170dda11DB771B",
+      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
       "type": "vote"
     },
     {
@@ -444197,19 +444627,19 @@
     {
       "date": "2026-01-05T00:00:00.000",
       "ts": "2026-01-05T17:10:36.000",
-      "voting_power": 0.0018996177,
-      "total_weight": 21.9959800178,
+      "voting_power": 0.0037992354,
+      "total_weight": 0.3097999433,
       "voter": "0x1389756489d396068Cf1ada8Eb73964Cd8eB51c0",
-      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
+      "pool": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
       "type": "vote"
     },
     {
       "date": "2026-01-05T00:00:00.000",
       "ts": "2026-01-05T17:10:36.000",
-      "voting_power": 0.0037992354,
-      "total_weight": 0.3097999433,
+      "voting_power": 0.0018996177,
+      "total_weight": 21.9959800178,
       "voter": "0x1389756489d396068Cf1ada8Eb73964Cd8eB51c0",
-      "pool": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
+      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
       "type": "vote"
     },
     {
@@ -444369,63 +444799,9 @@
       "date": "2026-01-05T00:00:00.000",
       "ts": "2026-01-05T10:20:02.000",
       "voting_power": 3.4177e-06,
-      "total_weight": 21.9852114305,
-      "voter": "0x3b7f435652175D952A687c82cf18ccAF0f0ef67C",
-      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
-      "type": "vote"
-    },
-    {
-      "date": "2026-01-05T00:00:00.000",
-      "ts": "2026-01-05T10:20:02.000",
-      "voting_power": 3.4177e-06,
-      "total_weight": 7.2490929972,
-      "voter": "0x3b7f435652175D952A687c82cf18ccAF0f0ef67C",
-      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
-      "type": "vote"
-    },
-    {
-      "date": "2026-01-05T00:00:00.000",
-      "ts": "2026-01-05T10:20:02.000",
-      "voting_power": 3.4177e-06,
-      "total_weight": 0.0618922672,
-      "voter": "0x3b7f435652175D952A687c82cf18ccAF0f0ef67C",
-      "pool": "0x2a1ab0224a7a608d3A992Cb15594a2934F74f4C0",
-      "type": "vote"
-    },
-    {
-      "date": "2026-01-05T00:00:00.000",
-      "ts": "2026-01-05T10:20:02.000",
-      "voting_power": 3.4177e-06,
-      "total_weight": 0.0021431597,
-      "voter": "0x3b7f435652175D952A687c82cf18ccAF0f0ef67C",
-      "pool": "0x329D64572F8922c3Fe90D23A3C74a360d8eA6235",
-      "type": "vote"
-    },
-    {
-      "date": "2026-01-05T00:00:00.000",
-      "ts": "2026-01-05T10:20:02.000",
-      "voting_power": 3.4177e-06,
       "total_weight": 0.0041628195,
       "voter": "0x3b7f435652175D952A687c82cf18ccAF0f0ef67C",
       "pool": "0xf6f950485b0A65828F07581Ca979ef1271778d6A",
-      "type": "vote"
-    },
-    {
-      "date": "2026-01-05T00:00:00.000",
-      "ts": "2026-01-05T10:20:02.000",
-      "voting_power": 3.4177e-06,
-      "total_weight": 0.0512757469,
-      "voter": "0x3b7f435652175D952A687c82cf18ccAF0f0ef67C",
-      "pool": "0x5Cd2A025C001E07Ae354A4C22C3009908De1aC59",
-      "type": "vote"
-    },
-    {
-      "date": "2026-01-05T00:00:00.000",
-      "ts": "2026-01-05T10:20:02.000",
-      "voting_power": 3.4177e-06,
-      "total_weight": 45.7714733988,
-      "voter": "0x3b7f435652175D952A687c82cf18ccAF0f0ef67C",
-      "pool": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
       "type": "vote"
     },
     {
@@ -444441,9 +444817,63 @@
       "date": "2026-01-05T00:00:00.000",
       "ts": "2026-01-05T10:20:02.000",
       "voting_power": 3.4177e-06,
+      "total_weight": 45.7714733988,
+      "voter": "0x3b7f435652175D952A687c82cf18ccAF0f0ef67C",
+      "pool": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
+      "type": "vote"
+    },
+    {
+      "date": "2026-01-05T00:00:00.000",
+      "ts": "2026-01-05T10:20:02.000",
+      "voting_power": 3.4177e-06,
       "total_weight": 0.8097971404,
       "voter": "0x3b7f435652175D952A687c82cf18ccAF0f0ef67C",
       "pool": "0x6688F868E9c81Ee671867E77fBC618BBEA2e9782",
+      "type": "vote"
+    },
+    {
+      "date": "2026-01-05T00:00:00.000",
+      "ts": "2026-01-05T10:20:02.000",
+      "voting_power": 3.4177e-06,
+      "total_weight": 0.0512757469,
+      "voter": "0x3b7f435652175D952A687c82cf18ccAF0f0ef67C",
+      "pool": "0x5Cd2A025C001E07Ae354A4C22C3009908De1aC59",
+      "type": "vote"
+    },
+    {
+      "date": "2026-01-05T00:00:00.000",
+      "ts": "2026-01-05T10:20:02.000",
+      "voting_power": 3.4177e-06,
+      "total_weight": 21.9852114305,
+      "voter": "0x3b7f435652175D952A687c82cf18ccAF0f0ef67C",
+      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
+      "type": "vote"
+    },
+    {
+      "date": "2026-01-05T00:00:00.000",
+      "ts": "2026-01-05T10:20:02.000",
+      "voting_power": 3.4177e-06,
+      "total_weight": 0.0021431597,
+      "voter": "0x3b7f435652175D952A687c82cf18ccAF0f0ef67C",
+      "pool": "0x329D64572F8922c3Fe90D23A3C74a360d8eA6235",
+      "type": "vote"
+    },
+    {
+      "date": "2026-01-05T00:00:00.000",
+      "ts": "2026-01-05T10:20:02.000",
+      "voting_power": 3.4177e-06,
+      "total_weight": 0.0618922672,
+      "voter": "0x3b7f435652175D952A687c82cf18ccAF0f0ef67C",
+      "pool": "0x2a1ab0224a7a608d3A992Cb15594a2934F74f4C0",
+      "type": "vote"
+    },
+    {
+      "date": "2026-01-05T00:00:00.000",
+      "ts": "2026-01-05T10:20:02.000",
+      "voting_power": 3.4177e-06,
+      "total_weight": 7.2490929972,
+      "voter": "0x3b7f435652175D952A687c82cf18ccAF0f0ef67C",
+      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
       "type": "vote"
     },
     {
@@ -444468,15 +444898,6 @@
       "date": "2026-01-05T00:00:00.000",
       "ts": "2026-01-05T09:36:42.000",
       "voting_power": 6.403e-07,
-      "total_weight": 0.4545201145,
-      "voter": "0x2dFE4CF5d1120d9ea221D0Fb30EA623e099Da79E",
-      "pool": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
-      "type": "vote"
-    },
-    {
-      "date": "2026-01-05T00:00:00.000",
-      "ts": "2026-01-05T09:36:42.000",
-      "voting_power": 6.403e-07,
       "total_weight": 9.289811623,
       "voter": "0x2dFE4CF5d1120d9ea221D0Fb30EA623e099Da79E",
       "pool": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
@@ -444493,6 +444914,15 @@
     },
     {
       "date": "2026-01-05T00:00:00.000",
+      "ts": "2026-01-05T09:36:42.000",
+      "voting_power": 6.403e-07,
+      "total_weight": 0.4545201145,
+      "voter": "0x2dFE4CF5d1120d9ea221D0Fb30EA623e099Da79E",
+      "pool": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
+      "type": "vote"
+    },
+    {
+      "date": "2026-01-05T00:00:00.000",
       "ts": "2026-01-05T09:24:50.000",
       "voting_power": 4.1176e-06,
       "total_weight": 21.9852284869,
@@ -444503,10 +444933,10 @@
     {
       "date": "2026-01-05T00:00:00.000",
       "ts": "2026-01-05T08:34:30.000",
-      "voting_power": 9.438e-07,
-      "total_weight": 7.249099045,
+      "voting_power": 3.775e-07,
+      "total_weight": 21.9852321696,
       "voter": "0x268EF519eDBf507Ed9fF31a3EaE96c82cBE1bb0b",
-      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
+      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
       "type": "vote"
     },
     {
@@ -444521,10 +444951,10 @@
     {
       "date": "2026-01-05T00:00:00.000",
       "ts": "2026-01-05T08:34:30.000",
-      "voting_power": 3.775e-07,
-      "total_weight": 21.9852321696,
+      "voting_power": 9.438e-07,
+      "total_weight": 7.249099045,
       "voter": "0x268EF519eDBf507Ed9fF31a3EaE96c82cBE1bb0b",
-      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
+      "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
       "type": "vote"
     },
     {
@@ -444656,15 +445086,6 @@
     {
       "date": "2026-01-04T00:00:00.000",
       "ts": "2026-01-04T07:26:06.000",
-      "voting_power": 1.23831e-05,
-      "total_weight": 24.5843672443,
-      "voter": "0xcf476f7D547Cd7d5a03a73cE60eED9891417AB6f",
-      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
-      "type": "vote"
-    },
-    {
-      "date": "2026-01-04T00:00:00.000",
-      "ts": "2026-01-04T07:26:06.000",
       "voting_power": 1.769e-06,
       "total_weight": 0.4545371725,
       "voter": "0xcf476f7D547Cd7d5a03a73cE60eED9891417AB6f",
@@ -444678,6 +445099,24 @@
       "total_weight": 0.9848042053,
       "voter": "0xcf476f7D547Cd7d5a03a73cE60eED9891417AB6f",
       "pool": "0x6688F868E9c81Ee671867E77fBC618BBEA2e9782",
+      "type": "vote"
+    },
+    {
+      "date": "2026-01-04T00:00:00.000",
+      "ts": "2026-01-04T07:26:06.000",
+      "voting_power": 1.23831e-05,
+      "total_weight": 24.5843672443,
+      "voter": "0xcf476f7D547Cd7d5a03a73cE60eED9891417AB6f",
+      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
+      "type": "vote"
+    },
+    {
+      "date": "2026-01-04T00:00:00.000",
+      "ts": "2026-01-04T07:11:51.000",
+      "voting_power": 2.4654e-06,
+      "total_weight": 0.4545354035,
+      "voter": "0x750A7E53869a3b6a213dD33215B65181FC94EDC6",
+      "pool": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
       "type": "vote"
     },
     {
@@ -444696,15 +445135,6 @@
       "total_weight": 8.4479662153,
       "voter": "0x750A7E53869a3b6a213dD33215B65181FC94EDC6",
       "pool": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
-      "type": "vote"
-    },
-    {
-      "date": "2026-01-04T00:00:00.000",
-      "ts": "2026-01-04T07:11:51.000",
-      "voting_power": 2.4654e-06,
-      "total_weight": 0.4545354035,
-      "voter": "0x750A7E53869a3b6a213dD33215B65181FC94EDC6",
-      "pool": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
       "type": "vote"
     },
     {
@@ -444809,19 +445239,19 @@
     {
       "date": "2026-01-03T00:00:00.000",
       "ts": "2026-01-03T10:39:24.000",
-      "voting_power": 6.834e-06,
-      "total_weight": 24.5846824014,
+      "voting_power": 2.9288e-06,
+      "total_weight": 45.7741011485,
       "voter": "0xc6c827D294A8102C2feE976D340bD454758073c4",
-      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
+      "pool": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
       "type": "vote"
     },
     {
       "date": "2026-01-03T00:00:00.000",
       "ts": "2026-01-03T10:39:24.000",
-      "voting_power": 2.9288e-06,
-      "total_weight": 45.7741011485,
+      "voting_power": 6.834e-06,
+      "total_weight": 24.5846824014,
       "voter": "0xc6c827D294A8102C2feE976D340bD454758073c4",
-      "pool": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
+      "pool": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
       "type": "vote"
     },
     {
@@ -444918,6 +445348,15 @@
       "date": "2026-01-02T00:00:00.000",
       "ts": "2026-01-02T21:18:53.000",
       "voting_power": 4e-05,
+      "total_weight": 0.0022594025,
+      "voter": "0x6b49f23c18Ed8C1486e2b51Ca3105fb2441157B7",
+      "pool": "0x329D64572F8922c3Fe90D23A3C74a360d8eA6235",
+      "type": "vote"
+    },
+    {
+      "date": "2026-01-02T00:00:00.000",
+      "ts": "2026-01-02T21:18:53.000",
+      "voting_power": 4e-05,
       "total_weight": 0.0541171516,
       "voter": "0x6b49f23c18Ed8C1486e2b51Ca3105fb2441157B7",
       "pool": "0x5Cd2A025C001E07Ae354A4C22C3009908De1aC59",
@@ -444930,15 +445369,6 @@
       "total_weight": 0.0619304714,
       "voter": "0x6b49f23c18Ed8C1486e2b51Ca3105fb2441157B7",
       "pool": "0x2a1ab0224a7a608d3A992Cb15594a2934F74f4C0",
-      "type": "vote"
-    },
-    {
-      "date": "2026-01-02T00:00:00.000",
-      "ts": "2026-01-02T21:18:53.000",
-      "voting_power": 4e-05,
-      "total_weight": 0.0022594025,
-      "voter": "0x6b49f23c18Ed8C1486e2b51Ca3105fb2441157B7",
-      "pool": "0x329D64572F8922c3Fe90D23A3C74a360d8eA6235",
       "type": "vote"
     },
     {
@@ -462080,6 +462510,21 @@
   ],
   "parsed_deposits": [
     {
+      "tx_hash": "0x650a71fb92a8940ff5b12bb50e97f1f361e6c673dd1d73465a10565bb1ece275",
+      "provider": "0xa999d0213a54f4682a7ae3733476b54624425159",
+      "token_id": 946,
+      "deposit_type": 1,
+      "deposit_type_name": "DEPOSIT_FOR",
+      "value": 4e-05,
+      "locktime": 1770249600,
+      "unlock_date": "2026-02-05T00:00:00",
+      "timestamp": 1767900295,
+      "date": "2026-01-08T19:24:55",
+      "duration_seconds": 2349305,
+      "duration_days": 27.19,
+      "is_max_lock": true
+    },
+    {
       "tx_hash": "0xcff857433a627dda0d16da517ac851e7a9274bba54ca13165c3e925072ebc378",
       "provider": "0x15bdcf8e3db70f278b7a0b1590efa080c4f7f77a",
       "token_id": 945,
@@ -478914,7 +479359,7 @@
     {
       "pool_address": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
       "pool_name": "0xb4D49802...",
-      "current_votes": 0.11069863974355329,
+      "current_votes": 0.11079286312102984,
       "bribes": {
         "MUSD": 0.0,
         "BTC": 0.0
@@ -478953,13 +479398,13 @@
         "mUSDT": 0.0,
         "BTC": 0.00833
       },
-      "bribes_usd": 757.7634400000001,
+      "bribes_usd": 758.9296400000001,
       "fees": {},
       "fees_usd": 0.0,
-      "apr_bribes": 75.27485562417326,
+      "apr_bribes": 75.27485562417327,
       "apr_fees": 0.0,
-      "apr_total": 75.27485562417326,
-      "usd_per_vote": 1316.8467435422679
+      "apr_total": 75.27485562417327,
+      "usd_per_vote": 1318.873374270611
     },
     {
       "pool_address": "0x329D64572F8922c3Fe90D23A3C74a360d8eA6235",
@@ -478980,18 +479425,18 @@
     {
       "pool_address": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
       "pool_name": "BTC/MUSD",
-      "current_votes": 36.136028092610914,
+      "current_votes": 36.13598779498823,
       "bribes": {
         "BTC": 0.05831,
         "MUSD": 0.0
       },
-      "bribes_usd": 5304.34408,
+      "bribes_usd": 5312.50748,
       "fees": {},
       "fees_usd": 0.0,
-      "apr_bribes": 8.390850240179017,
+      "apr_bribes": 8.390859597369387,
       "apr_fees": 0.0,
-      "apr_total": 8.390850240179017,
-      "usd_per_vote": 146.78824320165478
+      "apr_total": 8.390859597369387,
+      "usd_per_vote": 147.01431465329424
     },
     {
       "pool_address": "0x5Cd2A025C001E07Ae354A4C22C3009908De1aC59",
@@ -479018,13 +479463,13 @@
         "MUSD": 0.0,
         "BTC": 0.012495
       },
-      "bribes_usd": 1136.64516,
+      "bribes_usd": 1138.39446,
       "fees": {},
       "fees_usd": 0.0,
       "apr_bribes": 3.233172193615648,
       "apr_fees": 0.0,
       "apr_total": 3.233172193615648,
-      "usd_per_vote": 56.56061694400543
+      "usd_per_vote": 56.6476638876797
     },
     {
       "pool_address": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
@@ -479051,13 +479496,13 @@
         "MUSD": 0.0,
         "BTC": 0.004165
       },
-      "bribes_usd": 378.88172000000003,
+      "bribes_usd": 379.46482000000003,
       "fees": {},
       "fees_usd": 0.0,
-      "apr_bribes": 2.8311820143336726,
+      "apr_bribes": 2.831182014333672,
       "apr_fees": 0.0,
-      "apr_total": 2.8311820143336726,
-      "usd_per_vote": 49.52826259228952
+      "apr_total": 2.831182014333672,
+      "usd_per_vote": 49.60448672344466
     },
     {
       "pool_address": "0xf6f950485b0A65828F07581Ca979ef1271778d6A",
@@ -479085,20 +479530,20 @@
       "start_date": "2026-01-08 00:00:00",
       "end_date": "2026-01-15 00:00:00",
       "votes": {
-        "total_voted": 90.9256151429,
-        "unique_voters": 51,
-        "vote_tx_count": 106
+        "total_voted": 90.8575068909,
+        "unique_voters": 52,
+        "vote_tx_count": 107
       },
       "incentives": {
-        "total_bribes_usd": 757.7634400000001,
+        "total_bribes_usd": 758.9296400000001,
         "total_fees_usd": 0.0,
-        "average_apr": 0.47679220551341156,
+        "average_apr": 0.4767919225007121,
         "pool_count": 10,
         "pools": [
           {
             "pool_address": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
             "pool_name": "0xb4D49802...",
-            "votes": 0.11069863974355329,
+            "votes": 0.11079286312102984,
             "bribes_usd": 0.0,
             "fees_usd": 0.0,
             "apr_total": 0.0
@@ -479115,9 +479560,9 @@
             "pool_address": "0x2a1ab0224a7a608d3A992Cb15594a2934F74f4C0",
             "pool_name": "mUSDC/mUSDT",
             "votes": 0.5754378356600899,
-            "bribes_usd": 757.7634400000001,
+            "bribes_usd": 758.9296400000001,
             "fees_usd": 0.0,
-            "apr_total": 75.27485562417326
+            "apr_total": 75.27485562417327
           },
           {
             "pool_address": "0x329D64572F8922c3Fe90D23A3C74a360d8eA6235",
@@ -479130,7 +479575,7 @@
           {
             "pool_address": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
             "pool_name": "BTC/MUSD",
-            "votes": 36.136028092610914,
+            "votes": 36.13598779498823,
             "bribes_usd": 0.0,
             "fees_usd": 0.0,
             "apr_total": 0.0
@@ -479190,15 +479635,15 @@
         "vote_tx_count": 375
       },
       "incentives": {
-        "total_bribes_usd": 7577.6344,
+        "total_bribes_usd": 7589.296400000001,
         "total_fees_usd": 0.0,
-        "average_apr": 4.767922055134116,
+        "average_apr": 4.7679192250071205,
         "pool_count": 10,
         "pools": [
           {
             "pool_address": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
             "pool_name": "0xb4D49802...",
-            "votes": 0.11069863974355329,
+            "votes": 0.11079286312102984,
             "bribes_usd": 0.0,
             "fees_usd": 0.0,
             "apr_total": 0.0
@@ -479207,9 +479652,9 @@
             "pool_address": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
             "pool_name": "MUSD/mUSDT",
             "votes": 20.48695917825795,
-            "bribes_usd": 2273.29032,
+            "bribes_usd": 2276.78892,
             "fees_usd": 0.0,
-            "apr_total": 6.342961826072704
+            "apr_total": 6.342961826072703
           },
           {
             "pool_address": "0x2a1ab0224a7a608d3A992Cb15594a2934F74f4C0",
@@ -479230,10 +479675,10 @@
           {
             "pool_address": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
             "pool_name": "BTC/MUSD",
-            "votes": 36.136028092610914,
-            "bribes_usd": 3788.8172,
+            "votes": 36.13598779498823,
+            "bribes_usd": 3794.6482,
             "fees_usd": 0.0,
-            "apr_total": 5.993464457270727
+            "apr_total": 5.993471140978134
           },
           {
             "pool_address": "0x5Cd2A025C001E07Ae354A4C22C3009908De1aC59",
@@ -479247,7 +479692,7 @@
             "pool_address": "0x6688F868E9c81Ee671867E77fBC618BBEA2e9782",
             "pool_name": "mT/MUSD",
             "votes": 20.09605307391307,
-            "bribes_usd": 378.88172000000003,
+            "bribes_usd": 379.46482000000003,
             "fees_usd": 0.0,
             "apr_total": 1.0777240645385493
           },
@@ -479255,7 +479700,7 @@
             "pool_address": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
             "pool_name": "mcbBTC/BTC",
             "votes": 5.727969577844801,
-            "bribes_usd": 378.88172000000003,
+            "bribes_usd": 379.46482000000003,
             "fees_usd": 0.0,
             "apr_total": 3.7810955008858507
           },
@@ -479263,9 +479708,9 @@
             "pool_address": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
             "pool_name": "mUSDC/MUSD",
             "votes": 7.649808415831322,
-            "bribes_usd": 757.7634400000001,
+            "bribes_usd": 758.9296400000001,
             "fees_usd": 0.0,
-            "apr_total": 5.662364028667345
+            "apr_total": 5.662364028667344
           },
           {
             "pool_address": "0xf6f950485b0A65828F07581Ca979ef1271778d6A",
@@ -479293,7 +479738,7 @@
         "total_bribes_usd": 0.0,
         "total_fees_usd": 0.0,
         "average_apr": 0.0,
-        "pool_count": 5,
+        "pool_count": 3,
         "pools": [
           {
             "pool_address": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
@@ -479318,22 +479763,6 @@
             "bribes_usd": 0.0,
             "fees_usd": 0.0,
             "apr_total": 0.0
-          },
-          {
-            "pool_address": "0x329D64572F8922c3Fe90D23A3C74a360d8eA6235",
-            "pool_name": "0x329D6457...",
-            "votes": 0.0,
-            "bribes_usd": 0.0,
-            "fees_usd": 0.0,
-            "apr_total": 0.0
-          },
-          {
-            "pool_address": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
-            "pool_name": "BTC/MUSD",
-            "votes": 0.0,
-            "bribes_usd": 0.0,
-            "fees_usd": 0.0,
-            "apr_total": 0.0
           }
         ]
       }
@@ -479350,92 +479779,11 @@
         "vote_tx_count": 318
       },
       "incentives": {
-        "total_bribes_usd": 3784.2688,
-        "total_fees_usd": 0.0,
-        "average_apr": 2.381096660032332,
-        "pool_count": 10,
-        "pools": [
-          {
-            "pool_address": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
-            "pool_name": "0xb4D49802...",
-            "votes": 0.11079286312102984,
-            "bribes_usd": 0.0,
-            "fees_usd": 0.0,
-            "apr_total": 0.0
-          },
-          {
-            "pool_address": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
-            "pool_name": "MUSD/mUSDT",
-            "votes": 20.48695917825795,
-            "bribes_usd": 189.21344,
-            "fees_usd": 0.0,
-            "apr_total": 0.527945602170117
-          },
-          {
-            "pool_address": "0x2a1ab0224a7a608d3A992Cb15594a2934F74f4C0",
-            "pool_name": "mUSDC/mUSDT",
-            "votes": 0.5754378356600899,
-            "bribes_usd": 0.0,
-            "fees_usd": 0.0,
-            "apr_total": 0.0
-          },
-          {
-            "pool_address": "0x329D64572F8922c3Fe90D23A3C74a360d8eA6235",
-            "pool_name": "BTC/mxSolvBTC",
-            "votes": 0.002131006144896021,
-            "bribes_usd": 0.0,
-            "fees_usd": 0.0,
-            "apr_total": 0.0
-          },
-          {
-            "pool_address": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
-            "pool_name": "BTC/MUSD",
-            "votes": 36.136028092610914,
-            "bribes_usd": 2838.2016,
-            "fees_usd": 0.0,
-            "apr_total": 4.489702066430892
-          },
-          {
-            "pool_address": "0x5Cd2A025C001E07Ae354A4C22C3009908De1aC59",
-            "pool_name": "mSolvBTC/MUSD",
-            "votes": 0.03381530367628296,
-            "bribes_usd": 0.0,
-            "fees_usd": 0.0,
-            "apr_total": 0.0
-          },
-          {
-            "pool_address": "0x6688F868E9c81Ee671867E77fBC618BBEA2e9782",
-            "pool_name": "mT/MUSD",
-            "votes": 20.09605307391307,
-            "bribes_usd": 0.0,
-            "fees_usd": 0.0,
-            "apr_total": 0.0
-          },
-          {
-            "pool_address": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
-            "pool_name": "mcbBTC/BTC",
-            "votes": 5.727969577844801,
-            "bribes_usd": 378.42688,
-            "fees_usd": 0.0,
-            "apr_total": 3.7765563706326852
-          },
-          {
-            "pool_address": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
-            "pool_name": "mUSDC/MUSD",
-            "votes": 7.649808415831322,
-            "bribes_usd": 378.42688,
-            "fees_usd": 0.0,
-            "apr_total": 2.8277832364053004
-          },
-          {
-            "pool_address": "0xf6f950485b0A65828F07581Ca979ef1271778d6A",
-            "pool_name": "BTC/mSolvBTC",
-            "votes": 0.02989946305737206,
-            "bribes_usd": 0.0,
-            "fees_usd": 0.0,
-            "apr_total": 0.0
-          }
-        ]
+        "total_bribes_usd": 0,
+        "total_fees_usd": 0,
+        "average_apr": 0.0,
+        "pool_count": 0,
+        "pools": []
       }
     },
     "52": {
@@ -479450,92 +479798,11 @@
         "vote_tx_count": 815
       },
       "incentives": {
-        "total_bribes_usd": 27.290399999999998,
-        "total_fees_usd": 0.0,
-        "average_apr": 0.017171370144463932,
-        "pool_count": 10,
-        "pools": [
-          {
-            "pool_address": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
-            "pool_name": "0xb4D49802...",
-            "votes": 0.11079286312102984,
-            "bribes_usd": 27.290399999999998,
-            "fees_usd": 0.0,
-            "apr_total": 14.080329328576516
-          },
-          {
-            "pool_address": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
-            "pool_name": "MUSD/mUSDT",
-            "votes": 20.48695917825795,
-            "bribes_usd": 0.0,
-            "fees_usd": 0.0,
-            "apr_total": 0.0
-          },
-          {
-            "pool_address": "0x2a1ab0224a7a608d3A992Cb15594a2934F74f4C0",
-            "pool_name": "mUSDC/mUSDT",
-            "votes": 0.5754378356600899,
-            "bribes_usd": 0.0,
-            "fees_usd": 0.0,
-            "apr_total": 0.0
-          },
-          {
-            "pool_address": "0x329D64572F8922c3Fe90D23A3C74a360d8eA6235",
-            "pool_name": "BTC/mxSolvBTC",
-            "votes": 0.002131006144896021,
-            "bribes_usd": 0.0,
-            "fees_usd": 0.0,
-            "apr_total": 0.0
-          },
-          {
-            "pool_address": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
-            "pool_name": "BTC/MUSD",
-            "votes": 36.136028092610914,
-            "bribes_usd": 0.0,
-            "fees_usd": 0.0,
-            "apr_total": 0.0
-          },
-          {
-            "pool_address": "0x5Cd2A025C001E07Ae354A4C22C3009908De1aC59",
-            "pool_name": "mSolvBTC/MUSD",
-            "votes": 0.03381530367628296,
-            "bribes_usd": 0.0,
-            "fees_usd": 0.0,
-            "apr_total": 0.0
-          },
-          {
-            "pool_address": "0x6688F868E9c81Ee671867E77fBC618BBEA2e9782",
-            "pool_name": "mT/MUSD",
-            "votes": 20.09605307391307,
-            "bribes_usd": 0.0,
-            "fees_usd": 0.0,
-            "apr_total": 0.0
-          },
-          {
-            "pool_address": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
-            "pool_name": "mcbBTC/BTC",
-            "votes": 5.727969577844801,
-            "bribes_usd": 0.0,
-            "fees_usd": 0.0,
-            "apr_total": 0.0
-          },
-          {
-            "pool_address": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
-            "pool_name": "mUSDC/MUSD",
-            "votes": 7.649808415831322,
-            "bribes_usd": 0.0,
-            "fees_usd": 0.0,
-            "apr_total": 0.0
-          },
-          {
-            "pool_address": "0xf6f950485b0A65828F07581Ca979ef1271778d6A",
-            "pool_name": "BTC/mSolvBTC",
-            "votes": 0.02989946305737206,
-            "bribes_usd": 0.0,
-            "fees_usd": 0.0,
-            "apr_total": 0.0
-          }
-        ]
+        "total_bribes_usd": 0,
+        "total_fees_usd": 0,
+        "average_apr": 0.0,
+        "pool_count": 0,
+        "pools": []
       }
     },
     "51": {
@@ -479550,92 +479817,11 @@
         "vote_tx_count": 116
       },
       "incentives": {
-        "total_bribes_usd": 0.0,
-        "total_fees_usd": 0.0,
+        "total_bribes_usd": 0,
+        "total_fees_usd": 0,
         "average_apr": 0.0,
-        "pool_count": 10,
-        "pools": [
-          {
-            "pool_address": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
-            "pool_name": "0xb4D49802...",
-            "votes": 0.11079286312102984,
-            "bribes_usd": 0.0,
-            "fees_usd": 0.0,
-            "apr_total": 0.0
-          },
-          {
-            "pool_address": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
-            "pool_name": "MUSD/mUSDT",
-            "votes": 20.48695917825795,
-            "bribes_usd": 0.0,
-            "fees_usd": 0.0,
-            "apr_total": 0.0
-          },
-          {
-            "pool_address": "0x2a1ab0224a7a608d3A992Cb15594a2934F74f4C0",
-            "pool_name": "mUSDC/mUSDT",
-            "votes": 0.5754378356600899,
-            "bribes_usd": 0.0,
-            "fees_usd": 0.0,
-            "apr_total": 0.0
-          },
-          {
-            "pool_address": "0x329D64572F8922c3Fe90D23A3C74a360d8eA6235",
-            "pool_name": "BTC/mxSolvBTC",
-            "votes": 0.002131006144896021,
-            "bribes_usd": 0.0,
-            "fees_usd": 0.0,
-            "apr_total": 0.0
-          },
-          {
-            "pool_address": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
-            "pool_name": "BTC/MUSD",
-            "votes": 36.136028092610914,
-            "bribes_usd": 0.0,
-            "fees_usd": 0.0,
-            "apr_total": 0.0
-          },
-          {
-            "pool_address": "0x5Cd2A025C001E07Ae354A4C22C3009908De1aC59",
-            "pool_name": "mSolvBTC/MUSD",
-            "votes": 0.03381530367628296,
-            "bribes_usd": 0.0,
-            "fees_usd": 0.0,
-            "apr_total": 0.0
-          },
-          {
-            "pool_address": "0x6688F868E9c81Ee671867E77fBC618BBEA2e9782",
-            "pool_name": "mT/MUSD",
-            "votes": 20.09605307391307,
-            "bribes_usd": 0.0,
-            "fees_usd": 0.0,
-            "apr_total": 0.0
-          },
-          {
-            "pool_address": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
-            "pool_name": "mcbBTC/BTC",
-            "votes": 5.727969577844801,
-            "bribes_usd": 0.0,
-            "fees_usd": 0.0,
-            "apr_total": 0.0
-          },
-          {
-            "pool_address": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
-            "pool_name": "0x04671C/0xdD468A",
-            "votes": 7.649808415831322,
-            "bribes_usd": 0.0,
-            "fees_usd": 0.0,
-            "apr_total": 0.0
-          },
-          {
-            "pool_address": "0xf6f950485b0A65828F07581Ca979ef1271778d6A",
-            "pool_name": "0xf6f95048...",
-            "votes": 0.02989946305737206,
-            "bribes_usd": 0.0,
-            "fees_usd": 0.0,
-            "apr_total": 0.0
-          }
-        ]
+        "pool_count": 0,
+        "pools": []
       }
     },
     "50": {
@@ -479715,5 +479901,5 @@
       }
     }
   },
-  "last_updated": 1767900584
+  "last_updated": 1767901179
 }
