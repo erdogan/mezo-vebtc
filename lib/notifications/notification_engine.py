@@ -286,7 +286,7 @@ class NotificationEngine:
             return []
 
     def should_send_24h_reminder(self) -> bool:
-        """Check if 24h reminder should be sent now.
+        """Check if 24h reminder should be sent now (24h after epoch started).
 
         Returns:
             True if reminder should be sent
@@ -298,11 +298,12 @@ class NotificationEngine:
             if not epoch_info.is_voting_open:
                 return False
 
-            # Calculate time until voting closes
-            time_until_close = epoch_info.vote_end_ts - current_ts
+            # Calculate time since epoch start
+            time_since_start = current_ts - epoch_info.start_ts
 
-            # Send when 23.5h < remaining < 24.5h (84600 - 88200 seconds)
-            return 84600 < time_until_close < 88200
+            # Send when 23.5h < time since start < 24.5h (84600 - 88200 seconds)
+            # This is 24h after epoch started
+            return 84600 < time_since_start < 88200
 
         except Exception as e:
             logger.error(f"Error checking 24h reminder: {e}")
@@ -311,28 +312,18 @@ class NotificationEngine:
     def should_send_final_warning(self) -> bool:
         """Check if final warning should be sent now.
 
+        NOTE: Disabled per user request. Final warning notifications are no longer sent.
+
         Returns:
-            True if warning should be sent
+            False (disabled)
         """
-        try:
-            current_ts = get_current_timestamp()
-            epoch_info = self.epoch_tracker.get_current_epoch(current_ts)
-
-            if not epoch_info.is_voting_open:
-                return False
-
-            # Calculate time until voting closes
-            time_until_close = epoch_info.vote_end_ts - current_ts
-
-            # Send when 2.5h < remaining < 3.5h (9000 - 12600 seconds)
-            return 9000 < time_until_close < 12600
-
-        except Exception as e:
-            logger.error(f"Error checking final warning: {e}")
-            return False
+        # Disabled - final warning notifications removed
+        return False
 
     def should_send_epoch_start(self) -> bool:
         """Check if epoch start announcement should be sent now.
+
+        Sends within 5-10 minutes of epoch starting.
 
         Returns:
             True if announcement should be sent
@@ -347,8 +338,9 @@ class NotificationEngine:
             # Calculate time since epoch start
             time_since_start = current_ts - epoch_info.start_ts
 
-            # Send when 1h < time since start < 1.5h (3600 - 5400 seconds)
-            return 3600 < time_since_start < 5400
+            # Send when 5min < time since start < 10min (300 - 600 seconds)
+            # This ensures we send near the beginning of the epoch
+            return 300 < time_since_start < 600
 
         except Exception as e:
             logger.error(f"Error checking epoch start: {e}")
