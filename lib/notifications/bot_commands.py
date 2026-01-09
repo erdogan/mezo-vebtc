@@ -505,12 +505,14 @@ class BotCommands:
 
             if test_type == "24h":
                 # Test 24h reminder
+                time_remaining = epoch_info['voting_time_remaining_formatted']
                 if subscriber.wallet_address:
                     voting_power = self.notification_engine.get_user_voting_power(subscriber.wallet_address)
                     message = self.templates.notification_24h_reminder_personalized(
                         username=subscriber.username or 'there',
                         epoch_number=epoch_number,
                         close_time=close_time,
+                        time_remaining=time_remaining,
                         voting_power=voting_power,
                         top_pools=top_pools,
                         has_voted=False
@@ -519,6 +521,7 @@ class BotCommands:
                     message = self.templates.notification_24h_reminder_broadcast(
                         epoch_number=epoch_number,
                         close_time=close_time,
+                        time_remaining=time_remaining,
                         top_pools=top_pools
                     )
 
