@@ -266,6 +266,7 @@ High APR Alerts: {'✅' if subscriber.notify_high_apr else '❌'}
     def notification_24h_reminder_broadcast(
         epoch_number: int,
         close_time: str,
+        time_remaining: str,
         top_pools: List[Dict[str, Any]]
     ) -> str:
         """24h voting reminder \\(broadcast\\)."""
@@ -277,10 +278,11 @@ High APR Alerts: {'✅' if subscriber.notify_high_apr else '❌'}
             pools_text += f"• {name} \\({apr_str} APR\\)\n"
 
         close_time_escaped = close_time.replace('.', '\\.')
+        time_remaining_escaped = time_remaining.replace('.', '\\.')
 
         return f"""*Voting Reminder* ⏰
 
-The voting window for *Epoch {epoch_number}* closes in *24 hours\\!*
+The voting window for *Epoch {epoch_number}* closes in *{time_remaining_escaped}\\!*
 
 *Vote before:* {close_time_escaped} UTC
 
@@ -294,6 +296,7 @@ View all: /pools"""
         username: str,
         epoch_number: int,
         close_time: str,
+        time_remaining: str,
         voting_power: float,
         top_pools: List[Dict[str, Any]],
         has_voted: bool
@@ -315,12 +318,13 @@ View your votes: /myvotes"""
             pools_text += f"• {name} \\({apr_str} APR\\)\n"
 
         vp_str = f"{voting_power:.2f}".replace('.', '\\.')
+        time_remaining_escaped = time_remaining.replace('.', '\\.')
 
         return f"""*Voting Reminder* ⏰
 
 Hi @{username}\\! You haven't voted yet in *Epoch {epoch_number}*\\.
 
-*Voting closes in:* 24 hours
+*Voting closes in:* {time_remaining_escaped}
 *Your voting power:* {vp_str} veBTC
 
 *Top Pools:*

@@ -178,7 +178,7 @@ class VeBTCBot:
             logger.error(f"Error checking notifications: {e}")
 
     async def _send_24h_reminders(self):
-        """Send 24h voting reminders."""
+        """Send 24h voting reminders (24h after epoch starts)."""
         try:
             logger.info("Sending 24h reminders...")
 
@@ -192,8 +192,9 @@ class VeBTCBot:
             # Get top pools
             top_pools = self.notification_engine.get_top_pools(limit=3)
 
-            # Close time
+            # Close time and remaining time
             close_time = format_datetime_short(epoch_info['vote_end_ts'])
+            time_remaining = epoch_info['voting_time_remaining_formatted']
 
             # Send broadcast messages
             for subscriber in users['broadcast']:
@@ -201,6 +202,7 @@ class VeBTCBot:
                     message = self.templates.notification_24h_reminder_broadcast(
                         epoch_number=epoch_number,
                         close_time=close_time,
+                        time_remaining=time_remaining,
                         top_pools=top_pools
                     )
 
@@ -229,6 +231,7 @@ class VeBTCBot:
                         username=subscriber.username or 'there',
                         epoch_number=epoch_number,
                         close_time=close_time,
+                        time_remaining=time_remaining,
                         voting_power=voting_power,
                         top_pools=top_pools,
                         has_voted=False
@@ -259,6 +262,7 @@ class VeBTCBot:
                         username=subscriber.username or 'there',
                         epoch_number=epoch_number,
                         close_time=close_time,
+                        time_remaining=time_remaining,
                         voting_power=voting_power,
                         top_pools=top_pools,
                         has_voted=True
