@@ -223,6 +223,13 @@ Pool incentive data is currently unavailable\\. Please try again later\\."""
             bribes = pool.get('bribes_usd', 0)
             usd_per_vote = pool.get('usd_per_vote', 0)
 
+            # Escape pool name for Markdown V2
+            # These characters need to be escaped: _ * [ ] ( ) ~ ` > # + - = | { } . !
+            escape_chars = ['_', '*', '[', ']', '(', ')', '~', '`', '>', '#', '+', '-', '=', '|', '{', '}', '.', '!']
+            escaped_name = name
+            for char in escape_chars:
+                escaped_name = escaped_name.replace(char, f'\\{char}')
+
             # Escape all periods in formatted strings
             apr_str = format_apr(apr).replace('.', '\\.')
             votes_str = f"{votes:.2f}".replace('.', '\\.')
@@ -230,7 +237,7 @@ Pool incentive data is currently unavailable\\. Please try again later\\."""
             usd_per_vote_str = f"{usd_per_vote:.2f}".replace('.', '\\.')
 
             pools_text += f"""
-*{i}\\. {name}*
+*{i}\\. {escaped_name}*
 APR: {apr_str} \\| Votes: {votes_str} veBTC
 Bribes: {bribes_str} \\| $/vote: ${usd_per_vote_str}
 """
@@ -413,9 +420,16 @@ Use /help to see available commands\\."""
     @staticmethod
     def error_message(error: str = "An error occurred") -> str:
         """Generic error message."""
+        # Escape special characters for Markdown V2
+        # These characters need to be escaped: _ * [ ] ( ) ~ ` > # + - = | { } . !
+        escape_chars = ['_', '*', '[', ']', '(', ')', '~', '`', '>', '#', '+', '-', '=', '|', '{', '}', '.', '!']
+        escaped_error = error
+        for char in escape_chars:
+            escaped_error = escaped_error.replace(char, f'\\{char}')
+
         return f"""*Error* ❌
 
-{error}
+{escaped_error}
 
 Please try again or contact support\\."""
 

@@ -395,7 +395,7 @@ class BotCommands:
         except Exception as e:
             logger.error(f"Error in pools_command: {e}", exc_info=True)
             await update.message.reply_text(
-                self.templates.error_message(f"Failed to fetch pool data: {str(e)}"),
+                self.templates.error_message("Failed to fetch pool data. Please try again later."),
                 parse_mode=ParseMode.MARKDOWN_V2
             )
 
