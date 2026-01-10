@@ -31,6 +31,8 @@ class NotificationEngine:
         self.github_raw_url = github_raw_url or os.getenv('GITHUB_DATA_URL')
         self.epoch_tracker = EpochTracker()
 
+        logger.info(f"NotificationEngine initialized with data_file={data_file}, github_url={self.github_raw_url}")
+
     def load_current_data(self) -> Tuple[List[Dict[str, Any]], List[Dict[str, Any]]]:
         """Load latest vote/lock data.
 
@@ -54,10 +56,16 @@ class NotificationEngine:
             List of pool incentives or None
         """
         try:
+            logger.info(f"Loading incentives data from {self.data_file} (github_url={self.github_raw_url})")
             data = fetch_data_json(self.data_file, self.github_raw_url)
-            return data.get('incentives', None)
+            incentives = data.get('incentives', None)
+            if incentives:
+                logger.info(f"Loaded {len(incentives)} pools from incentives data")
+            else:
+                logger.warning("No incentives data found in JSON")
+            return incentives
         except Exception as e:
-            logger.error(f"Error loading incentives data: {e}")
+            logger.error(f"Error loading incentives data: {e}", exc_info=True)
             return None
 
     def check_if_user_voted(self, wallet_address: str, epoch_number: int) -> Tuple[bool, List[Dict[str, Any]]]:
@@ -242,8 +250,10 @@ class NotificationEngine:
             List of pool data dicts
         """
         try:
+            logger.info(f"Getting top {limit} pools")
             incentives_data = self.load_incentives_data()
             if not incentives_data:
+                logger.warning("No incentives data available for get_top_pools")
                 return []
 
             # Sort by APR descending
@@ -253,9 +263,11 @@ class NotificationEngine:
                 reverse=True
             )
 
-            return sorted_pools[:limit]
+            result = sorted_pools[:limit]
+            logger.info(f"Returning {len(result)} top pools")
+            return result
         except Exception as e:
-            logger.error(f"Error getting top pools: {e}")
+            logger.error(f"Error getting top pools: {e}", exc_info=True)
             return []
 
     def get_high_apr_pools(self, threshold: float = 50.0) -> List[Dict[str, Any]]:

@@ -371,26 +371,31 @@ class BotCommands:
     async def pools_command(self, update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
         """Handle /pools command."""
         try:
+            logger.info("pools_command called")
             current_ts = get_current_timestamp()
             epoch_info = get_current_epoch_info(current_ts)
+            logger.info(f"Got epoch info: {epoch_info['epoch_number']}")
 
             # Get top pools
             top_pools = self.notification_engine.get_top_pools(limit=5)
+            logger.info(f"Got {len(top_pools)} top pools")
 
             message = self.templates.pools_message(
                 pools=top_pools,
                 epoch_number=epoch_info['epoch_number']
             )
+            logger.info("Generated pools message successfully")
 
             await update.message.reply_text(
                 message,
                 parse_mode=ParseMode.MARKDOWN_V2
             )
+            logger.info("Sent pools message successfully")
 
         except Exception as e:
-            logger.error(f"Error in pools_command: {e}")
+            logger.error(f"Error in pools_command: {e}", exc_info=True)
             await update.message.reply_text(
-                self.templates.error_message(),
+                self.templates.error_message(f"Failed to fetch pool data: {str(e)}"),
                 parse_mode=ParseMode.MARKDOWN_V2
             )
 
