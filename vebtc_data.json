@@ -2,6 +2,66 @@
   "version": "2.2",
   "locks": [
     {
+      "block_hash": "0x76fc8c5a967874b7c454168ac6ceb152131a44a845ff940156f7f346bd18dedb",
+      "block_number": 6232751,
+      "from": {
+        "ens_domain_name": null,
+        "hash": "0x3D4b1b884A7a1E59fE8589a3296EC8f8cBB6f279",
+        "implementations": [
+          {
+            "address": "0xdF217EFD8f3ecb5E837aedF203C28c1f06854017",
+            "name": "VeBTC"
+          }
+        ],
+        "is_contract": true,
+        "is_scam": false,
+        "is_verified": true,
+        "metadata": null,
+        "name": "TransparentUpgradeableProxy",
+        "private_tags": [],
+        "proxy_type": "eip1967",
+        "public_tags": [],
+        "watchlist_names": []
+      },
+      "log_index": 1,
+      "method": "withdraw",
+      "timestamp": "2026-01-21T00:32:43.000000Z",
+      "to": {
+        "ens_domain_name": null,
+        "hash": "0xc2E0C7908bf152d93135c2A5e2CF7138aeAc3Bba",
+        "implementations": [],
+        "is_contract": false,
+        "is_scam": false,
+        "is_verified": false,
+        "metadata": null,
+        "name": null,
+        "private_tags": [],
+        "proxy_type": null,
+        "public_tags": [],
+        "watchlist_names": []
+      },
+      "token": {
+        "address": "0x7b7C000000000000000000000000000000000000",
+        "circulating_market_cap": null,
+        "decimals": "18",
+        "exchange_rate": null,
+        "holders": "23843",
+        "icon_url": "https://storage.googleapis.com/mezo-production-explorer-logos-bucket/btc-token.png",
+        "name": "BTC",
+        "symbol": "BTC",
+        "total_supply": "584696476843064078820",
+        "type": "ERC-20",
+        "volume_24h": null
+      },
+      "total": {
+        "decimals": "18",
+        "value": "5000000000000"
+      },
+      "transaction_hash": "0x3ade7e9aa3affd7d3ad5d54815220e525a60df25862bd643b172907b9011c985",
+      "tx_hash": "0x3ade7e9aa3affd7d3ad5d54815220e525a60df25862bd643b172907b9011c985",
+      "type": "token_transfer"
+    },
+    {
       "block_hash": "0x1d0e0999f1fc95c10572d9639a20e743d61abb4c6a1836f133508d6484685351",
       "block_number": 6232327,
       "from": {
@@ -84303,6 +84363,534 @@
     }
   ],
   "votes": [
+    {
+      "address": {
+        "ens_domain_name": null,
+        "hash": "0x48233cCC97B87Ba93bCA212cbEe48e3210211f03",
+        "implementations": [],
+        "is_contract": false,
+        "is_verified": null,
+        "metadata": null,
+        "name": null,
+        "private_tags": [],
+        "proxy_type": null,
+        "public_tags": [],
+        "watchlist_names": []
+      },
+      "block_hash": "0x75bd083aed69a528cbda7904e0c76e74cc66b926dbc2d309b106f9369fab0fe3",
+      "block_number": 6232743,
+      "data": "0x0000000000000000000000000000000000000000000000000000000d3953923f00000000000000000000000000000000000000000000000000ffd58acdbe25600000000000000000000000000000000000000000000000000000000069701e8f",
+      "decoded": {
+        "method_call": "Abstained(address indexed voter, address indexed pool, uint256 indexed tokenId, uint256 weight, uint256 totalWeight, uint256 timestamp)",
+        "method_id": "adab6309",
+        "parameters": [
+          {
+            "indexed": true,
+            "name": "voter",
+            "type": "address",
+            "value": "0xc2E0C7908bf152d93135c2A5e2CF7138aeAc3Bba"
+          },
+          {
+            "indexed": true,
+            "name": "pool",
+            "type": "address",
+            "value": "0xb4D498029af77680cD1eF828b967f010d06C51CC"
+          },
+          {
+            "indexed": true,
+            "name": "tokenId",
+            "type": "uint256",
+            "value": "365"
+          },
+          {
+            "indexed": false,
+            "name": "weight",
+            "type": "uint256",
+            "value": "56796353087"
+          },
+          {
+            "indexed": false,
+            "name": "totalWeight",
+            "type": "uint256",
+            "value": "72010911195211104"
+          },
+          {
+            "indexed": false,
+            "name": "timestamp",
+            "type": "uint256",
+            "value": "1768955535"
+          }
+        ]
+      },
+      "index": 17,
+      "smart_contract": {
+        "ens_domain_name": null,
+        "hash": "0x48233cCC97B87Ba93bCA212cbEe48e3210211f03",
+        "implementations": [
+          {
+            "address": "0x2da3F3a20Cb05a756e7d3fE7083FB195Dc95C73c",
+            "name": "Voter"
+          }
+        ],
+        "is_contract": true,
+        "is_scam": false,
+        "is_verified": false,
+        "metadata": null,
+        "name": null,
+        "private_tags": [],
+        "proxy_type": "eip1967",
+        "public_tags": [],
+        "watchlist_names": []
+      },
+      "topics": [
+        "0xadab630928b1d46214641293704a312ee7ad87e03ae14a7fd95e7308b93998df",
+        "0x000000000000000000000000c2e0c7908bf152d93135c2a5e2cf7138aeac3bba",
+        "0x000000000000000000000000b4d498029af77680cd1ef828b967f010d06c51cc",
+        "0x000000000000000000000000000000000000000000000000000000000000016d"
+      ],
+      "transaction_hash": "0x3309402da23951cbc160950207ce63185d9c58575b98a9964d2bd9bba25058ee",
+      "tx_hash": "0x3309402da23951cbc160950207ce63185d9c58575b98a9964d2bd9bba25058ee"
+    },
+    {
+      "address": {
+        "ens_domain_name": null,
+        "hash": "0x48233cCC97B87Ba93bCA212cbEe48e3210211f03",
+        "implementations": [],
+        "is_contract": false,
+        "is_verified": null,
+        "metadata": null,
+        "name": null,
+        "private_tags": [],
+        "proxy_type": null,
+        "public_tags": [],
+        "watchlist_names": []
+      },
+      "block_hash": "0x75bd083aed69a528cbda7904e0c76e74cc66b926dbc2d309b106f9369fab0fe3",
+      "block_number": 6232743,
+      "data": "0x00000000000000000000000000000000000000000000000000000034e54e48fd0000000000000000000000000000000000000000000000004d65563e9f1271a20000000000000000000000000000000000000000000000000000000069701e8f",
+      "decoded": {
+        "method_call": "Abstained(address indexed voter, address indexed pool, uint256 indexed tokenId, uint256 weight, uint256 totalWeight, uint256 timestamp)",
+        "method_id": "adab6309",
+        "parameters": [
+          {
+            "indexed": true,
+            "name": "voter",
+            "type": "address",
+            "value": "0xc2E0C7908bf152d93135c2A5e2CF7138aeAc3Bba"
+          },
+          {
+            "indexed": true,
+            "name": "pool",
+            "type": "address",
+            "value": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356"
+          },
+          {
+            "indexed": true,
+            "name": "tokenId",
+            "type": "uint256",
+            "value": "365"
+          },
+          {
+            "indexed": false,
+            "name": "weight",
+            "type": "uint256",
+            "value": "227185412349"
+          },
+          {
+            "indexed": false,
+            "name": "totalWeight",
+            "type": "uint256",
+            "value": "5576958540524974498"
+          },
+          {
+            "indexed": false,
+            "name": "timestamp",
+            "type": "uint256",
+            "value": "1768955535"
+          }
+        ]
+      },
+      "index": 14,
+      "smart_contract": {
+        "ens_domain_name": null,
+        "hash": "0x48233cCC97B87Ba93bCA212cbEe48e3210211f03",
+        "implementations": [
+          {
+            "address": "0x2da3F3a20Cb05a756e7d3fE7083FB195Dc95C73c",
+            "name": "Voter"
+          }
+        ],
+        "is_contract": true,
+        "is_scam": false,
+        "is_verified": false,
+        "metadata": null,
+        "name": null,
+        "private_tags": [],
+        "proxy_type": "eip1967",
+        "public_tags": [],
+        "watchlist_names": []
+      },
+      "topics": [
+        "0xadab630928b1d46214641293704a312ee7ad87e03ae14a7fd95e7308b93998df",
+        "0x000000000000000000000000c2e0c7908bf152d93135c2a5e2cf7138aeac3bba",
+        "0x000000000000000000000000ed812aec0fecc8fd882ac3eccc43f3aa80a6c356",
+        "0x000000000000000000000000000000000000000000000000000000000000016d"
+      ],
+      "transaction_hash": "0x3309402da23951cbc160950207ce63185d9c58575b98a9964d2bd9bba25058ee",
+      "tx_hash": "0x3309402da23951cbc160950207ce63185d9c58575b98a9964d2bd9bba25058ee"
+    },
+    {
+      "address": {
+        "ens_domain_name": null,
+        "hash": "0x48233cCC97B87Ba93bCA212cbEe48e3210211f03",
+        "implementations": [],
+        "is_contract": false,
+        "is_verified": null,
+        "metadata": null,
+        "name": null,
+        "private_tags": [],
+        "proxy_type": null,
+        "public_tags": [],
+        "watchlist_names": []
+      },
+      "block_hash": "0x75bd083aed69a528cbda7904e0c76e74cc66b926dbc2d309b106f9369fab0fe3",
+      "block_number": 6232743,
+      "data": "0x000000000000000000000000000000000000000000000000000000843d43b678000000000000000000000000000000000000000000000000ca2ef7ed221d2e450000000000000000000000000000000000000000000000000000000069701e8f",
+      "decoded": {
+        "method_call": "Abstained(address indexed voter, address indexed pool, uint256 indexed tokenId, uint256 weight, uint256 totalWeight, uint256 timestamp)",
+        "method_id": "adab6309",
+        "parameters": [
+          {
+            "indexed": true,
+            "name": "voter",
+            "type": "address",
+            "value": "0xc2E0C7908bf152d93135c2A5e2CF7138aeAc3Bba"
+          },
+          {
+            "indexed": true,
+            "name": "pool",
+            "type": "address",
+            "value": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210"
+          },
+          {
+            "indexed": true,
+            "name": "tokenId",
+            "type": "uint256",
+            "value": "365"
+          },
+          {
+            "indexed": false,
+            "name": "weight",
+            "type": "uint256",
+            "value": "567963530872"
+          },
+          {
+            "indexed": false,
+            "name": "totalWeight",
+            "type": "uint256",
+            "value": "14568854442441780805"
+          },
+          {
+            "indexed": false,
+            "name": "timestamp",
+            "type": "uint256",
+            "value": "1768955535"
+          }
+        ]
+      },
+      "index": 11,
+      "smart_contract": {
+        "ens_domain_name": null,
+        "hash": "0x48233cCC97B87Ba93bCA212cbEe48e3210211f03",
+        "implementations": [
+          {
+            "address": "0x2da3F3a20Cb05a756e7d3fE7083FB195Dc95C73c",
+            "name": "Voter"
+          }
+        ],
+        "is_contract": true,
+        "is_scam": false,
+        "is_verified": false,
+        "metadata": null,
+        "name": null,
+        "private_tags": [],
+        "proxy_type": "eip1967",
+        "public_tags": [],
+        "watchlist_names": []
+      },
+      "topics": [
+        "0xadab630928b1d46214641293704a312ee7ad87e03ae14a7fd95e7308b93998df",
+        "0x000000000000000000000000c2e0c7908bf152d93135c2a5e2cf7138aeac3bba",
+        "0x00000000000000000000000072e6b3f126cf4f6c90c08114ac29038a0e269210",
+        "0x000000000000000000000000000000000000000000000000000000000000016d"
+      ],
+      "transaction_hash": "0x3309402da23951cbc160950207ce63185d9c58575b98a9964d2bd9bba25058ee",
+      "tx_hash": "0x3309402da23951cbc160950207ce63185d9c58575b98a9964d2bd9bba25058ee"
+    },
+    {
+      "address": {
+        "ens_domain_name": null,
+        "hash": "0x48233cCC97B87Ba93bCA212cbEe48e3210211f03",
+        "implementations": [],
+        "is_contract": false,
+        "is_verified": null,
+        "metadata": null,
+        "name": null,
+        "private_tags": [],
+        "proxy_type": null,
+        "public_tags": [],
+        "watchlist_names": []
+      },
+      "block_hash": "0x75bd083aed69a528cbda7904e0c76e74cc66b926dbc2d309b106f9369fab0fe3",
+      "block_number": 6232743,
+      "data": "0x000000000000000000000000000000000000000000000000000000da31e2ed1400000000000000000000000000000000000000000000000001225ebe4c3d95ab0000000000000000000000000000000000000000000000000000000069701e8f",
+      "decoded": {
+        "method_call": "Abstained(address indexed voter, address indexed pool, uint256 indexed tokenId, uint256 weight, uint256 totalWeight, uint256 timestamp)",
+        "method_id": "adab6309",
+        "parameters": [
+          {
+            "indexed": true,
+            "name": "voter",
+            "type": "address",
+            "value": "0xc2E0C7908bf152d93135c2A5e2CF7138aeAc3Bba"
+          },
+          {
+            "indexed": true,
+            "name": "pool",
+            "type": "address",
+            "value": "0x5Cd2A025C001E07Ae354A4C22C3009908De1aC59"
+          },
+          {
+            "indexed": true,
+            "name": "tokenId",
+            "type": "uint256",
+            "value": "365"
+          },
+          {
+            "indexed": false,
+            "name": "weight",
+            "type": "uint256",
+            "value": "937139825940"
+          },
+          {
+            "indexed": false,
+            "name": "totalWeight",
+            "type": "uint256",
+            "value": "81731914661991851"
+          },
+          {
+            "indexed": false,
+            "name": "timestamp",
+            "type": "uint256",
+            "value": "1768955535"
+          }
+        ]
+      },
+      "index": 8,
+      "smart_contract": {
+        "ens_domain_name": null,
+        "hash": "0x48233cCC97B87Ba93bCA212cbEe48e3210211f03",
+        "implementations": [
+          {
+            "address": "0x2da3F3a20Cb05a756e7d3fE7083FB195Dc95C73c",
+            "name": "Voter"
+          }
+        ],
+        "is_contract": true,
+        "is_scam": false,
+        "is_verified": false,
+        "metadata": null,
+        "name": null,
+        "private_tags": [],
+        "proxy_type": "eip1967",
+        "public_tags": [],
+        "watchlist_names": []
+      },
+      "topics": [
+        "0xadab630928b1d46214641293704a312ee7ad87e03ae14a7fd95e7308b93998df",
+        "0x000000000000000000000000c2e0c7908bf152d93135c2a5e2cf7138aeac3bba",
+        "0x0000000000000000000000005cd2a025c001e07ae354a4c22c3009908de1ac59",
+        "0x000000000000000000000000000000000000000000000000000000000000016d"
+      ],
+      "transaction_hash": "0x3309402da23951cbc160950207ce63185d9c58575b98a9964d2bd9bba25058ee",
+      "tx_hash": "0x3309402da23951cbc160950207ce63185d9c58575b98a9964d2bd9bba25058ee"
+    },
+    {
+      "address": {
+        "ens_domain_name": null,
+        "hash": "0x48233cCC97B87Ba93bCA212cbEe48e3210211f03",
+        "implementations": [],
+        "is_contract": false,
+        "is_verified": null,
+        "metadata": null,
+        "name": null,
+        "private_tags": [],
+        "proxy_type": null,
+        "public_tags": [],
+        "watchlist_names": []
+      },
+      "block_hash": "0x75bd083aed69a528cbda7904e0c76e74cc66b926dbc2d309b106f9369fab0fe3",
+      "block_number": 6232743,
+      "data": "0x0000000000000000000000000000000000000000000000000000001a72a7247e000000000000000000000000000000000000000000000002e735c2778fef62530000000000000000000000000000000000000000000000000000000069701e8f",
+      "decoded": {
+        "method_call": "Abstained(address indexed voter, address indexed pool, uint256 indexed tokenId, uint256 weight, uint256 totalWeight, uint256 timestamp)",
+        "method_id": "adab6309",
+        "parameters": [
+          {
+            "indexed": true,
+            "name": "voter",
+            "type": "address",
+            "value": "0xc2E0C7908bf152d93135c2A5e2CF7138aeAc3Bba"
+          },
+          {
+            "indexed": true,
+            "name": "pool",
+            "type": "address",
+            "value": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb"
+          },
+          {
+            "indexed": true,
+            "name": "tokenId",
+            "type": "uint256",
+            "value": "365"
+          },
+          {
+            "indexed": false,
+            "name": "weight",
+            "type": "uint256",
+            "value": "113592706174"
+          },
+          {
+            "indexed": false,
+            "name": "totalWeight",
+            "type": "uint256",
+            "value": "53553924362717848147"
+          },
+          {
+            "indexed": false,
+            "name": "timestamp",
+            "type": "uint256",
+            "value": "1768955535"
+          }
+        ]
+      },
+      "index": 5,
+      "smart_contract": {
+        "ens_domain_name": null,
+        "hash": "0x48233cCC97B87Ba93bCA212cbEe48e3210211f03",
+        "implementations": [
+          {
+            "address": "0x2da3F3a20Cb05a756e7d3fE7083FB195Dc95C73c",
+            "name": "Voter"
+          }
+        ],
+        "is_contract": true,
+        "is_scam": false,
+        "is_verified": false,
+        "metadata": null,
+        "name": null,
+        "private_tags": [],
+        "proxy_type": "eip1967",
+        "public_tags": [],
+        "watchlist_names": []
+      },
+      "topics": [
+        "0xadab630928b1d46214641293704a312ee7ad87e03ae14a7fd95e7308b93998df",
+        "0x000000000000000000000000c2e0c7908bf152d93135c2a5e2cf7138aeac3bba",
+        "0x00000000000000000000000052e604c44417233b6ccedddc0d640a405caacefb",
+        "0x000000000000000000000000000000000000000000000000000000000000016d"
+      ],
+      "transaction_hash": "0x3309402da23951cbc160950207ce63185d9c58575b98a9964d2bd9bba25058ee",
+      "tx_hash": "0x3309402da23951cbc160950207ce63185d9c58575b98a9964d2bd9bba25058ee"
+    },
+    {
+      "address": {
+        "ens_domain_name": null,
+        "hash": "0x48233cCC97B87Ba93bCA212cbEe48e3210211f03",
+        "implementations": [],
+        "is_contract": false,
+        "is_verified": null,
+        "metadata": null,
+        "name": null,
+        "private_tags": [],
+        "proxy_type": null,
+        "public_tags": [],
+        "watchlist_names": []
+      },
+      "block_hash": "0x75bd083aed69a528cbda7904e0c76e74cc66b926dbc2d309b106f9369fab0fe3",
+      "block_number": 6232743,
+      "data": "0x000000000000000000000000000000000000000000000000000000da31e2ed1400000000000000000000000000000000000000000000000069eda3113006dd2e0000000000000000000000000000000000000000000000000000000069701e8f",
+      "decoded": {
+        "method_call": "Abstained(address indexed voter, address indexed pool, uint256 indexed tokenId, uint256 weight, uint256 totalWeight, uint256 timestamp)",
+        "method_id": "adab6309",
+        "parameters": [
+          {
+            "indexed": true,
+            "name": "voter",
+            "type": "address",
+            "value": "0xc2E0C7908bf152d93135c2A5e2CF7138aeAc3Bba"
+          },
+          {
+            "indexed": true,
+            "name": "pool",
+            "type": "address",
+            "value": "0x10906a9E9215939561597b4C8e4b98F93c02031A"
+          },
+          {
+            "indexed": true,
+            "name": "tokenId",
+            "type": "uint256",
+            "value": "365"
+          },
+          {
+            "indexed": false,
+            "name": "weight",
+            "type": "uint256",
+            "value": "937139825940"
+          },
+          {
+            "indexed": false,
+            "name": "totalWeight",
+            "type": "uint256",
+            "value": "7632936237678386478"
+          },
+          {
+            "indexed": false,
+            "name": "timestamp",
+            "type": "uint256",
+            "value": "1768955535"
+          }
+        ]
+      },
+      "index": 2,
+      "smart_contract": {
+        "ens_domain_name": null,
+        "hash": "0x48233cCC97B87Ba93bCA212cbEe48e3210211f03",
+        "implementations": [
+          {
+            "address": "0x2da3F3a20Cb05a756e7d3fE7083FB195Dc95C73c",
+            "name": "Voter"
+          }
+        ],
+        "is_contract": true,
+        "is_scam": false,
+        "is_verified": false,
+        "metadata": null,
+        "name": null,
+        "private_tags": [],
+        "proxy_type": "eip1967",
+        "public_tags": [],
+        "watchlist_names": []
+      },
+      "topics": [
+        "0xadab630928b1d46214641293704a312ee7ad87e03ae14a7fd95e7308b93998df",
+        "0x000000000000000000000000c2e0c7908bf152d93135c2a5e2cf7138aeac3bba",
+        "0x00000000000000000000000010906a9e9215939561597b4c8e4b98f93c02031a",
+        "0x000000000000000000000000000000000000000000000000000000000000016d"
+      ],
+      "transaction_hash": "0x3309402da23951cbc160950207ce63185d9c58575b98a9964d2bd9bba25058ee",
+      "tx_hash": "0x3309402da23951cbc160950207ce63185d9c58575b98a9964d2bd9bba25058ee"
+    },
     {
       "address": {
         "ens_domain_name": null,
@@ -603496,7 +604084,7 @@
     {
       "pool_address": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
       "pool_name": "0xb4D49802...",
-      "current_votes": 0.07201096799156419,
+      "current_votes": 0.07201091119521111,
       "bribes": {
         "MUSD": 0.0,
         "BTC": 0.0
@@ -603512,19 +604100,19 @@
     {
       "pool_address": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
       "pool_name": "MUSD/mUSDT",
-      "current_votes": 7.632937174818212,
+      "current_votes": 7.632936237678386,
       "bribes": {
         "MUSD": 0.0,
         "mUSDT": 0.0,
         "BTC": 0.004165
       },
-      "bribes_usd": 368.34010500000005,
+      "bribes_usd": 369.58544,
       "fees": {},
       "fees_usd": 0.0,
-      "apr_bribes": 2.8374398352775403,
+      "apr_bribes": 2.8374401836464758,
       "apr_fees": 0.0,
-      "apr_total": 2.8374398352775403,
-      "usd_per_vote": 48.2566666754692
+      "apr_total": 2.8374401836464758,
+      "usd_per_vote": 48.41982541077955
     },
     {
       "pool_address": "0x2a1ab0224a7a608d3A992Cb15594a2934F74f4C0",
@@ -603562,23 +604150,23 @@
     {
       "pool_address": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
       "pool_name": "BTC/MUSD",
-      "current_votes": 53.553924476310556,
+      "current_votes": 53.55392436271785,
       "bribes": {
         "BTC": 0.04998,
         "MUSD": 0.0
       },
-      "bribes_usd": 4420.08126,
+      "bribes_usd": 4435.02528,
       "fees": {},
       "fees_usd": 0.0,
-      "apr_bribes": 4.852977677013463,
+      "apr_bribes": 4.852977687307066,
       "apr_fees": 0.0,
-      "apr_total": 4.852977677013463,
-      "usd_per_vote": 82.53515131193069
+      "apr_total": 4.852977687307066,
+      "usd_per_vote": 82.81419770401534
     },
     {
       "pool_address": "0x5Cd2A025C001E07Ae354A4C22C3009908De1aC59",
       "pool_name": "mSolvBTC/MUSD",
-      "current_votes": 0.08173285180181779,
+      "current_votes": 0.08173191466199185,
       "bribes": {
         "mSolvBTC": 0.0,
         "MUSD": 0.0
@@ -603600,46 +604188,46 @@
         "MUSD": 0.0,
         "BTC": 0.00833
       },
-      "bribes_usd": 736.6802100000001,
+      "bribes_usd": 739.17088,
       "fees": {},
       "fees_usd": 0.0,
       "apr_bribes": 4.215756634400048,
       "apr_fees": 0.0,
       "apr_total": 4.215756634400048,
-      "usd_per_vote": 71.69785951469943
+      "usd_per_vote": 71.94026552117742
     },
     {
       "pool_address": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
       "pool_name": "mcbBTC/BTC",
-      "current_votes": 14.568855010405313,
+      "current_votes": 14.568854442441781,
       "bribes": {
         "mcbBTC": 0.0,
         "BTC": 0.01666
       },
-      "bribes_usd": 1473.3604200000002,
+      "bribes_usd": 1478.34176,
       "fees": {},
       "fees_usd": 0.0,
-      "apr_bribes": 5.946383565360904,
+      "apr_bribes": 5.946383797179336,
       "apr_fees": 0.0,
-      "apr_total": 5.946383565360904,
-      "usd_per_vote": 101.13083141727351
+      "apr_total": 5.946383797179336,
+      "usd_per_vote": 101.47275242817415
     },
     {
       "pool_address": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
       "pool_name": "mUSDC/MUSD",
-      "current_votes": 5.576958767710387,
+      "current_votes": 5.576958540524974,
       "bribes": {
         "mUSDC": 0.0,
         "MUSD": 0.0,
         "BTC": 0.004165
       },
-      "bribes_usd": 368.34010500000005,
+      "bribes_usd": 369.58544,
       "fees": {},
       "fees_usd": 0.0,
-      "apr_bribes": 3.883478595071569,
+      "apr_bribes": 3.8834787532706443,
       "apr_fees": 0.0,
-      "apr_total": 3.883478595071569,
-      "usd_per_vote": 66.04676856006623
+      "apr_total": 3.8834787532706443,
+      "usd_per_vote": 66.27007127888922
     },
     {
       "pool_address": "0xf6f950485b0A65828F07581Ca979ef1271778d6A",
@@ -603672,15 +604260,15 @@
         "vote_tx_count": 243
       },
       "incentives": {
-        "total_bribes_usd": 7366.802100000001,
+        "total_bribes_usd": 7391.708799999999,
         "total_fees_usd": 0.0,
-        "average_apr": 4.581136558440577,
+        "average_apr": 4.581136696031124,
         "pool_count": 10,
         "pools": [
           {
             "pool_address": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
             "pool_name": "0xb4D49802...",
-            "votes": 0.07201096799156419,
+            "votes": 0.07201091119521111,
             "bribes_usd": 0.0,
             "fees_usd": 0.0,
             "apr_total": 0.0
@@ -603688,10 +604276,10 @@
           {
             "pool_address": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
             "pool_name": "MUSD/mUSDT",
-            "votes": 7.632937174818212,
-            "bribes_usd": 368.34010500000005,
+            "votes": 7.632936237678386,
+            "bribes_usd": 369.58544,
             "fees_usd": 0.0,
-            "apr_total": 2.8374398352775403
+            "apr_total": 2.8374401836464758
           },
           {
             "pool_address": "0x2a1ab0224a7a608d3A992Cb15594a2934F74f4C0",
@@ -603712,15 +604300,15 @@
           {
             "pool_address": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
             "pool_name": "BTC/MUSD",
-            "votes": 53.553924476310556,
-            "bribes_usd": 4420.08126,
+            "votes": 53.55392436271785,
+            "bribes_usd": 4435.02528,
             "fees_usd": 0.0,
-            "apr_total": 4.852977677013463
+            "apr_total": 4.852977687307066
           },
           {
             "pool_address": "0x5Cd2A025C001E07Ae354A4C22C3009908De1aC59",
             "pool_name": "mSolvBTC/MUSD",
-            "votes": 0.08173285180181779,
+            "votes": 0.08173191466199185,
             "bribes_usd": 0.0,
             "fees_usd": 0.0,
             "apr_total": 0.0
@@ -603729,25 +604317,25 @@
             "pool_address": "0x6688F868E9c81Ee671867E77fBC618BBEA2e9782",
             "pool_name": "mT/MUSD",
             "votes": 10.274786653135253,
-            "bribes_usd": 736.6802100000001,
+            "bribes_usd": 739.17088,
             "fees_usd": 0.0,
             "apr_total": 4.215756634400048
           },
           {
             "pool_address": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
             "pool_name": "mcbBTC/BTC",
-            "votes": 14.568855010405313,
-            "bribes_usd": 1473.3604200000002,
+            "votes": 14.568854442441781,
+            "bribes_usd": 1478.34176,
             "fees_usd": 0.0,
-            "apr_total": 5.946383565360904
+            "apr_total": 5.946383797179336
           },
           {
             "pool_address": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
             "pool_name": "mUSDC/MUSD",
-            "votes": 5.576958767710387,
-            "bribes_usd": 368.34010500000005,
+            "votes": 5.576958540524974,
+            "bribes_usd": 369.58544,
             "fees_usd": 0.0,
-            "apr_total": 3.883478595071569
+            "apr_total": 3.8834787532706443
           },
           {
             "pool_address": "0xf6f950485b0A65828F07581Ca979ef1271778d6A",
@@ -603772,15 +604360,15 @@
         "vote_tx_count": 391
       },
       "incentives": {
-        "total_bribes_usd": 7366.802100000001,
+        "total_bribes_usd": 0.0,
         "total_fees_usd": 0.0,
-        "average_apr": 4.581136558440576,
+        "average_apr": 0.0,
         "pool_count": 10,
         "pools": [
           {
             "pool_address": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
             "pool_name": "0xb4D49802...",
-            "votes": 0.07201096799156419,
+            "votes": 0.07201091119521111,
             "bribes_usd": 0.0,
             "fees_usd": 0.0,
             "apr_total": 0.0
@@ -603788,7 +604376,7 @@
           {
             "pool_address": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
             "pool_name": "MUSD/mUSDT",
-            "votes": 7.632937174818212,
+            "votes": 7.632936237678386,
             "bribes_usd": 0.0,
             "fees_usd": 0.0,
             "apr_total": 0.0
@@ -603797,9 +604385,9 @@
             "pool_address": "0x2a1ab0224a7a608d3A992Cb15594a2934F74f4C0",
             "pool_name": "mUSDC/mUSDT",
             "votes": 2.762100381696491,
-            "bribes_usd": 736.6802100000001,
+            "bribes_usd": 0.0,
             "fees_usd": 0.0,
-            "apr_total": 15.682268568890741
+            "apr_total": 0.0
           },
           {
             "pool_address": "0x329D64572F8922c3Fe90D23A3C74a360d8eA6235",
@@ -603812,15 +604400,15 @@
           {
             "pool_address": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
             "pool_name": "BTC/MUSD",
-            "votes": 53.553924476310556,
-            "bribes_usd": 5156.76147,
+            "votes": 53.55392436271785,
+            "bribes_usd": 0.0,
             "fees_usd": 0.0,
-            "apr_total": 5.66180728984904
+            "apr_total": 0.0
           },
           {
             "pool_address": "0x5Cd2A025C001E07Ae354A4C22C3009908De1aC59",
             "pool_name": "mSolvBTC/MUSD",
-            "votes": 0.08173285180181779,
+            "votes": 0.08173191466199185,
             "bribes_usd": 0.0,
             "fees_usd": 0.0,
             "apr_total": 0.0
@@ -603829,14 +604417,14 @@
             "pool_address": "0x6688F868E9c81Ee671867E77fBC618BBEA2e9782",
             "pool_name": "mT/MUSD",
             "votes": 10.274786653135253,
-            "bribes_usd": 1105.020315,
+            "bribes_usd": 0.0,
             "fees_usd": 0.0,
-            "apr_total": 6.323634951600071
+            "apr_total": 0.0
           },
           {
             "pool_address": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
             "pool_name": "mcbBTC/BTC",
-            "votes": 14.568855010405313,
+            "votes": 14.568854442441781,
             "bribes_usd": 0.0,
             "fees_usd": 0.0,
             "apr_total": 0.0
@@ -603844,10 +604432,10 @@
           {
             "pool_address": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
             "pool_name": "mUSDC/MUSD",
-            "votes": 5.576958767710387,
-            "bribes_usd": 368.34010500000005,
+            "votes": 5.576958540524974,
+            "bribes_usd": 0.0,
             "fees_usd": 0.0,
-            "apr_total": 3.883478595071569
+            "apr_total": 0.0
           },
           {
             "pool_address": "0xf6f950485b0A65828F07581Ca979ef1271778d6A",
@@ -603872,15 +604460,15 @@
         "vote_tx_count": 375
       },
       "incentives": {
-        "total_bribes_usd": 0.0,
+        "total_bribes_usd": 7391.708799999999,
         "total_fees_usd": 0.0,
-        "average_apr": 0.0,
+        "average_apr": 4.581136696031123,
         "pool_count": 10,
         "pools": [
           {
             "pool_address": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
             "pool_name": "0xb4D49802...",
-            "votes": 0.07201096799156419,
+            "votes": 0.07201091119521111,
             "bribes_usd": 0.0,
             "fees_usd": 0.0,
             "apr_total": 0.0
@@ -603888,10 +604476,10 @@
           {
             "pool_address": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
             "pool_name": "MUSD/mUSDT",
-            "votes": 7.632937174818212,
-            "bribes_usd": 0.0,
+            "votes": 7.632936237678386,
+            "bribes_usd": 2217.51264,
             "fees_usd": 0.0,
-            "apr_total": 0.0
+            "apr_total": 17.024641101878853
           },
           {
             "pool_address": "0x2a1ab0224a7a608d3A992Cb15594a2934F74f4C0",
@@ -603912,15 +604500,15 @@
           {
             "pool_address": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
             "pool_name": "BTC/MUSD",
-            "votes": 53.553924476310556,
-            "bribes_usd": 0.0,
+            "votes": 53.55392436271785,
+            "bribes_usd": 3695.8544,
             "fees_usd": 0.0,
-            "apr_total": 0.0
+            "apr_total": 4.044148072755887
           },
           {
             "pool_address": "0x5Cd2A025C001E07Ae354A4C22C3009908De1aC59",
             "pool_name": "mSolvBTC/MUSD",
-            "votes": 0.08173285180181779,
+            "votes": 0.08173191466199185,
             "bribes_usd": 0.0,
             "fees_usd": 0.0,
             "apr_total": 0.0
@@ -603929,25 +604517,25 @@
             "pool_address": "0x6688F868E9c81Ee671867E77fBC618BBEA2e9782",
             "pool_name": "mT/MUSD",
             "votes": 10.274786653135253,
-            "bribes_usd": 0.0,
+            "bribes_usd": 369.58544,
             "fees_usd": 0.0,
-            "apr_total": 0.0
+            "apr_total": 2.107878317200024
           },
           {
             "pool_address": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
             "pool_name": "mcbBTC/BTC",
-            "votes": 14.568855010405313,
-            "bribes_usd": 0.0,
+            "votes": 14.568854442441781,
+            "bribes_usd": 369.58544,
             "fees_usd": 0.0,
-            "apr_total": 0.0
+            "apr_total": 1.486595949294834
           },
           {
             "pool_address": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
             "pool_name": "mUSDC/MUSD",
-            "votes": 5.576958767710387,
-            "bribes_usd": 0.0,
+            "votes": 5.576958540524974,
+            "bribes_usd": 739.17088,
             "fees_usd": 0.0,
-            "apr_total": 0.0
+            "apr_total": 7.766957506541289
           },
           {
             "pool_address": "0xf6f950485b0A65828F07581Ca979ef1271778d6A",
@@ -603972,15 +604560,15 @@
         "vote_tx_count": 441
       },
       "incentives": {
-        "total_bribes_usd": 7366.802100000001,
+        "total_bribes_usd": 7391.7088,
         "total_fees_usd": 0.0,
-        "average_apr": 4.581136558440576,
+        "average_apr": 4.581136696031123,
         "pool_count": 10,
         "pools": [
           {
             "pool_address": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
             "pool_name": "0xb4D49802...",
-            "votes": 0.07201096799156419,
+            "votes": 0.07201091119521111,
             "bribes_usd": 0.0,
             "fees_usd": 0.0,
             "apr_total": 0.0
@@ -603988,7 +604576,7 @@
           {
             "pool_address": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
             "pool_name": "MUSD/mUSDT",
-            "votes": 7.632937174818212,
+            "votes": 7.632936237678386,
             "bribes_usd": 0.0,
             "fees_usd": 0.0,
             "apr_total": 0.0
@@ -604012,15 +604600,15 @@
           {
             "pool_address": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
             "pool_name": "BTC/MUSD",
-            "votes": 53.553924476310556,
-            "bribes_usd": 3683.40105,
+            "votes": 53.55392436271785,
+            "bribes_usd": 3695.8544,
             "fees_usd": 0.0,
-            "apr_total": 4.044148064177885
+            "apr_total": 4.044148072755887
           },
           {
             "pool_address": "0x5Cd2A025C001E07Ae354A4C22C3009908De1aC59",
             "pool_name": "mSolvBTC/MUSD",
-            "votes": 0.08173285180181779,
+            "votes": 0.08173191466199185,
             "bribes_usd": 0.0,
             "fees_usd": 0.0,
             "apr_total": 0.0
@@ -604029,25 +604617,25 @@
             "pool_address": "0x6688F868E9c81Ee671867E77fBC618BBEA2e9782",
             "pool_name": "mT/MUSD",
             "votes": 10.274786653135253,
-            "bribes_usd": 368.34010500000005,
+            "bribes_usd": 369.58544,
             "fees_usd": 0.0,
             "apr_total": 2.107878317200024
           },
           {
             "pool_address": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
             "pool_name": "mcbBTC/BTC",
-            "votes": 14.568855010405313,
-            "bribes_usd": 368.34010500000005,
+            "votes": 14.568854442441781,
+            "bribes_usd": 369.58544,
             "fees_usd": 0.0,
-            "apr_total": 1.486595891340226
+            "apr_total": 1.486595949294834
           },
           {
             "pool_address": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
             "pool_name": "mUSDC/MUSD",
-            "votes": 5.576958767710387,
-            "bribes_usd": 2946.7208400000004,
+            "votes": 5.576958540524974,
+            "bribes_usd": 2956.68352,
             "fees_usd": 0.0,
-            "apr_total": 31.067828760572553
+            "apr_total": 31.067830026165154
           },
           {
             "pool_address": "0xf6f950485b0A65828F07581Ca979ef1271778d6A",
@@ -604072,15 +604660,15 @@
         "vote_tx_count": 318
       },
       "incentives": {
-        "total_bribes_usd": 3678.9791999999998,
+        "total_bribes_usd": 0.0,
         "total_fees_usd": 0.0,
-        "average_apr": 2.287818497372484,
+        "average_apr": 0.0,
         "pool_count": 10,
         "pools": [
           {
             "pool_address": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
             "pool_name": "0xb4D49802...",
-            "votes": 0.07201096799156419,
+            "votes": 0.07201091119521111,
             "bribes_usd": 0.0,
             "fees_usd": 0.0,
             "apr_total": 0.0
@@ -604088,10 +604676,10 @@
           {
             "pool_address": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
             "pool_name": "MUSD/mUSDT",
-            "votes": 7.632937174818212,
-            "bribes_usd": 183.94895999999997,
+            "votes": 7.632936237678386,
+            "bribes_usd": 0.0,
             "fees_usd": 0.0,
-            "apr_total": 1.4170167724795395
+            "apr_total": 0.0
           },
           {
             "pool_address": "0x2a1ab0224a7a608d3A992Cb15594a2934F74f4C0",
@@ -604112,15 +604700,15 @@
           {
             "pool_address": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
             "pool_name": "BTC/MUSD",
-            "votes": 53.553924476310556,
-            "bribes_usd": 2759.2344,
+            "votes": 53.55392436271785,
+            "bribes_usd": 0.0,
             "fees_usd": 0.0,
-            "apr_total": 3.02946985839976
+            "apr_total": 0.0
           },
           {
             "pool_address": "0x5Cd2A025C001E07Ae354A4C22C3009908De1aC59",
             "pool_name": "mSolvBTC/MUSD",
-            "votes": 0.08173285180181779,
+            "votes": 0.08173191466199185,
             "bribes_usd": 0.0,
             "fees_usd": 0.0,
             "apr_total": 0.0
@@ -604136,18 +604724,18 @@
           {
             "pool_address": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
             "pool_name": "mcbBTC/BTC",
-            "votes": 14.568855010405313,
-            "bribes_usd": 367.89791999999994,
+            "votes": 14.568854442441781,
+            "bribes_usd": 0.0,
             "fees_usd": 0.0,
-            "apr_total": 1.4848112624190486
+            "apr_total": 0.0
           },
           {
             "pool_address": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
             "pool_name": "mUSDC/MUSD",
-            "votes": 5.576958767710387,
-            "bribes_usd": 367.89791999999994,
+            "votes": 5.576958540524974,
+            "bribes_usd": 0.0,
             "fees_usd": 0.0,
-            "apr_total": 3.8788165559418304
+            "apr_total": 0.0
           },
           {
             "pool_address": "0xf6f950485b0A65828F07581Ca979ef1271778d6A",
@@ -604172,23 +604760,23 @@
         "vote_tx_count": 815
       },
       "incentives": {
-        "total_bribes_usd": 44.2185,
+        "total_bribes_usd": 53.24159999999999,
         "total_fees_usd": 0.0,
-        "average_apr": 0.027497818478034664,
+        "average_apr": 0.03299738316468996,
         "pool_count": 10,
         "pools": [
           {
             "pool_address": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
             "pool_name": "0xb4D49802...",
-            "votes": 0.07201096799156419,
-            "bribes_usd": 26.5311,
+            "votes": 0.07201091119521111,
+            "bribes_usd": 26.6208,
             "fees_usd": 0.0,
-            "apr_total": 21.663366616356942
+            "apr_total": 21.66338370265954
           },
           {
             "pool_address": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
             "pool_name": "MUSD/mUSDT",
-            "votes": 7.632937174818212,
+            "votes": 7.632936237678386,
             "bribes_usd": 0.0,
             "fees_usd": 0.0,
             "apr_total": 0.0
@@ -604212,7 +604800,7 @@
           {
             "pool_address": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
             "pool_name": "BTC/MUSD",
-            "votes": 53.553924476310556,
+            "votes": 53.55392436271785,
             "bribes_usd": 0.0,
             "fees_usd": 0.0,
             "apr_total": 0.0
@@ -604220,7 +604808,7 @@
           {
             "pool_address": "0x5Cd2A025C001E07Ae354A4C22C3009908De1aC59",
             "pool_name": "mSolvBTC/MUSD",
-            "votes": 0.08173285180181779,
+            "votes": 0.08173191466199185,
             "bribes_usd": 0.0,
             "fees_usd": 0.0,
             "apr_total": 0.0
@@ -604229,33 +604817,33 @@
             "pool_address": "0x6688F868E9c81Ee671867E77fBC618BBEA2e9782",
             "pool_name": "mT/MUSD",
             "votes": 10.274786653135253,
-            "bribes_usd": 17.6874,
+            "bribes_usd": 17.7472,
             "fees_usd": 0.0,
             "apr_total": 0.10121864668427485
           },
           {
             "pool_address": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
             "pool_name": "mcbBTC/BTC",
-            "votes": 14.568855010405313,
+            "votes": 14.568854442441781,
             "bribes_usd": 0.0,
             "fees_usd": 0.0,
             "apr_total": 0.0
           },
           {
             "pool_address": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
-            "pool_name": "0xEd812AEc...",
-            "votes": 5.576958767710387,
+            "pool_name": "mUSDC/MUSD",
+            "votes": 5.576958540524974,
             "bribes_usd": 0.0,
             "fees_usd": 0.0,
             "apr_total": 0.0
           },
           {
             "pool_address": "0xf6f950485b0A65828F07581Ca979ef1271778d6A",
-            "pool_name": "0xf6f95048...",
+            "pool_name": "BTC/mSolvBTC",
             "votes": 0.027528336583721807,
-            "bribes_usd": 0.0,
+            "bribes_usd": 8.8736,
             "fees_usd": 0.0,
-            "apr_total": 0.0
+            "apr_total": 18.88962663684841
           }
         ]
       }
@@ -604272,11 +604860,92 @@
         "vote_tx_count": 116
       },
       "incentives": {
-        "total_bribes_usd": 0,
-        "total_fees_usd": 0,
+        "total_bribes_usd": 0.0,
+        "total_fees_usd": 0.0,
         "average_apr": 0.0,
-        "pool_count": 0,
-        "pools": []
+        "pool_count": 10,
+        "pools": [
+          {
+            "pool_address": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
+            "pool_name": "0xb4D49802...",
+            "votes": 0.07201091119521111,
+            "bribes_usd": 0.0,
+            "fees_usd": 0.0,
+            "apr_total": 0.0
+          },
+          {
+            "pool_address": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
+            "pool_name": "MUSD/mUSDT",
+            "votes": 7.632936237678386,
+            "bribes_usd": 0.0,
+            "fees_usd": 0.0,
+            "apr_total": 0.0
+          },
+          {
+            "pool_address": "0x2a1ab0224a7a608d3A992Cb15594a2934F74f4C0",
+            "pool_name": "mUSDC/mUSDT",
+            "votes": 2.762100381696491,
+            "bribes_usd": 0.0,
+            "fees_usd": 0.0,
+            "apr_total": 0.0
+          },
+          {
+            "pool_address": "0x329D64572F8922c3Fe90D23A3C74a360d8eA6235",
+            "pool_name": "BTC/mxSolvBTC",
+            "votes": 0.002120628592600078,
+            "bribes_usd": 0.0,
+            "fees_usd": 0.0,
+            "apr_total": 0.0
+          },
+          {
+            "pool_address": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
+            "pool_name": "BTC/MUSD",
+            "votes": 53.55392436271785,
+            "bribes_usd": 0.0,
+            "fees_usd": 0.0,
+            "apr_total": 0.0
+          },
+          {
+            "pool_address": "0x5Cd2A025C001E07Ae354A4C22C3009908De1aC59",
+            "pool_name": "mSolvBTC/MUSD",
+            "votes": 0.08173191466199185,
+            "bribes_usd": 0.0,
+            "fees_usd": 0.0,
+            "apr_total": 0.0
+          },
+          {
+            "pool_address": "0x6688F868E9c81Ee671867E77fBC618BBEA2e9782",
+            "pool_name": "mT/MUSD",
+            "votes": 10.274786653135253,
+            "bribes_usd": 0.0,
+            "fees_usd": 0.0,
+            "apr_total": 0.0
+          },
+          {
+            "pool_address": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
+            "pool_name": "mcbBTC/BTC",
+            "votes": 14.568854442441781,
+            "bribes_usd": 0.0,
+            "fees_usd": 0.0,
+            "apr_total": 0.0
+          },
+          {
+            "pool_address": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
+            "pool_name": "mUSDC/MUSD",
+            "votes": 5.576958540524974,
+            "bribes_usd": 0.0,
+            "fees_usd": 0.0,
+            "apr_total": 0.0
+          },
+          {
+            "pool_address": "0xf6f950485b0A65828F07581Ca979ef1271778d6A",
+            "pool_name": "BTC/mSolvBTC",
+            "votes": 0.027528336583721807,
+            "bribes_usd": 0.0,
+            "fees_usd": 0.0,
+            "apr_total": 0.0
+          }
+        ]
       }
     },
     "50": {
@@ -604291,11 +604960,92 @@
         "vote_tx_count": 0
       },
       "incentives": {
-        "total_bribes_usd": 0,
-        "total_fees_usd": 0,
+        "total_bribes_usd": 0.0,
+        "total_fees_usd": 0.0,
         "average_apr": 0.0,
-        "pool_count": 0,
-        "pools": []
+        "pool_count": 10,
+        "pools": [
+          {
+            "pool_address": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
+            "pool_name": "0xb4D49802...",
+            "votes": 0.07201091119521111,
+            "bribes_usd": 0.0,
+            "fees_usd": 0.0,
+            "apr_total": 0.0
+          },
+          {
+            "pool_address": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
+            "pool_name": "0x10906a9E...",
+            "votes": 7.632936237678386,
+            "bribes_usd": 0.0,
+            "fees_usd": 0.0,
+            "apr_total": 0.0
+          },
+          {
+            "pool_address": "0x2a1ab0224a7a608d3A992Cb15594a2934F74f4C0",
+            "pool_name": "mUSDC/mUSDT",
+            "votes": 2.762100381696491,
+            "bribes_usd": 0.0,
+            "fees_usd": 0.0,
+            "apr_total": 0.0
+          },
+          {
+            "pool_address": "0x329D64572F8922c3Fe90D23A3C74a360d8eA6235",
+            "pool_name": "BTC/mxSolvBTC",
+            "votes": 0.002120628592600078,
+            "bribes_usd": 0.0,
+            "fees_usd": 0.0,
+            "apr_total": 0.0
+          },
+          {
+            "pool_address": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
+            "pool_name": "BTC/MUSD",
+            "votes": 53.55392436271785,
+            "bribes_usd": 0.0,
+            "fees_usd": 0.0,
+            "apr_total": 0.0
+          },
+          {
+            "pool_address": "0x5Cd2A025C001E07Ae354A4C22C3009908De1aC59",
+            "pool_name": "mSolvBTC/MUSD",
+            "votes": 0.08173191466199185,
+            "bribes_usd": 0.0,
+            "fees_usd": 0.0,
+            "apr_total": 0.0
+          },
+          {
+            "pool_address": "0x6688F868E9c81Ee671867E77fBC618BBEA2e9782",
+            "pool_name": "mT/MUSD",
+            "votes": 10.274786653135253,
+            "bribes_usd": 0.0,
+            "fees_usd": 0.0,
+            "apr_total": 0.0
+          },
+          {
+            "pool_address": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
+            "pool_name": "mcbBTC/BTC",
+            "votes": 14.568854442441781,
+            "bribes_usd": 0.0,
+            "fees_usd": 0.0,
+            "apr_total": 0.0
+          },
+          {
+            "pool_address": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
+            "pool_name": "mUSDC/MUSD",
+            "votes": 5.576958540524974,
+            "bribes_usd": 0.0,
+            "fees_usd": 0.0,
+            "apr_total": 0.0
+          },
+          {
+            "pool_address": "0xf6f950485b0A65828F07581Ca979ef1271778d6A",
+            "pool_name": "BTC/mSolvBTC",
+            "votes": 0.027528336583721807,
+            "bribes_usd": 0.0,
+            "fees_usd": 0.0,
+            "apr_total": 0.0
+          }
+        ]
       }
     },
     "49": {
@@ -604310,11 +605060,92 @@
         "vote_tx_count": 0
       },
       "incentives": {
-        "total_bribes_usd": 0,
-        "total_fees_usd": 0,
+        "total_bribes_usd": 0.0,
+        "total_fees_usd": 0.0,
         "average_apr": 0.0,
-        "pool_count": 0,
-        "pools": []
+        "pool_count": 10,
+        "pools": [
+          {
+            "pool_address": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
+            "pool_name": "0xb4D49802...",
+            "votes": 0.07201091119521111,
+            "bribes_usd": 0.0,
+            "fees_usd": 0.0,
+            "apr_total": 0.0
+          },
+          {
+            "pool_address": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
+            "pool_name": "MUSD/mUSDT",
+            "votes": 7.632936237678386,
+            "bribes_usd": 0.0,
+            "fees_usd": 0.0,
+            "apr_total": 0.0
+          },
+          {
+            "pool_address": "0x2a1ab0224a7a608d3A992Cb15594a2934F74f4C0",
+            "pool_name": "mUSDC/mUSDT",
+            "votes": 2.762100381696491,
+            "bribes_usd": 0.0,
+            "fees_usd": 0.0,
+            "apr_total": 0.0
+          },
+          {
+            "pool_address": "0x329D64572F8922c3Fe90D23A3C74a360d8eA6235",
+            "pool_name": "BTC/mxSolvBTC",
+            "votes": 0.002120628592600078,
+            "bribes_usd": 0.0,
+            "fees_usd": 0.0,
+            "apr_total": 0.0
+          },
+          {
+            "pool_address": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
+            "pool_name": "BTC/MUSD",
+            "votes": 53.55392436271785,
+            "bribes_usd": 0.0,
+            "fees_usd": 0.0,
+            "apr_total": 0.0
+          },
+          {
+            "pool_address": "0x5Cd2A025C001E07Ae354A4C22C3009908De1aC59",
+            "pool_name": "mSolvBTC/MUSD",
+            "votes": 0.08173191466199185,
+            "bribes_usd": 0.0,
+            "fees_usd": 0.0,
+            "apr_total": 0.0
+          },
+          {
+            "pool_address": "0x6688F868E9c81Ee671867E77fBC618BBEA2e9782",
+            "pool_name": "mT/MUSD",
+            "votes": 10.274786653135253,
+            "bribes_usd": 0.0,
+            "fees_usd": 0.0,
+            "apr_total": 0.0
+          },
+          {
+            "pool_address": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
+            "pool_name": "mcbBTC/BTC",
+            "votes": 14.568854442441781,
+            "bribes_usd": 0.0,
+            "fees_usd": 0.0,
+            "apr_total": 0.0
+          },
+          {
+            "pool_address": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
+            "pool_name": "mUSDC/MUSD",
+            "votes": 5.576958540524974,
+            "bribes_usd": 0.0,
+            "fees_usd": 0.0,
+            "apr_total": 0.0
+          },
+          {
+            "pool_address": "0xf6f950485b0A65828F07581Ca979ef1271778d6A",
+            "pool_name": "BTC/mSolvBTC",
+            "votes": 0.027528336583721807,
+            "bribes_usd": 0.0,
+            "fees_usd": 0.0,
+            "apr_total": 0.0
+          }
+        ]
       }
     },
     "48": {
@@ -604329,13 +605160,94 @@
         "vote_tx_count": 0
       },
       "incentives": {
-        "total_bribes_usd": 0,
-        "total_fees_usd": 0,
+        "total_bribes_usd": 0.0,
+        "total_fees_usd": 0.0,
         "average_apr": 0.0,
-        "pool_count": 0,
-        "pools": []
+        "pool_count": 10,
+        "pools": [
+          {
+            "pool_address": "0xb4D498029af77680cD1eF828b967f010d06C51CC",
+            "pool_name": "0xb4D49802...",
+            "votes": 0.07201091119521111,
+            "bribes_usd": 0.0,
+            "fees_usd": 0.0,
+            "apr_total": 0.0
+          },
+          {
+            "pool_address": "0x10906a9E9215939561597b4C8e4b98F93c02031A",
+            "pool_name": "MUSD/mUSDT",
+            "votes": 7.632936237678386,
+            "bribes_usd": 0.0,
+            "fees_usd": 0.0,
+            "apr_total": 0.0
+          },
+          {
+            "pool_address": "0x2a1ab0224a7a608d3A992Cb15594a2934F74f4C0",
+            "pool_name": "mUSDC/mUSDT",
+            "votes": 2.762100381696491,
+            "bribes_usd": 0.0,
+            "fees_usd": 0.0,
+            "apr_total": 0.0
+          },
+          {
+            "pool_address": "0x329D64572F8922c3Fe90D23A3C74a360d8eA6235",
+            "pool_name": "BTC/mxSolvBTC",
+            "votes": 0.002120628592600078,
+            "bribes_usd": 0.0,
+            "fees_usd": 0.0,
+            "apr_total": 0.0
+          },
+          {
+            "pool_address": "0x52e604c44417233b6CcEDDDc0d640A405Caacefb",
+            "pool_name": "BTC/MUSD",
+            "votes": 53.55392436271785,
+            "bribes_usd": 0.0,
+            "fees_usd": 0.0,
+            "apr_total": 0.0
+          },
+          {
+            "pool_address": "0x5Cd2A025C001E07Ae354A4C22C3009908De1aC59",
+            "pool_name": "mSolvBTC/MUSD",
+            "votes": 0.08173191466199185,
+            "bribes_usd": 0.0,
+            "fees_usd": 0.0,
+            "apr_total": 0.0
+          },
+          {
+            "pool_address": "0x6688F868E9c81Ee671867E77fBC618BBEA2e9782",
+            "pool_name": "mT/MUSD",
+            "votes": 10.274786653135253,
+            "bribes_usd": 0.0,
+            "fees_usd": 0.0,
+            "apr_total": 0.0
+          },
+          {
+            "pool_address": "0x72E6b3F126cF4F6C90C08114aC29038A0E269210",
+            "pool_name": "mcbBTC/BTC",
+            "votes": 14.568854442441781,
+            "bribes_usd": 0.0,
+            "fees_usd": 0.0,
+            "apr_total": 0.0
+          },
+          {
+            "pool_address": "0xEd812AEc0Fecc8fD882Ac3eccC43f3aA80A6c356",
+            "pool_name": "mUSDC/MUSD",
+            "votes": 5.576958540524974,
+            "bribes_usd": 0.0,
+            "fees_usd": 0.0,
+            "apr_total": 0.0
+          },
+          {
+            "pool_address": "0xf6f950485b0A65828F07581Ca979ef1271778d6A",
+            "pool_name": "BTC/mSolvBTC",
+            "votes": 0.027528336583721807,
+            "bribes_usd": 0.0,
+            "fees_usd": 0.0,
+            "apr_total": 0.0
+          }
+        ]
       }
     }
   },
-  "last_updated": 1768954335
+  "last_updated": 1768956574
 }
