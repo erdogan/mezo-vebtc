@@ -1,14 +1,25 @@
 """RPC fetcher for on-chain contract queries."""
+import random
 import time
-from typing import Any, Optional, Tuple
+from typing import Any, Callable, Optional, Tuple
 from web3 import Web3
 from web3.exceptions import Web3Exception
+
+
+# Errors indicating rate limiting
+_RATE_LIMIT_PHRASES = ("429", "too many requests", "rate limit")
+
+
+def _is_rate_limited(exc: Exception) -> bool:
+    """Check if an exception is a rate-limit (429) error."""
+    msg = str(exc).lower()
+    return any(phrase in msg for phrase in _RATE_LIMIT_PHRASES)
 
 
 class RPCFetcher:
     """Handles RPC calls to blockchain with retry logic and caching."""
 
-    def __init__(self, rpc_url: str, fallback_rpcs: list = None, retry_count: int = 3, timeout: int = 10):
+    def __init__(self, rpc_url: str, fallback_rpcs: list = None, retry_count: int = 5, timeout: int = 15):
         """Initialize RPC fetcher.
 
         Args:
@@ -22,6 +33,16 @@ class RPCFetcher:
         self.retry_count = retry_count
         self.timeout = timeout
         self.w3 = Web3(Web3.HTTPProvider(rpc_url, request_kwargs={'timeout': timeout}))
+        self._last_call_time = 0.0
+        self._min_call_interval = 0.25  # Minimum seconds between RPC calls
+
+    def _throttle(self):
+        """Enforce minimum interval between RPC calls to avoid rate limiting."""
+        now = time.time()
+        elapsed = now - self._last_call_time
+        if elapsed < self._min_call_interval:
+            time.sleep(self._min_call_interval - elapsed)
+        self._last_call_time = time.time()
 
     def is_connected(self) -> bool:
         """Check if connected to RPC.
@@ -34,6 +55,51 @@ class RPCFetcher:
         except Exception:
             return False
 
+    def call_with_retry(self, fn: Callable, *args, default: Any = None, label: str = "") -> Any:
+        """Call any callable with retry logic and 429-aware exponential backoff.
+
+        This is the primary method for making RPC calls. All contract_fetcher
+        calls should use this to get automatic rate-limit handling.
+
+        Args:
+            fn: Callable to execute (e.g., contract.functions.pools(0).call)
+            *args: Arguments to pass to fn
+            default: Value to return if all retries fail
+            label: Description for log messages
+
+        Returns:
+            Result of fn(*args) on success, or default on failure
+        """
+        for attempt in range(self.retry_count):
+            try:
+                self._throttle()
+                result = fn(*args)
+                return result
+            except Exception as e:
+                if _is_rate_limited(e):
+                    # 429: use longer backoff with jitter
+                    delay = min(2 ** (attempt + 1) + random.uniform(0, 1), 30)
+                    if label:
+                        print(f"Rate limited on {label}, retry {attempt + 1}/{self.retry_count} in {delay:.1f}s")
+                    else:
+                        print(f"Rate limited, retry {attempt + 1}/{self.retry_count} in {delay:.1f}s")
+                    time.sleep(delay)
+                elif "execution reverted" in str(e).lower():
+                    # Contract revert — no point retrying
+                    raise
+                else:
+                    # Other errors: shorter backoff
+                    delay = 2 ** attempt + random.uniform(0, 0.5)
+                    if attempt < self.retry_count - 1:
+                        if label:
+                            print(f"Error on {label}: {e}, retry {attempt + 1}/{self.retry_count} in {delay:.1f}s")
+                        time.sleep(delay)
+                    else:
+                        if label:
+                            print(f"Failed {label} after {self.retry_count} attempts: {e}")
+
+        return default
+
     def call_contract_function(self, contract_function, *args, default: Any = None) -> Tuple[Any, bool]:
         """Call a contract function with retry logic and fallbacks.
 
@@ -45,35 +111,14 @@ class RPCFetcher:
         Returns:
             Tuple of (result, is_fresh) where is_fresh indicates if data is current
         """
-        rpcs = [self.primary_rpc] + self.fallback_rpcs
-
-        for rpc_url in rpcs:
-            # Switch to different RPC if needed
-            if self.w3.provider.endpoint_uri != rpc_url:
-                self.w3 = Web3(Web3.HTTPProvider(rpc_url, request_kwargs={'timeout': self.timeout}))
-
-            # Try calling with retries
-            for attempt in range(self.retry_count):
-                try:
-                    result = contract_function(*args).call(
-                        block_identifier='latest',
-                        timeout=self.timeout
-                    )
-                    return result, True  # Success, fresh data
-
-                except Web3Exception as e:
-                    print(f"RPC {rpc_url} attempt {attempt + 1} failed: {e}")
-                    if attempt < self.retry_count - 1:
-                        time.sleep(2 ** attempt)  # Exponential backoff: 1s, 2s, 4s
-                    continue
-
-                except Exception as e:
-                    print(f"Unexpected error calling {rpc_url}: {e}")
-                    break  # Don't retry on unexpected errors
-
-        # All RPCs failed
-        print(f"All RPC calls failed, returning default value")
-        return default, False  # Stale or default data
+        result = self.call_with_retry(
+            lambda: contract_function(*args).call(block_identifier='latest', timeout=self.timeout),
+            default=None,
+            label=str(contract_function)
+        )
+        if result is not None:
+            return result, True
+        return default, False
 
     def get_block_number(self) -> Optional[int]:
         """Get current block number.

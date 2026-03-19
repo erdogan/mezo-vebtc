@@ -2,8 +2,8 @@ name: Update veBTC Dashboard
 
 on:
   schedule:
-    # Run every 10 minutes to reduce rate limiting
-    - cron: '*/10 * * * *'
+    # Run every 30 minutes to avoid RPC rate limiting
+    - cron: '*/30 * * * *'
   # Allow manual trigger
   workflow_dispatch:
 

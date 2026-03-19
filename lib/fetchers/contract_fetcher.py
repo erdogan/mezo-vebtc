@@ -40,6 +40,10 @@ class ContractFetcher:
         with open(f"{self.abis_dir}/{filename}", "r") as f:
             return json.load(f)
 
+    def _retry(self, fn, *args, default=None, label=""):
+        """Shorthand for RPC call with retry."""
+        return self.rpc_fetcher.call_with_retry(fn, *args, default=default, label=label)
+
     def get_all_pools(self, voter_address: str) -> List[Tuple[str, str, str, str]]:
         """Get all pools with their gauge, bribe, and fees contracts.
 
@@ -51,37 +55,44 @@ class ContractFetcher:
         """
         voter = self.rpc_fetcher.get_contract(voter_address, self.voter_abi)
 
-        # Get all pools from the pools array
         pools = []
         index = 0
 
-        try:
-            while True:
-                try:
-                    pool_address = voter.functions.pools(index).call()
-                    if pool_address == "0x0000000000000000000000000000000000000000":
-                        break
+        while True:
+            try:
+                pool_address = self._retry(
+                    lambda idx=index: voter.functions.pools(idx).call(),
+                    label=f"pools({index})"
+                )
+                if pool_address is None or pool_address == "0x0000000000000000000000000000000000000000":
+                    break
 
-                    # Get gauge address for this pool
-                    gauge_address = voter.functions.gauges(pool_address).call()
-
-                    # Get associated contracts
-                    bribe_address = voter.functions.gaugeToBribe(gauge_address).call()
-                    fees_address = voter.functions.gaugeToFees(gauge_address).call()
-
-                    pools.append((pool_address, gauge_address, bribe_address, fees_address))
+                gauge_address = self._retry(
+                    lambda pa=pool_address: voter.functions.gauges(pa).call(),
+                    label=f"gauges({pool_address[:10]})"
+                )
+                if gauge_address is None:
                     index += 1
+                    continue
 
-                except Exception as e:
-                    # Reached end of array or error
-                    if "execution reverted" in str(e).lower() or "invalid" in str(e).lower():
-                        break  # End of array
-                    else:
-                        print(f"Error fetching pool {index}: {e}")
-                        break
+                bribe_address = self._retry(
+                    lambda ga=gauge_address: voter.functions.gaugeToBribe(ga).call(),
+                    label=f"gaugeToBribe({gauge_address[:10]})"
+                )
+                fees_address = self._retry(
+                    lambda ga=gauge_address: voter.functions.gaugeToFees(ga).call(),
+                    label=f"gaugeToFees({gauge_address[:10]})"
+                )
 
-        except Exception as e:
-            print(f"Error fetching pools: {e}")
+                pools.append((pool_address, gauge_address, bribe_address or "", fees_address or ""))
+                index += 1
+
+            except Exception as e:
+                if "execution reverted" in str(e).lower() or "invalid" in str(e).lower():
+                    break
+                else:
+                    print(f"Error fetching pool {index}: {e}")
+                    break
 
         return pools
 
@@ -99,13 +110,12 @@ class ContractFetcher:
         weights = {}
 
         for pool_address in pool_addresses:
-            try:
-                weight = voter.functions.weights(pool_address).call()
-                # Convert from wei to readable units (18 decimals)
-                weights[pool_address] = float(weight) / 1e18
-            except Exception as e:
-                print(f"Error fetching weight for {pool_address}: {e}")
-                weights[pool_address] = 0.0
+            weight = self._retry(
+                lambda pa=pool_address: voter.functions.weights(pa).call(),
+                default=0,
+                label=f"weights({pool_address[:10]})"
+            )
+            weights[pool_address] = float(weight) / 1e18 if weight else 0.0
 
         return weights
 
@@ -130,32 +140,36 @@ class ContractFetcher:
 
         # Get list of reward tokens
         reward_tokens = []
-        try:
-            rewards_length = bribe.functions.rewardsListLength().call()
-            for i in range(rewards_length):
-                token_address = bribe.functions.rewards(i).call()
+        rewards_length = self._retry(
+            lambda: bribe.functions.rewardsListLength().call(),
+            default=0,
+            label=f"bribe rewardsListLength({bribe_address[:10]})"
+        )
+        for i in range(rewards_length or 0):
+            token_address = self._retry(
+                lambda idx=i: bribe.functions.rewards(idx).call(),
+                label=f"bribe rewards({i})"
+            )
+            if token_address:
                 reward_tokens.append(token_address)
-        except Exception as e:
-            print(f"Error fetching bribe tokens for {bribe_address}: {e}")
 
         # Get amounts per token for this epoch
         amounts = {}
         for token in reward_tokens:
-            try:
-                amount_wei = bribe.functions.tokenRewardsPerEpoch(token, epoch_timestamp).call()
-                # Assume 18 decimals (adjust if needed based on token)
-                amounts[token] = float(amount_wei) / 1e18
-            except Exception as e:
-                print(f"Error fetching bribe amount for token {token}: {e}")
-                amounts[token] = 0.0
+            amount_wei = self._retry(
+                lambda t=token: bribe.functions.tokenRewardsPerEpoch(t, epoch_timestamp).call(),
+                default=0,
+                label=f"bribe tokenRewardsPerEpoch({token[:10]})"
+            )
+            amounts[token] = float(amount_wei) / 1e18 if amount_wei else 0.0
 
         # Get total supply (voting power in this bribe contract)
-        total_supply = 0.0
-        try:
-            supply_wei = bribe.functions.totalSupply().call()
-            total_supply = float(supply_wei) / 1e18
-        except Exception as e:
-            print(f"Error fetching bribe total supply: {e}")
+        supply_wei = self._retry(
+            lambda: bribe.functions.totalSupply().call(),
+            default=0,
+            label=f"bribe totalSupply({bribe_address[:10]})"
+        )
+        total_supply = float(supply_wei) / 1e18 if supply_wei else 0.0
 
         return {
             "tokens": reward_tokens,
@@ -180,32 +194,36 @@ class ContractFetcher:
 
         # Get list of reward tokens
         reward_tokens = []
-        try:
-            rewards_length = fees.functions.rewardsListLength().call()
-            for i in range(rewards_length):
-                token_address = fees.functions.rewards(i).call()
+        rewards_length = self._retry(
+            lambda: fees.functions.rewardsListLength().call(),
+            default=0,
+            label=f"fees rewardsListLength({fees_address[:10]})"
+        )
+        for i in range(rewards_length or 0):
+            token_address = self._retry(
+                lambda idx=i: fees.functions.rewards(idx).call(),
+                label=f"fees rewards({i})"
+            )
+            if token_address:
                 reward_tokens.append(token_address)
-        except Exception as e:
-            print(f"Error fetching fee tokens for {fees_address}: {e}")
 
         # Get amounts per token for this epoch
         amounts = {}
         for token in reward_tokens:
-            try:
-                amount_wei = fees.functions.tokenRewardsPerEpoch(token, epoch_timestamp).call()
-                # Assume 18 decimals (adjust if needed based on token)
-                amounts[token] = float(amount_wei) / 1e18
-            except Exception as e:
-                print(f"Error fetching fee amount for token {token}: {e}")
-                amounts[token] = 0.0
+            amount_wei = self._retry(
+                lambda t=token: fees.functions.tokenRewardsPerEpoch(t, epoch_timestamp).call(),
+                default=0,
+                label=f"fees tokenRewardsPerEpoch({token[:10]})"
+            )
+            amounts[token] = float(amount_wei) / 1e18 if amount_wei else 0.0
 
         # Get total supply
-        total_supply = 0.0
-        try:
-            supply_wei = fees.functions.totalSupply().call()
-            total_supply = float(supply_wei) / 1e18
-        except Exception as e:
-            print(f"Error fetching fees total supply: {e}")
+        supply_wei = self._retry(
+            lambda: fees.functions.totalSupply().call(),
+            default=0,
+            label=f"fees totalSupply({fees_address[:10]})"
+        )
+        total_supply = float(supply_wei) / 1e18 if supply_wei else 0.0
 
         return {
             "tokens": reward_tokens,
@@ -268,7 +286,6 @@ class ContractFetcher:
         Returns:
             Token symbol (e.g., "USDC", "WBTC")
         """
-        # Minimal ERC20 ABI for symbol()
         erc20_abi = [
             {
                 "constant": True,
@@ -279,13 +296,13 @@ class ContractFetcher:
             }
         ]
 
-        try:
-            token = self.rpc_fetcher.get_contract(token_address, erc20_abi)
-            symbol = token.functions.symbol().call()
-            return symbol
-        except Exception as e:
-            print(f"Error fetching symbol for {token_address}: {e}")
-            return token_address[:8]  # Return short address as fallback
+        token = self.rpc_fetcher.get_contract(token_address, erc20_abi)
+        symbol = self._retry(
+            lambda: token.functions.symbol().call(),
+            default=token_address[:8],
+            label=f"symbol({token_address[:10]})"
+        )
+        return symbol
 
     def get_token_decimals(self, token_address: str) -> int:
         """Get ERC20 token decimals.
@@ -306,13 +323,13 @@ class ContractFetcher:
             }
         ]
 
-        try:
-            token = self.rpc_fetcher.get_contract(token_address, erc20_abi)
-            decimals = token.functions.decimals().call()
-            return decimals
-        except Exception as e:
-            print(f"Error fetching decimals for {token_address}: {e}")
-            return 18  # Default to 18 decimals
+        token = self.rpc_fetcher.get_contract(token_address, erc20_abi)
+        decimals = self._retry(
+            lambda: token.functions.decimals().call(),
+            default=18,
+            label=f"decimals({token_address[:10]})"
+        )
+        return decimals
 
     def get_pool_name(self, pool_address: str) -> str:
         """Get pool name as token pair (e.g., "MUSDT/USDC").
@@ -323,7 +340,6 @@ class ContractFetcher:
         Returns:
             Pool name as "TOKEN0/TOKEN1" or shortened address if query fails
         """
-        # Pool ABI for token0() and token1()
         pool_abi = [
             {
                 "constant": True,
@@ -341,20 +357,21 @@ class ContractFetcher:
             }
         ]
 
-        try:
-            pool = self.rpc_fetcher.get_contract(pool_address, pool_abi)
+        pool = self.rpc_fetcher.get_contract(pool_address, pool_abi)
 
-            # Get token addresses
-            token0_address = pool.functions.token0().call()
-            token1_address = pool.functions.token1().call()
+        token0_address = self._retry(
+            lambda: pool.functions.token0().call(),
+            label=f"token0({pool_address[:10]})"
+        )
+        token1_address = self._retry(
+            lambda: pool.functions.token1().call(),
+            label=f"token1({pool_address[:10]})"
+        )
 
-            # Get token symbols
-            symbol0 = self.get_token_symbol(token0_address)
-            symbol1 = self.get_token_symbol(token1_address)
-
-            return f"{symbol0}/{symbol1}"
-
-        except Exception as e:
-            print(f"Error fetching pool name for {pool_address}: {e}")
-            # Return shortened address as fallback
+        if not token0_address or not token1_address:
             return f"{pool_address[:10]}..."
+
+        symbol0 = self.get_token_symbol(token0_address)
+        symbol1 = self.get_token_symbol(token1_address)
+
+        return f"{symbol0}/{symbol1}"
