@@ -164,6 +164,12 @@ def generate_dashboard(locks: List[Dict[str, Any]],
         generate_lock_analytics_js
     )
 
+    from lib.generators.html_fees import (
+        generate_fees_section,
+        generate_fees_css,
+        generate_fees_js
+    )
+
     # Calculate epoch-specific metrics
     # Filter votes by current epoch voting window
     epoch_votes = []
@@ -246,6 +252,15 @@ def generate_dashboard(locks: List[Dict[str, Any]],
         lock_analytics_html = generate_lock_analytics_section(profiles, statistics)
         lock_analytics_css = generate_lock_analytics_css()
         lock_analytics_js = generate_lock_analytics_js()
+
+    # Generate fees HTML, CSS, and JS
+    fees_html = ""
+    fees_css = ""
+    fees_js = ""
+    if epochs_data:
+        fees_html = generate_fees_section(epochs_data, epoch_info['epoch_number'])
+        fees_css = generate_fees_css()
+        fees_js = generate_fees_js(epochs_data)
 
     # For now, we'll still use the original template but inject all new sections
     # Read the original vebtc.py HTML generation
@@ -342,7 +357,7 @@ def generate_dashboard(locks: List[Dict[str, Any]],
     """
 
     # Inject CSS into the <style> section
-    combined_css = epoch_css + "\n" + incentives_css + "\n" + past_epochs_css + "\n" + lock_analytics_css + "\n" + leaderboards_css + "\n" + search_css + "\n" + tabs_css
+    combined_css = epoch_css + "\n" + incentives_css + "\n" + fees_css + "\n" + past_epochs_css + "\n" + lock_analytics_css + "\n" + leaderboards_css + "\n" + search_css + "\n" + tabs_css
     html_content = html_content.replace("</style>", combined_css + "\n    </style>")
 
     # Inject epoch banner after the header section
@@ -375,6 +390,7 @@ def generate_dashboard(locks: List[Dict[str, Any]],
             <div class="tabs-nav">
                 <button class="tab-btn active" data-tab="stats">Stats</button>
                 <button class="tab-btn" data-tab="incentives">Incentives</button>
+                <button class="tab-btn" data-tab="fees">Fees</button>
                 <button class="tab-btn" data-tab="past-epochs">Past Epochs</button>
                 <button class="tab-btn" data-tab="leaderboards">Leaderboards</button>
                 <button class="tab-btn" data-tab="lock-analytics">Lock Analytics</button>
@@ -404,6 +420,11 @@ def generate_dashboard(locks: List[Dict[str, Any]],
                 <!-- Lock Analytics Tab -->
                 <div class="tab-panel" id="lock-analytics-panel">
 """ + (lock_analytics_html if lock_analytics_html else '<p class="empty-state">No lock analytics data available</p>') + """
+                </div>
+
+                <!-- Fees Tab -->
+                <div class="tab-panel" id="fees-panel">
+""" + (fees_html if fees_html else '<p class="empty-state">No fee data available</p>') + """
                 </div>
             </div>
         </div>
@@ -462,7 +483,7 @@ def generate_dashboard(locks: List[Dict[str, Any]],
 
         // Load correct tab on page load based on URL hash
         const initialHash = window.location.hash.substring(1);
-        if (initialHash && (initialHash === 'stats' || initialHash === 'incentives' || initialHash === 'past-epochs' || initialHash === 'leaderboards' || initialHash === 'lock-analytics')) {
+        if (initialHash && (initialHash === 'stats' || initialHash === 'incentives' || initialHash === 'fees' || initialHash === 'past-epochs' || initialHash === 'leaderboards' || initialHash === 'lock-analytics')) {
             switchToTab(initialHash);
         } else {
             // Ensure stats tab is active by default
@@ -474,9 +495,9 @@ def generate_dashboard(locks: List[Dict[str, Any]],
     # Inject participants data and JavaScript before </script>
     if participants_json != "{}":
         participants_script = f"\n    // Participants data for search\n    window.PARTICIPANTS_DATA = {participants_json};\n"
-        html_content = html_content.replace("    </script>", participants_script + "\n" + epoch_js + "\n" + incentives_js + "\n" + search_js + "\n" + lock_analytics_js + "\n" + tabs_js + "\n    </script>")
+        html_content = html_content.replace("    </script>", participants_script + "\n" + epoch_js + "\n" + incentives_js + "\n" + fees_js + "\n" + search_js + "\n" + lock_analytics_js + "\n" + tabs_js + "\n    </script>")
     else:
-        html_content = html_content.replace("    </script>", "\n" + epoch_js + "\n" + incentives_js + "\n" + lock_analytics_js + "\n" + tabs_js + "\n    </script>")
+        html_content = html_content.replace("    </script>", "\n" + epoch_js + "\n" + incentives_js + "\n" + fees_js + "\n" + lock_analytics_js + "\n" + tabs_js + "\n    </script>")
 
     # Write back the modified HTML
     with open("index.html", "w") as f:
@@ -628,6 +649,7 @@ def main():
                 pool_name=pool_name,
                 current_votes=pool_raw["voting_weight"],
                 current_epoch_bribes=bribes_tokens,
+                current_epoch_fees=fees_tokens,
                 historical_fees=None  # TODO: Fetch historical fees for better fee APR
             )
 
@@ -764,6 +786,7 @@ def main():
                         pool_name=pool_name,
                         current_votes=pool_raw["voting_weight"],
                         current_epoch_bribes=bribes_tokens,
+                        current_epoch_fees=fees_tokens,
                         historical_fees=None
                     )
 

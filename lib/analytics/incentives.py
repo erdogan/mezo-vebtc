@@ -121,6 +121,7 @@ class IncentivesCalculator:
                                   pool_name: str,
                                   current_votes: float,
                                   current_epoch_bribes: Dict[str, float],
+                                  current_epoch_fees: Optional[Dict[str, float]] = None,
                                   historical_fees: Optional[List[Dict[str, float]]] = None) -> PoolIncentives:
         """Calculate complete incentive information for a pool.
 
@@ -129,6 +130,7 @@ class IncentivesCalculator:
             pool_name: Human-readable pool name
             current_votes: Current voting power allocated to pool
             current_epoch_bribes: Current epoch bribes {token: amount}
+            current_epoch_fees: Current epoch fees {token: amount}
             historical_fees: Last 4-10 epochs fees [{token: amount}, ...]
 
         Returns:
@@ -141,8 +143,13 @@ class IncentivesCalculator:
         # Calculate fee values and APR
         fees_usd = 0.0
         fee_apr = 0.0
-        fees_dict = {}
+        fees_dict = current_epoch_fees or {}
 
+        # If we have current epoch fees, calculate USD value
+        if current_epoch_fees:
+            fees_usd = self.calculate_bribes_usd(current_epoch_fees)  # Same USD calculation
+
+        # If we have historical fees, use them for APR calculation
         if historical_fees:
             # Sum up recent fees
             fees_totals = {}
