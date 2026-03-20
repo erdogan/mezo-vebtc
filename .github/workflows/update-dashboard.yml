@@ -29,19 +29,29 @@ jobs:
           pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Fetch existing data from gh-pages
+      - name: Restore cached data
+        uses: actions/cache/restore@v4
+        with:
+          path: vebtc_data.json
+          key: dashboard-data
+          restore-keys: dashboard-data
+
+      - name: Fallback to gh-pages data
         run: |
-          git fetch origin gh-pages
-          git show origin/gh-pages:vebtc_data.json > vebtc_data.json || echo "No existing data, starting fresh"
+          if [ ! -f "vebtc_data.json" ]; then
+            echo "No cache found, trying gh-pages..."
+            git fetch origin gh-pages 2>/dev/null || true
+            git show origin/gh-pages:vebtc_data.json > vebtc_data.json 2>/dev/null || echo "No existing data, starting fresh"
+          else
+            echo "Using cached vebtc_data.json ($(du -h vebtc_data.json | cut -f1))"
+          fi
 
       - name: Generate dashboard and data
         env:
           PYTHONUNBUFFERED: 1
         run: |
-          # Run dashboard generation (may have 429 warnings but still succeeds)
           python vebtc_dashboard.py
 
-          # Verify files were generated
           if [ ! -f "index.html" ] || [ ! -f "vebtc_data.json" ]; then
             echo "Error: Required files not generated"
             exit 1
@@ -49,21 +59,17 @@ jobs:
 
           echo "Dashboard generated successfully"
 
+      - name: Save data cache
+        uses: actions/cache/save@v4
+        with:
+          path: vebtc_data.json
+          key: dashboard-data
+
       - name: Prepare deployment files
         run: |
-          # Create deployment directory
           mkdir -p deploy
-
-          # Copy dashboard HTML
           cp index.html deploy/
-
-          # Copy data JSON for bot consumption
-          cp vebtc_data.json deploy/
-
-          # Create a simple index redirect if needed
           echo "Dashboard updated at $(date)" > deploy/last_updated.txt
-
-          # Optional: Create a .nojekyll file to prevent GitHub from processing the site
           touch deploy/.nojekyll
 
       - name: Deploy to GitHub Pages
