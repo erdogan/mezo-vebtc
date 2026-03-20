@@ -608,7 +608,7 @@ def main():
 
         # Initialize fetchers
         cache_manager = CacheManager()
-        rpc_fetcher = RPCFetcher(config.rpc_url, retry_count=3)
+        rpc_fetcher = RPCFetcher(config.rpc_url)
         contract_fetcher = ContractFetcher(rpc_fetcher)
         price_fetcher = PriceFetcher(cache_manager)
 
