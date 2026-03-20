@@ -27,7 +27,7 @@ def load_data(data_file: str = "vebtc_data.json") -> Tuple[List[Dict[str, Any]],
 
 def save_data(locks: List[Dict[str, Any]], votes: List[Dict[str, Any]],
               data_file: str = "vebtc_data.json") -> None:
-    """Save combined data to JSON file atomically.
+    """Save combined data to JSON file atomically, preserving other fields.
 
     Args:
         locks: List of lock events
@@ -35,6 +35,18 @@ def save_data(locks: List[Dict[str, Any]], votes: List[Dict[str, Any]],
         data_file: Path to data file
     """
     print(f"Saving {len(locks)} locks and {len(votes)} votes to {data_file}...")
+    # Load existing data to preserve epochs, participants, etc.
+    existing = {}
+    if os.path.exists(data_file):
+        try:
+            with open(data_file, "r") as f:
+                existing = json.load(f)
+        except Exception:
+            pass
+
+    existing["locks"] = locks
+    existing["votes"] = votes
+
     # Atomic write: write to temp file then rename
     try:
         with tempfile.NamedTemporaryFile(
@@ -42,7 +54,7 @@ def save_data(locks: List[Dict[str, Any]], votes: List[Dict[str, Any]],
             delete=False,
             dir=os.path.dirname(os.path.abspath(data_file)) or "."
         ) as f:
-            json.dump({"locks": locks, "votes": votes}, f, indent=2)
+            json.dump(existing, f, indent=2)
             temp_name = f.name
         os.replace(temp_name, data_file)
     except Exception as e:

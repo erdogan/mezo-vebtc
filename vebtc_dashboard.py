@@ -737,6 +737,7 @@ def main():
         # Determine which epochs to fetch
         existing_extended = load_extended_data("vebtc_data.json")
         existing_epochs = existing_extended.get('epochs', {})
+        print(f"  Current epoch: {current_epoch_num}, cached epochs: {sorted(existing_epochs.keys())}")
 
         # Strategy: Only fetch last 10 epochs, reuse existing data where possible
         epochs_to_fetch = []
