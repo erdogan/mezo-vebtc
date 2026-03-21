@@ -29,6 +29,20 @@ def generate_fees_section(epochs_data: Dict[str, Any], current_epoch_number: int
         </div>
         """
 
+    # Check if there are any non-zero fees across all epochs
+    has_any_fees = any(
+        epoch.get('incentives', {}).get('total_fees_usd', 0) > 0
+        for epoch in epochs_data.values()
+    )
+    if not has_any_fees:
+        num_epochs = len(epochs_data)
+        return f"""
+        <div class="fees-section">
+            <h2>Fee Distribution</h2>
+            <p class="empty-state">No trading fees have been distributed yet. Fee contracts are active across {num_epochs} tracked epochs — fees will appear here once pools begin distributing trading revenue.</p>
+        </div>
+        """
+
     # Aggregate all-time fees
     all_time_total_fees = 0.0
     current_epoch_fees = 0.0
