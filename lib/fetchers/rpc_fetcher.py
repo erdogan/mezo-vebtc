@@ -55,7 +55,8 @@ class RPCFetcher:
         except Exception:
             return False
 
-    def call_with_retry(self, fn: Callable, *args, default: Any = None, label: str = "") -> Any:
+    def call_with_retry(self, fn: Callable, *args, default: Any = None,
+                        label: str = "", raise_on_revert: bool = False) -> Any:
         """Call any callable with retry logic and 429-aware exponential backoff.
 
         This is the primary method for making RPC calls. All contract_fetcher
@@ -66,6 +67,7 @@ class RPCFetcher:
             *args: Arguments to pass to fn
             default: Value to return if all retries fail
             label: Description for log messages
+            raise_on_revert: If True, re-raise execution reverted errors
 
         Returns:
             Result of fn(*args) on success, or default on failure
@@ -86,7 +88,11 @@ class RPCFetcher:
                     time.sleep(delay)
                 elif "execution reverted" in str(e).lower():
                     # Contract revert — no point retrying
-                    raise
+                    if raise_on_revert:
+                        raise
+                    if label:
+                        print(f"Contract reverted on {label}, returning default")
+                    return default
                 else:
                     # Other errors: shorter backoff
                     delay = 2 ** attempt + random.uniform(0, 0.5)
